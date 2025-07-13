@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нарциссическое Расстройство Личности: Власть, Влияние и Путь к Исцелению</title>
+    <title>Нарциссизм: Интерактивное Исследование Власти и Исцеления</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Harmony (Основные: #F5F5F5, #E8E2D9; Акцент: #6B7A8F; Текст: #374151) -->
-    <!-- Application Structure Plan: Это SPA имеет фиксированную верхнюю навигацию, позволяющую пользователю переключаться между шестью основными тематическими разделами: "Введение", "Портрет Нарцисса", "Нарцисс у Власти", "Последствия", "Исцеление", "Финал" и новый раздел "Полный Отчет". Эта структура разработана для обеспечения как быстрого обзора ключевых концепций через интерактивные элементы, так и глубокого погружения в детали через полный текстовый документ. Пользователь может выбрать свой путь изучения: либо последовательно просматривать интерактивные сводки, либо сразу перейти к полному тексту для всестороннего понимания. Такой подход улучшает пользовательский опыт, предоставляя гибкость в потреблении информации. -->
-    <!-- Visualization & Content Choices: 1. Введение: Текстовый блок для общего обзора. 2. Портрет Нарцисса: Интерактивные карточки для ключевых черт (HTML/JS), а также текстовые блоки для объяснения признаков успешного нарцисса, их отношения к проектам и контролю. 3. Нарцисс у Власти: Диаграмма цикла насилия (HTML/JS) и текстовые блоки для описания тактик манипуляции, предпочтения личного контроля и роли фаворитов. 4. Последствия: Радиальная диаграмма сфер воздействия (Chart.js) с текстовыми пояснениями, включая духовные последствия. 5. Исцеление: Интерактивная временная шкала "Путь к Исцелению" (HTML/JS) с расширенными описаниями методов терапии. 6. Финал Нарцисса: Линейная диаграмма динамики состояния нарцисса (Chart.js) и текстовый блок для описания финала и исторических примеров. 7. Полный Отчет: Длинный текстовый блок с подробным изложением всех тем, доступный для прокрутки (HTML). Все визуализации используют Canvas (Chart.js) или структурированный HTML/CSS/JS. Подтверждено отсутствие SVG и Mermaid JS. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Основные: #F5F5F4, #E7E5E4; Акцент: #57534E; Текст: #292524) -->
+    <!-- Application Structure Plan: Приложение структурировано по 8 тематическим секциям для интуитивной навигации. 1) Введение: простое определение. 2) Основы: раскрывающиеся карточки для теорий и типов. 3) Темный спектр: сравнение НРЛ, злокачественного нарциссизма и психопатии (идеи Хэйра). 4) Нарцисс у власти: вкладки для бизнеса и духовности, включая видео. 5) Тактики манипуляции: интерактивная сетка. 6) Последствия: диаграмма и описание травматической связи. 7) Исцеление: пошаговая инструкция. 8) Финал: сравнение двух сценариев. Эта структура обеспечивает нелинейное исследование, позволяя пользователю выбирать глубину погружения. -->
+    <!-- Visualization & Content Choices: Информация: раскрывающиеся карточки (HTML/JS) для теорий. Сравнение: таблица (HTML) для спектра нарциссизма. Организация: вкладки (HTML/JS) для контекстов власти. Взаимоотношения: сетка (HTML) для тактик. Изменение: линейная диаграмма (Chart.js) для финала нарцисса. Пропорции: радиальная диаграмма (Chart.js) для последствий. Все визуализации используют Canvas или HTML/CSS, избегая SVG/Mermaid, что обеспечивает интерактивность и соответствие требованиям. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F5F5F5;
-            color: #374151;
+            background-color: #F5F5F4;
+            color: #292524;
         }
         .nav-link {
             transition: color 0.3s ease, border-color 0.3s ease;
             border-bottom: 2px solid transparent;
         }
         .nav-link:hover, .nav-link.active {
-            color: #6B7A8F;
-            border-color: #6B7A8F;
+            color: #57534E;
+            border-color: #A8A29E;
         }
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
         }
         .chart-container {
             position: relative;
@@ -47,123 +47,152 @@
                 max-width: 600px;
             }
         }
+        .tab-button.active {
+            border-color: #57534E;
+            background-color: #E7E5E4;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
         .full-document-content h2 {
-            font-size: 1.875rem; /* text-3xl */
-            font-weight: 700; /* font-bold */
-            margin-top: 2.5rem; /* mt-10 */
-            margin-bottom: 1rem; /* mb-4 */
-            color: #374151;
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #292524;
         }
         .full-document-content h3 {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            margin-top: 2rem; /* mt-8 */
-            margin-bottom: 0.75rem; /* mb-3 */
-            color: #4B5563;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #44403C;
         }
         .full-document-content p {
-            margin-bottom: 1rem; /* mb-4 */
-            line-height: 1.75; /* leading-relaxed */
-            color: #4B5563;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+            color: #57534E;
         }
         .full-document-content ul {
             list-style-type: disc;
-            margin-left: 1.25rem; /* ml-5 */
-            margin-bottom: 1rem; /* mb-4 */
-        }
-        .full-document-content ol {
-            list-style-type: decimal;
-            margin-left: 1.25rem; /* ml-5 */
-            margin-bottom: 1rem; /* mb-4 */
+            margin-left: 1.25rem;
+            margin-bottom: 1rem;
         }
         .full-document-content li {
-            margin-bottom: 0.5rem; /* mb-2 */
-            color: #4B5563;
+            margin-bottom: 0.5rem;
+            color: #57534E;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <header class="bg-stone-200/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
-                    <span class="text-xl font-bold text-gray-800">Тень «Я»</span>
+                    <span class="text-xl font-bold text-stone-800">Тень «Я»</span>
                 </div>
-                <div class="hidden md:block">
+                <div class="hidden lg:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#intro" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Введение</a>
-                        <a href="#portrait" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Портрет</a>
-                        <a href="#leader" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Лидер Культа</a>
-                        <a href="#aftermath" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Последствия</a>
-                        <a href="#healing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Исцеление</a>
-                        <a href="#finale" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Финал</a>
-                        <a href="#full-document" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Полный Отчет</a>
+                        <a href="#intro" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Введение</a>
+                        <a href="#basics" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Основы</a>
+                        <a href="#dark-spectrum" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Темный Спектр</a>
+                        <a href="#in-power" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">У Власти</a>
+                        <a href="#tactics" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Манипуляции</a>
+                        <a href="#aftermath" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Последствия</a>
+                        <a href="#healing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Исцеление</a>
+                        <a href="#finale" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Финал</a>
+                        <a href="#full-research" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Полный Текст</a>
                     </div>
                 </div>
-                <div class="md:hidden">
-                    <select id="mobile-nav" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="intro">Введение</option>
-                        <option value="portrait">Портрет</option>
-                        <option value="leader">Лидер Культа</option>
-                        <option value="aftermath">Последствия</option>
-                        <option value="healing">Исцеление</option>
-                        <option value="finale">Финал</option>
-                        <option value="full-document">Полный Отчет</option>
-                    </select>
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-stone-600 hover:text-stone-800 hover:bg-stone-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-stone-500">
+                        <span class="sr-only">Открыть меню</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="lg:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#intro" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Введение</a>
+                    <a href="#basics" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Основы</a>
+                    <a href="#dark-spectrum" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Темный Спектр</a>
+                    <a href="#in-power" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">У Власти</a>
+                    <a href="#tactics" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Манипуляции</a>
+                    <a href="#aftermath" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Последствия</a>
+                    <a href="#healing" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Исцеление</a>
+                    <a href="#finale" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Финал</a>
+                    <a href="#full-research" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Полный Текст</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <section id="intro" class="py-16 sm:py-24 bg-white">
+        <section id="intro" class="py-20 sm:py-28 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">Нарциссическое Расстройство Личности: Власть, Влияние и Путь к Исцелению</h1>
-                <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">Комплексный психоаналитический и терапевтический взгляд на феномен нарциссизма, его проявления во власти и пути восстановления для тех, кто пострадал.</p>
-                <p class="mt-6 max-w-2xl mx-auto text-gray-500">Это приложение — интерактивное путешествие по сложной теме. Вы можете исследовать ключевые аспекты через интерактивные элементы или углубиться в полный отчет для всестороннего понимания. Мы рассмотрим, что такое НРЛ, как нарциссы обретают и используют власть, какой урон они наносят своим последователям, и как можно исцелиться от нанесенной травмы и нейтрализовать последствия.</p>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-stone-900 tracking-tight">Лабиринт Самости</h1>
+                <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-stone-600">Глубокое исследование нарциссизма, его злокачественных форм и невидимого влияния на бизнес, духовность и личные отношения.</p>
+                <p class="mt-6 max-w-2xl mx-auto text-stone-500">Это приложение превращает сложные психологические концепции в интерактивное путешествие. Мы исследуем, что скрывается за маской грандиозности, как распознать манипуляции и как найти путь к исцелению после столкновения с нарциссическим насилием.</p>
             </div>
         </section>
 
-        <section id="portrait" class="py-16 sm:py-24">
+        <section id="basics" class="py-16 sm:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Портрет Нарцисса: За Фасадом Грандиозности</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">За грандиозным фасадом скрывается хрупкое эго. Давайте разберем ключевые психоаналитические концепции, которые определяют нарциссическую личность. Нажмите на карточку, чтобы узнать больше.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Основы Нарциссизма</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Нарциссизм — это не просто самовлюбленность. Это сложный личностный конструкт с глубокими корнями в психологии развития. За грандиозным фасадом часто скрывается хрупкое эго и внутренняя пустота.</p>
                 </div>
-                <div id="portrait-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div id="basics-accordion" class="max-w-4xl mx-auto space-y-4">
+                    <!-- Accordion items will be generated here -->
                 </div>
-
-                <div class="bg-white p-8 rounded-lg shadow-md mt-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Как узнать нарцисса, даже если он успешен и влиятелен?</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">Нарциссы, добившиеся успеха, часто мастерски маскируют свои истинные черты. Однако, при внимательном наблюдении, можно заметить ряд характерных особенностей поведения:</p>
-                    <ul class="list-disc list-inside text-gray-600 leading-relaxed mb-4">
-                        <li>Постоянная, ненасытная потребность в восхищении и признании, даже если это выражается через "ложную скромность" или обесценивание чужих достижений.</li>
-                        <li>Чрезмерная чувствительность к любой критике, которая может проявляться как мгновенная ярость, пассивная агрессия или длительное затаивание обиды.</li>
-                        <li>Эксплуатация других: использование людей как инструментов для достижения своих целей, без искреннего учета их чувств или потребностей.</li>
-                        <li>Поверхностность отношений: отсутствие глубокой эмоциональной привязанности, способность легко "отбрасывать" людей, как только они перестают быть полезными.</li>
-                        <li>Манипулятивность и склонность к обману, чтобы поддерживать свой идеальный образ или контролировать ситуацию.</li>
-                        <li>Постоянное нарушение личных границ других, поскольку нарцисс считает, что ему все дозволено.</li>
-                        <li>Проекции и перекладывание вины: неспособность взять на себя ответственность за ошибки, склонность обвинять других в своих неудачах.</li>
-                    </ul>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Распыленное внимание и личный контроль</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">Нарциссы часто начинают множество новых проектов, но редко доводят старые до финала. Это связано с их постоянным поиском нового "нарциссического ресурса" – свежего восхищения и внимания, которое приносит новизна. Как только рутина наступает, интерес угасает, поскольку глубокая, систематическая работа требует самоотдачи, а не только внешней похвалы.</p>
-                    <p class="text-gray-600 leading-relaxed mb-4">Они предпочитают личный, абсолютный контроль и избегают системной, упорядоченной работы коллектива с четкой иерархией. Это объясняется тем, что иерархия и правила ограничивают их вседозволенность и возможность манипулировать. Нарцисс не доверяет системам, а полагается на свою харизму и способность лично влиять на каждого. Их "фавориты", несмотря на отсутствие квалификации, часто занимают ключевые посты, потому что они являются продолжением воли нарцисса, обеспечивают ему ресурс и не задают вопросов, даже в ущерб эффективности организации.</p>
+            </div>
+        </section>
+        
+        <section id="dark-spectrum" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Темный Спектр: От НРЛ до Психопатии</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Нарциссизм существует в спектре. На его крайнем конце находятся злокачественный нарциссизм и психопатия — состояния, характеризующиеся отсутствием совести и склонностью к разрушению. Работа Роберта Хэйра помогает понять этот пугающий мир.</p>
+                </div>
+                <div id="dark-spectrum-content" class="max-w-5xl mx-auto">
+                    <!-- Comparison table will be generated here -->
                 </div>
             </div>
         </section>
 
-        <section id="leader" class="py-16 sm:py-24 bg-white">
+        <section id="in-power" class="py-16 sm:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Нарцисс у Власти: Духовный Лидер как Манипулятор</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Позиция духовного лидера — идеальная сцена для нарцисса. Здесь он получает безграничное восхищение, абсолютный контроль и возможность создавать культ личности. Узнайте о тактиках, которые он использует для манипуляции последователями.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Нарцисс у Власти</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Властные позиции — магнит для нарциссов. Они дают им контроль, восхищение и ресурсы. Рассмотрим, как их поведение проявляется в двух ключевых сферах: бизнесе и духовности.</p>
                 </div>
-                <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">Цикл Насилия</h3>
-                <div id="abuse-cycle" class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-12">
+                <div class="max-w-5xl mx-auto">
+                    <div class="border-b border-stone-300">
+                        <nav class="-mb-px flex space-x-4 sm:space-x-8" aria-label="Tabs">
+                            <button id="tab-business" class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">В Бизнесе</button>
+                            <button id="tab-spirituality" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">В Духовности</button>
+                        </nav>
+                    </div>
+                    <div id="tab-content" class="mt-8">
+                        <!-- Tab content will be generated here -->
+                    </div>
                 </div>
-                <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Арсенал Манипулятора</h3>
-                <div id="leader-tactics" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+
+        <section id="tactics" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Арсенал Манипулятора</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Нарциссы используют широкий спектр тактик для контроля, эксплуатации и дестабилизации своих жертв. Распознавание этих паттернов — первый шаг к защите. Наведите на карточку, чтобы узнать больше.</p>
+                </div>
+                <div id="tactics-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Tactics cards will be generated here -->
                 </div>
             </div>
         </section>
@@ -171,19 +200,19 @@
         <section id="aftermath" class="py-16 sm:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Последствия для Последователей: "Убийство Души"</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Жизнь под влиянием нарциссического лидера оставляет глубокие шрамы. Это не просто психологический дистресс, а систематическое разрушение личности, или "убийство души", затрагивающее все сферы жизни, включая духовную.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Последствия для Жертв</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Жизнь под влиянием нарцисса оставляет глубокие шрамы, затрагивая все сферы жизни — от самооценки до духовности. Этот процесс часто называют "убийством души".</p>
                 </div>
-                <div class="flex flex-col lg:flex-row items-center justify-around gap-8">
-                    <div class="lg:w-1/2">
-                         <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">Сферы Воздействия</h3>
-                         <p class="text-gray-600 mb-6">Нарциссическое насилие проникает во все аспекты жизни жертвы, от самооценки до физического здоровья и духовности. Радиальная диаграмма показывает ключевые области, затронутые этим разрушительным влиянием. Наведите курсор на метки, чтобы увидеть детали.</p>
-                         <div id="aftermath-list" class="space-y-4"></div>
-                    </div>
+                <div class="flex flex-col lg:flex-row items-center justify-around gap-12">
                     <div class="lg:w-1/2 w-full">
                         <div class="chart-container">
                             <canvas id="aftermathChart"></canvas>
                         </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                         <h3 class="text-2xl font-bold mb-4 text-stone-800">Травматическая Связь: Ловушка для Эмпата</h3>
+                         <p class="text-stone-600 mb-6">Один из самых коварных механизмов — травматическая связь (trauma bonding). Это сильная эмоциональная привязанность к абьюзеру, создаваемая циклом идеализации и обесценивания. Это похоже на зависимость, где жертва постоянно надеется на возвращение "хороших времен", что делает выход из отношений чрезвычайно трудным.</p>
+                         <div id="aftermath-list" class="space-y-4"></div>
                     </div>
                 </div>
             </div>
@@ -192,23 +221,11 @@
         <section id="healing" class="py-16 sm:py-24 bg-white">
              <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Путь к Исцелению: Восстановление после Травмы</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Восстановление после нарциссического насилия — это сложный, но возможный путь. Он требует мужества, поддержки и времени. Вот ключевые шаги и методы терапии на пути к возрождению себя.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Путь к Исцелению: Первые Шаги</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Осознание того, что вы стали жертвой нарциссического насилия, — это начало сложного, но возможного пути к восстановлению своего "Я". Вот ключевые первые шаги.</p>
                 </div>
-                <div id="healing-path" class="relative">
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md mt-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Методы Терапии для Нейтрализации Последствий</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">Для эффективного исцеления от травм, нанесенных нарциссом, часто требуется профессиональная помощь. Различные терапевтические подходы могут быть полезны:</p>
-                    <ul class="list-disc list-inside text-gray-600 leading-relaxed mb-4">
-                        <li><strong>Психоаналитическая терапия:</strong> Помогает проработать ранние травмы, которые могли сделать человека уязвимым для нарциссического влияния, а также сформировать более здоровые объектные отношения и справиться с расщеплением.</li>
-                        <li><strong>Когнитивно-поведенческая терапия (КПТ):</strong> Фокусируется на изменении искаженных мыслей и неадаптивных поведенческих паттернов, которые могли развиться под влиянием нарцисса.</li>
-                        <li><strong>Диалектическая поведенческая терапия (ДПТ):</strong> Развивает навыки эмоциональной регуляции, стрессоустойчивости, осознанности и межличностной эффективности, что критически важно для восстановления после длительного эмоционального насилия.</li>
-                        <li><strong>ДПДГ (EMDR - Eye Movement Desensitization and Reprocessing):</strong> Используется для проработки травматических воспоминаний и снижения их эмоциональной нагрузки.</li>
-                        <li><strong>Групповая терапия и группы поддержки:</strong> Предоставляют безопасное пространство для обмена опытом, получения поддержки от других, кто пережил подобное, и нормализации своих чувств. Это помогает уменьшить чувство изоляции и стыда.</li>
-                        <li><strong>Терапия, ориентированная на травму:</strong> Специализированные подходы, направленные на исцеление комплексной травмы, которая часто возникает после длительных отношений с нарциссом.</li>
-                    </ul>
-                    <p class="text-gray-600 leading-relaxed">Важно помнить, что процесс исцеления индивидуален и требует терпения, самосострадания и, зачастую, длительной работы с квалифицированным специалистом.</p>
+                <div id="healing-path" class="max-w-4xl mx-auto space-y-8">
+                    <!-- Healing steps will be generated here -->
                 </div>
             </div>
         </section>
@@ -216,438 +233,359 @@
         <section id="finale" class="py-16 sm:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Финал Нарцисса: Одиночество и Коллапс</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Какова долгосрочная траектория нарцисса? Несмотря на внешний фасад успеха, их внутренний мир часто пуст, а прогноз, как правило, неблагоприятен. Старение и потеря контроля могут привести к "нарциссическому коллапсу".</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Финал Нарцисса</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Какова долгосрочная траектория нарцисса? Несмотря на внешний успех, их внутренний мир пуст, а прогноз зависит от их способности (или неспособности) осознать свою проблему.</p>
                 </div>
-                <div class="flex flex-col lg:flex-row-reverse items-center justify-around gap-8">
-                    <div class="lg:w-1/2">
-                        <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">Траектория Упадка</h3>
-                        <p class="text-gray-600 mb-6">Эта визуализация показывает, как с течением времени и потерей "нарциссического ресурса" (внешнего восхищения и контроля), внутреннее состояние нарцисса ухудшается, что приводит к усилению негативных состояний и, в конечном итоге, к коллапсу.</p>
-                         <div id="finale-details" class="space-y-4"></div>
-                    </div>
-                    <div class="lg:w-1/2 w-full">
-                        <div class="chart-container">
-                             <canvas id="finaleChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md mt-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Исторические Личности с Предполагаемым НРЛ</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">Важно отметить, что диагностировать психическое расстройство ретроспективно, без личного обследования, невозможно. Однако, на основе исторических записей и биографий, некоторые личности часто приводятся в качестве примеров, чье поведение демонстрировало выраженные нарциссические черты:</p>
-                    <ul class="list-disc list-inside text-gray-600 leading-relaxed mb-4">
-                        <li><strong>Адольф Гитлер:</strong> Грандиозность, мания величия, полное отсутствие эмпатии, культ личности, неспособность к критике, проекция вины на "врагов".</li>
-                        <li><strong>Иосиф Сталин:</strong> Паранойя, абсолютный контроль, систематическое уничтожение оппозиции, создание культа собственной личности, безжалостная эксплуатация ресурсов и людей.</li>
-                        <li><strong>Джим Джонс:</strong> Лидер культа "Народный Храм", который демонстрировал крайнюю грандиозность, тотальный контроль над последователями, манипуляции, приведшие к массовому самоубийству.</li>
-                        <li><strong>Элизабет Холмс (Theranos):</strong> Обвинения в грандиозности, обмане, отсутствии эмпатии, вере в собственную ложь, что привело к краху ее компании и обвинениям в мошенничестве.</li>
-                    </ul>
-                    <p class="text-gray-600 leading-relaxed">Эти примеры иллюстрируют, как нарциссические черты, особенно в сочетании с властью, могут приводить к разрушительным последствиям как для самого человека, так и для окружающих.</p>
+                <div id="finale-content" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Finale content will be generated here -->
                 </div>
             </div>
         </section>
-
-        <section id="full-document" class="py-16 sm:py-24 bg-white">
+        
+        <section id="full-research" class="py-16 sm:py-24 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Полный Отчет: Нарциссическое Расстройство Личности: Власть, Влияние и Путь к Исцелению</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Здесь представлен полный текст исследования, охватывающий все аспекты нарциссического расстройства личности в контексте власти и духовного лидерства. Вы можете прочитать его целиком для глубокого понимания темы.</p>
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Полный Текст Исследования</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Для тех, кто хочет глубже погрузиться в тему, здесь представлен полный, синтезированный текст исследования, на основе которого создано это приложение.</p>
                 </div>
-                <div class="full-document-content bg-gray-50 p-8 rounded-lg shadow-md prose max-w-none">
-                    <h2>Введение</h2>
-                    <p>Нарциссическое расстройство личности (НРЛ) – это сложное и деструктивное психическое состояние, характеризующееся грандиозным чувством собственной значимости, глубокой потребностью в чрезмерном восхищении, отсутствием эмпатии и часто поверхностными, эксплуататорскими отношениями. В контексте власти, особенно в сферах, где требуется харизма и доверие, таких как духовное лидерство, нарцисс находит идеальную почву для реализации своих патологических потребностей. Этот документ исследует природу НРЛ, механизмы его проявления во властных структурах, разрушительные последствия для тех, кто попадает под влияние нарцисса, и пути к исцелению от нанесенных травм.</p>
-
-                    <h2>Глава 1: Портрет Нарцисса: За Фасадом Грандиозности</h2>
-                    <p>В основе нарциссической личности лежит глубокая, часто неосознаваемая, хрупкость и неуверенность, скрытые за тщательно выстроенным фасадом грандиозности. Психоаналитический взгляд на НРЛ подчеркивает роль ранних травм развития, когда ребенок не получил достаточного "зеркалирования" и безусловного принятия, что привело к формированию ложного "Я".</p>
-                    <h3>Ключевые черты НРЛ:</h3>
-                    <ul>
-                        <li><strong>Грандиозность:</strong> Необоснованное, завышенное чувство собственной важности, уникальности и превосходства над другими. Нарцисс верит, что он особенный и может быть понят только такими же "особенными" людьми.</li>
-                        <li><strong>Отсутствие эмпатии:</strong> Неспособность или нежелание распознавать, понимать и разделять чувства и потребности других. Другие люди воспринимаются как объекты для удовлетворения собственных нужд и подтверждения собственной значимости.</li>
-                        <li><strong>Чувство вседозволенности:</strong> Убеждение в том, что человек заслуживает особого обращения, безусловного подчинения и привилегий, независимо от своих действий. Это часто ведет к эксплуатации других.</li>
-                        <li><strong>Хрупкое эго:</strong> Несмотря на внешний вид уверенности, нарцисс страдает от глубоко укоренившейся неуверенности, низкой самооценки и постоянного страха разоблачения своей "неполноценности". Этот страх является движущей силой постоянного поиска внешнего подтверждения и восхищения (нарциссического ресурса).</li>
-                        <li><strong>Расщепление:</strong> Примитивный защитный механизм, при котором нарцисс воспринимает людей или события в крайностях – как "абсолютно хороших" (идеализация) или "абсолютно плохих" (обесценивание). Это позволяет ему избегать интеграции противоречивых аспектов себя и других.</li>
-                        <li><strong>Самообъекты:</strong> Другие люди, которые служат для регулирования самооценки нарцисса. В патологическом нарциссизме другие используются для удовлетворения неудовлетворенных потребностей в отражении (восхищении), идеализации (поклонении) и двойничестве (чувстве полного понимания).</li>
-                    </ul>
-
-                    <h3>Как узнать нарцисса, даже если он успешен и влиятелен?</h3>
-                    <p>Нарциссы, добившиеся успеха в карьере или общественной жизни, часто мастерски маскируют свои деструктивные черты за фасадом харизмы, уверенности и внешней привлекательности. Однако, при внимательном наблюдении, можно заметить ряд характерных особенностей поведения:</p>
-                    <ul>
-                        <li><strong>Ненасытная потребность в восхищении:</strong> Даже если они уже на вершине, их жажда комплиментов, признания и внимания никогда не угасает. Они могут выглядеть скромными, но всегда найдут способ перевести разговор на себя и свои достижения.</li>
-                        <li><strong>Чрезмерная чувствительность к критике:</strong> Любое замечание, несогласие или отсутствие восхищения воспринимается как личное оскорбление и угроза их хрупкому эго. Реакция может быть мгновенной яростью, пассивной агрессией, клеветнической кампанией или полным отстранением.</li>
-                        <li><strong>Эксплуатация и использование других:</strong> Люди для них – это функции, инструменты для достижения своих целей. Они легко используют чужие ресурсы, время, связи, идеи, не испытывая при этом благодарности или угрызений совести.</li>
-                        <li><strong>Поверхностные отношения:</strong> Нарциссы не способны к глубокой эмоциональной близости и искренней привязанности. Их отношения строятся на выгоде и контроле. Они легко "отбрасывают" людей, как только те перестают быть полезными или начинают задавать неудобные вопросы.</li>
-                        <li><strong>Манипулятивность и обман:</strong> Ложь, искажение фактов, газлайтинг – их обычные инструменты для поддержания своего идеального образа и контроля над ситуацией. Они могут убедительно лгать, веря в собственную ложь.</li>
-                        <li><strong>Нарушение границ:</strong> Они не уважают личное пространство, время, чувства или собственность других, поскольку считают, что им все дозволено.</li>
-                        <li><strong>Проекции и перекладывание вины:</strong> Нарциссы крайне редко берут на себя ответственность за свои ошибки или неудачи. Они мастерски проецируют свои негативные качества и вину на других, обвиняя окружающих во всех своих проблемах.</li>
-                    </ul>
-
-                    <h3>Распыленное внимание, незавершенные проекты и личный контроль</h3>
-                    <p>Одной из характерных черт нарциссического поведения, особенно в управленческой или лидерской роли, является склонность начинать множество новых, грандиозных проектов, но редко доводить старые до логического завершения. Это связано с несколькими факторами:</p>
-                    <ul>
-                        <li><strong>Поиск нового "нарциссического ресурса":</strong> Новизна проекта, его начальный этап, презентации и обещания приносят максимальное количество восхищения и внимания. Как только проект переходит в фазу рутинной, детальной работы, требующей усидчивости и самоотдачи, интерес нарцисса угасает, поскольку это перестает приносить ему мгновенное подтверждение его "гениальности".</li>
-                        <li><strong>Неспособность к глубокой работе:</strong> Нарциссы часто неспособны к долгосрочной, кропотливой работе, которая требует не только внешней похвалы, но и внутренней мотивации, самодисциплины и способности к самокритике. Их внимание распылено, они быстро теряют фокус.</li>
-                        <li><strong>Предпочтение личного контроля:</strong> Нарцисс не доверяет системам, правилам и четким иерархиям. Он предпочитает личный, абсолютный контроль, потому что это дает ему чувство всемогущества и позволяет манипулировать людьми и процессами напрямую. Системная, упорядоченная работа коллектива с четкой иерархией ограничивает его вседозволенность и возможность манипулировать.</li>
-                        <li><strong>Фаворитизм:</strong> Нарциссы часто назначают своих "фаворитов" на ключевые посты, независимо от их квалификации. Эти фавориты – это те, кто обеспечивает нарциссу постоянный ресурс (восхищение, лояльность, выполнение любых указаний), не задает вопросов и является продолжением его воли. Это усиливает его личную власть, подрывает компетентность и моральный дух организации, но для нарцисса важнее его личный контроль, чем эффективность системы.</li>
-                    </ul>
-
-                    <h2>Глава 2: Нарцисс у Власти: Духовный Лидер как Манипулятор</h2>
-                    <p>Позиция духовного лидера — идеальная сцена для нарцисса. Здесь он получает безграничное восхищение, абсолютный контроль и возможность создавать культ личности. В этой роли нарцисс может использовать свою харизму для привлечения последователей, которые, ища духовного наставления, становятся уязвимыми для его манипуляций.</p>
-                    <h3>Тактики манипуляции:</h3>
-                    <ul>
-                        <li><strong>Газлайтинг:</strong> Систематическое искажение реальности, заставляющее жертву сомневаться в своих восприятиях, памяти или здравомыслии. Нарцисс отрицает очевидные факты, чтобы подорвать уверенность последователя в себе.</li>
-                        <li><strong>Перекладывание вины:</strong> Отказ от ответственности за свои действия, приписывание вины или негативных последствий последователю. Нарцисс всегда находит "козла отпущения".</li>
-                        <li><strong>Триангуляция:</strong> Создание конфликтов между двумя или более людьми, натравливая их друг на друга, чтобы сохранить контроль и позицию "арбитра" или "единственной истины".</li>
-                        <li><strong>Изоляция:</strong> Постепенное отрезание последователя от внешних источников поддержки (друзей, семьи, независимой информации), чтобы сделать его полностью зависимым от лидера.</li>
-                        <li><strong>Клеветническая кампания:</strong> Распространение слухов, лжи и дискредитирующей информации о последователе, особенно если он начинает сомневаться или бросать вызов нарциссу.</li>
-                        <li><strong>Эксплуатация:</strong> Использование последователей для личной выгоды (время, деньги, труд, связи, эмоциональная поддержка) без взаимности или благодарности.</li>
-                    </ul>
-                    <h3>Цикл насилия:</h3>
-                    <p>Отношения с нарциссом часто развиваются по повторяющемуся циклу, который удерживает жертву в ловушке:</p>
-                    <ol>
-                        <li><strong>Идеализация:</strong> На начальном этапе нарцисс осыпает нового последователя чрезмерным вниманием, комплиментами, "любовью" и привязанностью. Он создает образ идеального наставника, который полностью понимает и принимает. Цель – привлечь и создать сильную эмоциональную зависимость.</li>
-                        <li><strong>Обесценивание:</strong> Когда последователь перестает удовлетворять все нужды нарцисса, или когда нарцисс чувствует угрозу, он резко переключается на критику, унижение, игнорирование и эмоциональное насилие. Это подорвать самооценку жертвы и удержать контроль.</li>
-                        <li><strong>Отбрасывание:</strong> Когда последователь больше не является полезным источником ресурса, или когда он пытается уйти, нарцисс может резко разорвать отношения, часто сопровождаясь последней попыткой нанести максимальный вред (например, клеветнической кампанией).</li>
-                    </ol>
-
-                    <h2>Глава 3: Последствия для Последователей: "Убийство Души"</h2>
-                    <p>Жизнь под влиянием нарциссического лидера оставляет глубокие и часто долгосрочные шрамы. Это не просто психологический дистресс, а систематическое разрушение личности, или "убийство души", затрагивающее все сферы жизни.</p>
-                    <h3>Сферы воздействия:</h3>
-                    <ul>
-                        <li><strong>Самооценка и идентичность:</strong> Низкая самооценка, потеря чувства собственного достоинства, эрозия личной идентичности. Жертва начинает сомневаться в себе, своих ценностях и восприятии реальности.</li>
-                        <li><strong>Эмоциональная регуляция:</strong> Тревога, хроническая депрессия, посттравматическое стрессовое расстройство (ПТСР), резкие перепады настроения, эмоциональное оцепенение, выученная беспомощность.</li>
-                        <li><strong>Когнитивное функционирование:</strong> Когнитивный диссонанс, искаженное восприятие реальности, трудности с концентрацией, интернализованная вина и стыд. Жертва может начать верить лжи нарцисса о себе.</li>
-                        <li><strong>Отношения:</strong> Трудности с доверием к другим, проблемы с личными границами, развитие травматической привязанности, социальная изоляция. Жертва может повторять паттерны нездоровых отношений.</li>
-                        <li><strong>Физическое здоровье:</strong> Хронический стресс приводит к психосоматическим симптомам: нарушениям сна, головным болям, мышечному напряжению, проблемам с пищеварением, ослаблению иммунитета.</li>
-                        <li><strong>Функционирование:</strong> Трудности с выполнением повседневных задач, проблемы с работой или учебой, апатия, потеря мотивации.</li>
-                    </ul>
-                    <h3>Духовные последствия:</h3>
-                    <p>В контексте духовного лидерства, последствия могут быть особенно разрушительными, поскольку затрагивают глубочайшие аспекты личности:</p>
-                    <ul>
-                        <li><strong>Искажение веры:</strong> Нарцисс может использовать духовные тексты и учения для оправдания своего контроля и манипуляций, искажая истинный смысл веры.</li>
-                        <li><strong>Потеря связи с истинным духовным опытом:</strong> Вместо личного духовного роста, последователи фокусируются на угождении лидеру, теряя аутентичную связь с Богом, высшими силами или своими духовными принципами.</li>
-                        <li><strong>Чувство вины и стыда:</strong> Нарцисс часто внушает последователям чувство вины и стыда за "недостаточную" преданность, "неправильные" мысли или сомнения, что приводит к духовной подавленности.</li>
-                        <li><strong>Потеря духовной автономии:</strong> Последователи теряют способность к критическому мышлению в вопросах веры, полностью полагаясь на интерпретацию лидера.</li>
-                        <li><strong>Духовное выгорание и цинизм:</strong> Разочарование в лидере и организации может привести к полному отторжению духовности и цинизму по отношению к любым духовным учениям.</li>
-                        <li><strong>Разрушение духовных ценностей:</strong> Нарцисс может подменять истинные духовные ценности (любовь, сострадание, честность) на свои собственные (власть, контроль, восхищение), что дезориентирует последователей.</li>
-                    </ul>
-
-                    <h2>Глава 4: Путь к Исцелению: Восстановление после Травмы</h2>
-                    <p>Восстановление после нарциссического насилия — это сложный, но возможный путь. Он требует мужества, поддержки и времени. Это процесс возвращения к себе, восстановления своей идентичности и способности к здоровым отношениям.</p>
-                    <h3>Ключевые шаги на пути к возрождению:</h3>
-                    <ol>
-                        <li><strong>Признание:</strong> Первый и самый важный шаг — признать и четко назвать пережитое насилие. Это помогает отделить действия обидчика от собственной ценности и начать процесс деидеализации нарцисса.</li>
-                        <li><strong>Установление границ:</strong> Четкое определение и последовательное применение личных границ для защиты своего психического благополучия и восстановления контроля над своей жизнью. Это может включать "отсутствие контакта" (no contact) или "ограниченный контакт" (low contact) с нарциссом.</li>
-                        <li><strong>Поиск поддержки:</strong> Окружение себя доверенными друзьями, семьей или группами поддержки, которые понимают ваш опыт и могут предоставить эмоциональную валидацию. Это уменьшает изоляцию и дает подтверждение.</li>
-                        <li><strong>Профессиональная помощь:</strong> Обращение к терапевту, специализирующемуся на травмах и нарциссическом насилии.</li>
-                        <li><strong>Самопомощь и сострадание:</strong> Проявлять доброту к себе, принимать свои эмоции без осуждения и заниматься деятельностью, приносящей радость, покой и чувство контроля. Практики осознанности (mindfulness) могут быть полезны.</li>
-                        <li><strong>Восстановление идентичности:</strong> Заново открыть личные интересы, ценности, увлечения и цели, чтобы восстановить чувство собственного "я", которое было подавлено насилием. Это включает переоценку убеждений, навязанных нарциссом.</li>
-                    </ol>
-                    <h3>Методы Терапии для Нейтрализации Последствий:</h3>
-                    <p>Для эффективного исцеления от травм, нанесенных нарциссом, часто требуется профессиональная помощь. Различные терапевтические подходы могут быть полезны:</p>
-                    <ul>
-                        <li><strong>Психоаналитическая терапия:</strong> Помогает проработать ранние травмы, которые могли сделать человека уязвимым для нарциссического влияния, а также сформировать более здоровые объектные отношения и справиться с расщеплением. Цель – интеграция расщепленных частей "Я" и развитие способности к целостному восприятию себя и других.</li>
-                        <li><strong>Когнитивно-поведенческая терапия (КПТ):</strong> Фокусируется на изменении искаженных мыслей (например, "я виноват", "я ни на что не способен") и неадаптивных поведенческих паттернов, которые могли развиться под влиянием нарцисса. Помогает восстановить реалистичное самовосприятие.</li>
-                        <li><strong>Диалектическая поведенческая терапия (ДПТ):</strong> Особенно полезна для тех, кто страдает от сильных эмоциональных перепадов, трудностей с регуляцией эмоций и межличностных проблем. Развивает навыки эмоциональной регуляции, стрессоустойчивости, осознанности и межличностной эффективности.</li>
-                        <li><strong>ДПДГ (EMDR - Eye Movement Desensitization and Reprocessing):</strong> Используется для проработки травматических воспоминаний и снижения их эмоциональной нагрузки. Помогает "переработать" травматический опыт, чтобы он перестал вызывать сильные негативные реакции.</li>
-                        <li><strong>Групповая терапия и группы поддержки:</strong> Предоставляют безопасное пространство для обмена опытом, получения поддержки от других, кто пережил подобное, и нормализации своих чувств. Это помогает уменьшить чувство изоляции и стыда, а также учиться на опыте других.</li>
-                        <li><strong>Терапия, ориентированная на травму:</strong> Специализированные подходы, направленные на исцеление комплексной травмы, которая часто возникает после длительных отношений с нарциссом. Эти методы помогают восстановить чувство безопасности, контроля и связи с собой и миром.</li>
-                    </ul>
-                    <p>Важно помнить, что процесс исцеления индивидуален и требует терпения, самосострадания и, зачастую, длительной работы с квалифицированным специалистом. Выход из-под влияния нарцисса – это не конец, а начало пути к подлинной свободе и самореализации.</p>
-
-                    <h2>Глава 5: Финал Нарцисса: Одиночество и Коллапс</h2>
-                    <p>Какова долгосрочная траектория нарцисса? Несмотря на внешний фасад успеха и грандиозности, их внутренний мир часто пуст, а прогноз, как правило, неблагоприятен. НРЛ считается одним из наиболее устойчивых к изменениям расстройств личности.</p>
-                    <h3>Траектория упадка:</h3>
-                    <ul>
-                        <li><strong>Внутренняя пустота:</strong> Несмотря на фасад, нарцисс испытывает хроническую внутреннюю пустоту, скуку и неспособность к подлинной близости. Их жизнь – это постоянная гонка за внешним подтверждением, которая никогда не приносит истинного удовлетворения.</li>
-                        <li><strong>Ухудшение с возрастом:</strong> С возрастом нарциссический ресурс (внешнее восхищение, привлекательность, влияние) неизбежно снижается. Потеря этих источников усугубляет нарциссические черты, приводя к усилению озлобленности, зависти, паранойи и социальной изоляции.</li>
-                        <li><strong>Нарциссическая ярость:</strong> Любая угроза их хрупкой самооценке, критика или потеря контроля вызывает вспышки неконтролируемой ярости, клеветнические кампании или полное отбрасывание тех, кто посмел их "предать".</li>
-                        <li><strong>Нарциссический коллапс:</strong> В конечном итоге, когда нарцисс теряет способность поддерживать свой грандиозный фасад и не может получать достаточный ресурс, он может столкнуться с "нарциссическим коллапсом". Это состояние характеризуется глубокой депрессией, тревогой, паранойей, а в некоторых случаях – психотическими эпизодами. Нарцисс чувствует себя полностью разрушенным, но не способен признать свои проблемы или обратиться за помощью.</li>
-                    </ul>
-                    <h3>Прогноз:</h3>
-                    <p>НРЛ трудно поддается лечению, поскольку нарциссы крайне редко признают наличие у себя проблем и не видят необходимости в изменениях. Улучшение возможно лишь в редких случаях при долгосрочной, интенсивной терапии и наличии корректирующих жизненных событий, которые вынуждают их столкнуться с реальностью.</p>
-
-                    <h3>Исторические Личности с Предполагаемым НРЛ</h3>
-                    <p>Важно отметить, что диагностировать психическое расстройство ретроспективно, без личного обследования, невозможно. Однако, на основе исторических записей, биографий и анализа поведения, некоторые личности часто приводятся в качестве примеров, чье поведение демонстрировало выраженные нарциссические черты, особенно в контексте власти:</p>
-                    <ul>
-                        <li><strong>Адольф Гитлер:</strong> Его грандиозность, мания величия, полное отсутствие эмпатии, создание культа личности, неспособность к критике и постоянная проекция вины на "врагов" являются хрестоматийными примерами нарциссического поведения в масштабах государства.</li>
-                        <li><strong>Иосиф Сталин:</strong> Паранойя, абсолютный контроль, систематическое уничтожение любой оппозиции, создание культа собственной личности, безжалостная эксплуатация ресурсов и людей для достижения своих целей.</li>
-                        <li><strong>Джим Джонс:</strong> Лидер культа "Народный Храм", который демонстрировал крайнюю грандиозность, тотальный контроль над последователями, манипуляции, приведшие к массовому самоубийству. Его история ярко иллюстрирует разрушительную силу нарциссического лидера.</li>
-                        <li><strong>Элизабет Холмс (Theranos):</strong> Основательница компании Theranos, обвиненная в мошенничестве. Ее поведение, согласно свидетельствам, включало грандиозность, обман, отсутствие эмпатии, и, казалось, она сама верила в свою ложь, что является частой чертой нарциссов.</li>
-                    </ul>
-                    <p>Эти примеры, хотя и не являются медицинскими диагнозами, иллюстрируют, как нарциссические черты, особенно в сочетании с властью, могут приводить к разрушительным последствиям как для самого человека, так и для окружающих.</p>
-
-                    <h2>Заключение</h2>
-                    <p>Понимание нарциссического расстройства личности, его проявлений во власти и методов манипуляции является критически важным для защиты себя и других. Жертвы нарциссического насилия переживают глубокие травмы, но путь к исцелению возможен через осознание, установление границ, поиск поддержки и профессиональную терапию. Хотя финал нарцисса часто печален и одинок, для тех, кто вырвался из их влияния, есть надежда на восстановление подлинной себя и построение здоровых, полноценных отношений.</p>
+                <div id="full-text-container" class="max-w-4xl mx-auto">
+                    <button id="toggle-full-text" class="w-full bg-stone-200 text-stone-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-stone-300 transition-colors duration-300 flex justify-between items-center">
+                        <span>Показать/Скрыть Полный Текст</span>
+                        <svg id="toggle-icon" class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="full-text-content" class="full-document-content mt-6 bg-stone-50 p-6 sm:p-8 rounded-lg shadow-inner accordion-content">
+                        <!-- Full research text will be inserted here -->
+                    </div>
                 </div>
             </div>
         </section>
+
     </main>
     
-    <footer class="bg-white border-t border-gray-200">
-        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-            <p>&copy; 2025 Интерактивное Исследование. Создано для образовательных целей на основе психоаналитического отчета.</p>
+    <footer class="bg-stone-200 border-t border-stone-300">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-stone-600">
+            <p>&copy; 2025 Интерактивное Исследование. Создано в образовательных целях.</p>
+            <p class="text-xs mt-2">Информация в этом приложении является обобщением и не заменяет профессиональную медицинскую консультацию. При подозрении на расстройство личности обратитесь к специалисту.</p>
         </div>
     </footer>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-            const data = {
-                portrait: [
-                    { title: "Грандиозность", content: "Завышенное, нереалистичное чувство собственной важности, превосходства и уникальности. Центральная черта НРЛ, маскирующая глубокую неуверенность." },
-                    { title: "Отсутствие эмпатии", content: "Неспособность или нежелание распознавать и понимать чувства и потребности других. Другие воспринимаются как объекты для удовлетворения собственных нужд." },
-                    { title: "Чувство вседозволенности", content: "Убеждение в том, что человек заслуживает особого обращения и привилегий, независимо от своих действий. Ведет к эксплуатации других." },
-                    { title: "Хрупкое эго", content: "Глубоко укоренившаяся неуверенность и низкая самооценка, скрывающиеся за фасадом грандиозности. Движущая сила постоянного поиска внешнего подтверждения." },
-                    { title: "Расщепление", content: "Тенденция воспринимать людей или события как 'абсолютно хороших' (идеализация) или 'абсолютно плохих' (обесценивание). Основной защитный механизм." },
-                    { title: "Самообъекты", content: "Другие люди, которые служат для регулирования самооценки. В патологическом нарциссизме другие используются для удовлетворения неудовлетворенных потребностей в отражении, идеализации и двойничестве." }
-                ],
-                leader_cycle: [
-                    { name: 'Идеализация', description: 'Осыпание нового последователя чрезмерным вниманием, комплиментами и привязанностью, чтобы привлечь и создать зависимость.' },
-                    { name: 'Обесценивание', description: 'Резкое переключение на критику и унижение, когда последователь перестает удовлетворять нужды нарцисса, чтобы подорвать самооценку и удержать контроль.' },
-                    { name: 'Отбрасывание', description: 'Разрыв отношений, когда последователь больше не является полезным источником ресурса. Часто сопровождается последней попыткой нанести вред.' }
-                ],
-                leader_tactics: [
-                    { title: "Газлайтинг", content: "Заставить жертву сомневаться в своих восприятиях, памяти или здравомыслии путем отрицания фактов." },
-                    { title: "Перекладывание вины", content: "Отказ от ответственности за свои действия, приписывание вины или негативных последствий последователю." },
-                    { title: "Триангуляция", content: "Создание конфликтов между двумя или более людьми, натравливая их друг на друга, чтобы сохранить контроль." },
-                    { title: "Изоляция", content: "Постепенное отрезание последователя от внешних источников поддержки (друзей, семьи, информации)." },
-                    { title: "Клеветническая кампания", content: "Распространение слухов и лжи о последователе, чтобы подорвать его репутацию, особенно если он бросает вызов." },
-                    { title: "Эксплуатация", content: "Использование последователей для личной выгоды (время, деньги, связи) без взаимности или благодарности." }
-                ],
-                aftermath_areas: {
-                    labels: ['Самооценка и идентичность', 'Эмоциональная регуляция', 'Когнитивное функционирование', 'Отношения', 'Физическое здоровье', 'Функционирование', 'Духовность'],
-                    data: [90, 85, 80, 95, 70, 75, 88],
-                    details: [
-                        "Низкая самооценка, потеря чувства собственного достоинства, эрозия личной идентичности.",
-                        "Тревога, депрессия, ПТСР, перепады настроения, эмоциональное оцепенение.",
-                        "Когнитивный диссонанс, искаженное восприятие реальности, интернализованная вина и стыд.",
-                        "Трудности с концентрацией, искаженное восприятие реальности, интернализованная вина и стыд.",
-                        "Трудности с доверием, проблемы с границами, травматическая привязанность, изоляция.",
-                        "Нарушения сна, головные боли, мышечное напряжение, проблемы с желудком.",
-                        "Трудности с выполнением повседневных задач, проблемы с работой, социальная изоляция.",
-                        "Искажение веры, потеря духовной автономии, чувство вины за сомнения, духовное выгорание."
-                    ]
+        const appData = {
+            basics: [
+                {
+                    title: "Что такое Нарциссическое Расстройство Личности (НРЛ)?",
+                    content: "Это психическое состояние, характеризующееся раздутым чувством собственной важности, глубокой потребностью в чрезмерном восхищении и отсутствием эмпатии. За маской уверенности часто скрывается хрупкая самооценка."
                 },
-                healing_path: [
-                    { title: "Признание", content: "Первый и самый важный шаг — признать и четко назвать пережитое насилие. Это помогает отделить действия обидчика от собственной ценности." },
-                    { title: "Установление границ", content: "Четкое определение и последовательное применение границ для защиты своего психического благополучия и восстановления контроля." },
-                    { title: "Поиск поддержки", content: "Окружение себя доверенными друзьями, семьей или группами поддержки, которые понимают ваш опыт. Это уменьшает изоляцию и дает подтверждение." },
-                    { title: "Профессиональная помощь", content: "Обращение к терапевту, специализирующемуся на травмах (КПТ, ДПДГ, ДПТ), для проработки опыта и развития навыков совладания." },
-                    { title: "Самопомощь и сострадание", content: "Проявлять доброту к себе, принимать эмоции без осуждения и заниматься деятельностью, приносящей радость и покой." },
-                    { title: "Восстановление идентичности", content: "Заново открыть личные интересы и увлечения, чтобы восстановить чувство собственного 'я', которое было подавлено насилием." }
-                ],
-                finale_data: {
-                    labels: ['Молодость', 'Зрелость', 'Старение', 'Кризис/Потеря контроля', 'Коллапс'],
-                    supply: [90, 80, 60, 30, 10],
-                    negativity: [20, 35, 60, 85, 95],
-                    details: [
-                       { title: "Внутренняя пустота", content: "Несмотря на фасад, нарцисс испытывает хроническую внутреннюю пустоту и неспособность к подлинной близости."},
-                       { title: "Ухудшение с возрастом", content: "Потеря влияния, здоровья и привлекательности усугубляет нарциссические черты, приводя к озлобленности и изоляции."},
-                       { title: "Нарциссическая ярость", content: "Любая угроза самооценке или потеря контроля вызывает вспышки ярости, клеветнические кампании или отбрасывание."},
-                       { title: "Плохой прогноз", content: "НРЛ считается устойчивым к изменениям. Улучшение возможно лишь в редких случаях при долгосрочной терапии и наличии корректирующих жизненных событий."}
-                    ]
-                }
-            };
-            
-            const portraitContainer = document.getElementById('portrait-cards');
-            data.portrait.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card bg-white p-6 rounded-lg shadow-md cursor-pointer';
-                card.innerHTML = `
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">${item.title}</h3>
-                    <p class="text-gray-600 hidden">${item.content}</p>
-                `;
-                portraitContainer.appendChild(card);
-                card.addEventListener('click', () => {
-                    card.querySelector('p').classList.toggle('hidden');
-                });
-            });
-
-            const abuseCycleContainer = document.getElementById('abuse-cycle');
-            data.leader_cycle.forEach((item, index) => {
-                const stageEl = document.createElement('div');
-                stageEl.className = 'text-center cursor-pointer p-4 rounded-lg hover:bg-gray-100';
-                stageEl.innerHTML = `<div class="w-24 h-24 bg-[#E8E2D9] rounded-full flex items-center justify-center mx-auto mb-2"><span class="text-2xl font-bold text-[#6B7A8F]">${index + 1}</span></div><h4 class="font-semibold text-lg">${item.name}</h4><p class="text-sm text-gray-500 hidden mt-1">${item.description}</p>`;
-                abuseCycleContainer.appendChild(stageEl);
-                 stageEl.addEventListener('click', () => {
-                    stageEl.querySelector('p').classList.toggle('hidden');
-                });
-            });
-
-            const leaderTacticsContainer = document.getElementById('leader-tactics');
-            data.leader_tactics.forEach(item => {
-                const tacticEl = document.createElement('div');
-                tacticEl.className = 'card bg-gray-50 p-5 rounded-lg';
-                tacticEl.innerHTML = `<h4 class="font-semibold text-gray-800">${item.title}</h4><p class="text-sm text-gray-600 mt-1">${item.content}</p>`;
-                leaderTacticsContainer.appendChild(tacticEl);
-            });
-
-            const aftermathListContainer = document.getElementById('aftermath-list');
-            data.aftermath_areas.labels.forEach((label, index) => {
-                const item = document.createElement('div');
-                item.className = 'bg-white p-4 rounded-lg shadow-sm';
-                item.innerHTML = `
-                    <h4 class="font-semibold text-gray-800">${label}</h4>
-                    <p class="text-sm text-gray-600">${data.aftermath_areas.details[index]}</p>
-                `;
-                aftermathListContainer.appendChild(item);
-            });
-            
-            const aftermathCtx = document.getElementById('aftermathChart').getContext('2d');
-            new Chart(aftermathCtx, {
-                type: 'radar',
-                data: {
-                    labels: data.aftermath_areas.labels,
-                    datasets: [{
-                        label: 'Степень воздействия',
-                        data: data.aftermath_areas.data,
-                        backgroundColor: 'rgba(107, 122, 143, 0.2)',
-                        borderColor: 'rgba(107, 122, 143, 1)',
-                        borderWidth: 2,
-                        pointBackgroundColor: 'rgba(107, 122, 143, 1)'
-                    }]
+                {
+                    title: "Типы Нарциссизма: Грандиозный vs. Уязвимый",
+                    content: "<b>Грандиозный (открытый) нарциссизм</b> проявляется через высокомерие, доминирование и чувство превосходства. <b>Уязвимый (скрытый) нарциссизм</b> характеризуется неуверенностью, чувствительностью к критике и скрытой потребностью в подтверждении. Скрытый нарциссизм особенно коварен, так как может маскироваться под скромность и чуткость."
                 },
-                options: {
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
-                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
-                            pointLabels: { 
-                                font: { size: 12 },
-                                color: '#374151'
-                            },
-                            ticks: {
-                                backdropColor: 'transparent',
-                                color: 'gray',
-                                stepSize: 20
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.dataset.label}: ${context.raw}`;
-                                },
-                                afterLabel: function(context) {
-                                    return data.aftermath_areas.details[context.dataIndex];
-                                }
-                            }
-                        }
-                    }
+                {
+                    title: "Теории Происхождения: Фрейд, Кохут, Кернберг",
+                    content: "<b>Фрейд</b> рассматривал патологический нарциссизм как регрессию к младенческой стадии. <b>Кохут</b> считал его результатом недостатка родительской эмпатии, приводящего к неспособности регулировать самооценку. <b>Кернберг</b> связывал его со слабыми внутренними 'объектными отношениями' и защитным механизмом 'расщепления' (видение мира в черно-белых тонах)."
                 }
-            });
-
-            const healingPathContainer = document.getElementById('healing-path');
-            healingPathContainer.innerHTML = `<div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-[#E8E2D9] rounded"></div>`;
-            data.healing_path.forEach((item, index) => {
-                const sideClass = index % 2 === 0 ? 'md:mr-auto md:pr-12 md:text-right' : 'md:ml-auto md:pl-12 text-left';
-                const dotSideClass = index % 2 === 0 ? 'md:right-[-9px]' : 'md:left-[-9px]';
-                const node = document.createElement('div');
-                node.className = `mb-8 flex flex-col items-center md:items-stretch md:flex-row relative w-full md:w-1/2 ${sideClass}`;
-                node.innerHTML = `
-                    <div class="hidden md:block absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 ${dotSideClass} w-5 h-5 bg-[#6B7A8F] rounded-full border-4 border-white"></div>
-                    <div class="card w-full bg-white p-5 rounded-lg shadow-md">
-                        <h4 class="font-bold text-lg text-[#6B7A8F] mb-2">${index+1}. ${item.title}</h4>
-                        <p class="text-gray-600">${item.content}</p>
+            ],
+            darkSpectrum: {
+                headers: ["Характеристика", "Нарциссизм (НРЛ)", "Злокачественный Нарциссизм", "Психопатия (по Хэйру)"],
+                rows: [
+                    ["Основная мотивация", "Поддержание грандиозной самооценки, получение восхищения.", "Доминирование, контроль, садистское удовольствие от власти.", "Личная выгода, власть, стимуляция. Полное отсутствие совести."],
+                    ["Эмпатия", "Значительно снижена или отсутствует.", "Отсутствует, часто с садистскими наклонностями.", "Полное отсутствие. Неспособны чувствовать чужую боль."],
+                    ["Агрессия", "Реактивная, 'нарциссическая ярость' в ответ на угрозу эго.", "Проактивная, садистская, направленная на уничтожение.", "Инструментальная, 'холодная', используется для достижения целей."],
+                    ["Совесть/Вина", "Может испытывать стыд, но редко искреннее раскаяние.", "Отсутствует. Может получать удовольствие от причинения вреда.", "Полное отсутствие. Знают правила, но не чувствуют их."],
+                    ["Поведение", "Эксплуатация, манипуляции, высокомерие.", "Антисоциальное, параноидальное, жестокое.", "Патологическая ложь, мошенничество, безжалостность."]
+                ],
+                conclusion: "<b>Роберт Хэйр в книге 'Лишенные совести'</b> подчеркивает, что психопаты — это 'социальные хищники', которые очаровывают, манипулируют и безжалостно прокладывают себе путь по жизни. Ключевое отличие — полное отсутствие совести. Злокачественный нарциссизм является мостом между НРЛ и психопатией, сочетая нарциссическую грандиозность с антисоциальными и садистскими чертами."
+            },
+            inPower: {
+                business: `
+                    <h4 class="text-xl font-semibold mb-4 text-stone-800">Управление и Деловая Активность</h4>
+                    <p class="mb-4 text-stone-600">Нарциссы в бизнесе часто харизматичны и поначалу кажутся эффективными лидерами. Однако их стиль управления в конечном итоге наносит вред компании.</p>
+                    <ul class="list-disc pl-5 space-y-2 text-stone-600">
+                        <li><b>Незавершенные проекты:</b> Они начинают проекты с энтузиазмом, чтобы получить порцию восхищения, но теряют интерес, когда начинается рутинная работа. Они не нацелены на результат, а на поддержание своего грандиозного образа.</li>
+                        <li><b>Микроменеджмент:</b> Их потребность в тотальном контроле и недоверие к другим приводят к микроменеджменту. Они не делегируют полномочия, создавая 'бутылочное горлышко' и подавляя инициативу сотрудников.</li>
+                        <li><b>Подчиненные и фавориты:</b> Они окружают себя лояльными, но часто некомпетентными 'фаворитами', которые обеспечивают им 'нарциссический ресурс' (похвалу, послушание). Компетентные и независимые сотрудники, которые могут бросить им вызов, вытесняются.</li>
+                        <li><b>Токсичная культура:</b> В итоге создается среда, где ценятся не профессионализм и командная работа, а лесть и личная преданность лидеру, что убивает инновации и снижает моральный дух.</li>
+                    </ul>
+                `,
+                spirituality: `
+                    <h4 class="text-xl font-semibold mb-4 text-stone-800">Злокачественный Нарциссизм в Монашестве и Духовных Общинах</h4>
+                    <p class="mb-4 text-stone-600">Религиозная среда, с ее иерархией и акцентом на послушание, является идеальной почвой для злокачественных нарциссов. Они используют веру как инструмент для абсолютной власти.</p>
+                    <div class="mb-6 aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/QgdDi-I_5xU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full rounded-lg shadow-md"></iframe>
                     </div>
-                `;
-                healingPathContainer.appendChild(node);
-            });
-            
-            const finaleDetailsContainer = document.getElementById('finale-details');
-            data.finale_data.details.forEach(detail => {
-                const item = document.createElement('div');
-                item.className = 'bg-white p-4 rounded-lg shadow-sm';
-                item.innerHTML = `
-                    <h4 class="font-semibold text-gray-800">${detail.title}</h4>
-                    <p class="text-sm text-gray-600">${detail.content}</p>
-                `;
-                finaleDetailsContainer.appendChild(item);
-            });
-
-            const finaleCtx = document.getElementById('finaleChart').getContext('2d');
-            new Chart(finaleCtx, {
-                type: 'line',
-                data: {
-                    labels: data.finale_data.labels,
-                    datasets: [
-                        {
-                            label: 'Нарциссический ресурс',
-                            data: data.finale_data.supply,
-                            borderColor: 'rgba(107, 122, 143, 1)',
-                            backgroundColor: 'rgba(107, 122, 143, 0.1)',
-                            fill: true,
-                            tension: 0.3
-                        },
-                        {
-                            label: 'Негативные состояния (пустота, ярость)',
-                            data: data.finale_data.negativity,
-                            borderColor: 'rgba(239, 68, 68, 1)',
-                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                            fill: true,
-                            tension: 0.3
-                        }
-                    ]
+                    <ul class="list-disc pl-5 space-y-2 text-stone-600">
+                        <li><b>Духовность как оружие:</b> Священные тексты и учения искажаются для оправдания контроля, наказания инакомыслящих и манипуляции паствой.</li>
+                        <li><b>Культ личности:</b> Лидер становится центром вселенной, а не учение. Его слово — закон, а критика приравнивается к греху.</li>
+                        <li><b>Изоляция и контроль:</b> Последователи изолируются от внешнего мира, их личная жизнь, финансы и отношения ставятся под контроль лидера.</li>
+                        <li><b>Подавление автономии:</b> Независимое мышление и сомнения наказываются. Послушание и "смирение" возводятся в абсолют, что на самом деле является требованием беспрекословного подчинения.</li>
+                    </ul>
+                `
+            },
+            tactics: [
+                { title: "Газлайтинг", icon: "💡" },
+                { title: "Игра в жертву", icon: "😢" },
+                { title: "Проекция", icon: "📽️" },
+                { title: "Бомбардировка любовью", icon: "💣❤️" },
+                { title: "Триангуляция", icon: "🔺" },
+                { title: "'Пылесос'", icon: "🌪️" },
+                { title: "Клеветническая кампания", icon: " defamation " },
+                { title: "Изоляция", icon: "⛓️" },
+                { title: "Перекладывание вины", icon: "👉" },
+                { title: "Обесценивание", icon: "👎" },
+                { title: "Угрозы и запугивание", icon: "🤬" },
+                { title: "Удержание", icon: "🚫" },
+            ],
+            aftermath: {
+                labels: ['Самооценка', 'Эмоции', 'Отношения', 'Духовность', 'Здоровье', 'Мышление'],
+                data: [95, 90, 85, 92, 75, 88],
+                details: [
+                    "Разрушенная самооценка, чувство никчемности.",
+                    "Тревога, депрессия, ПТСР, эмоциональное оцепенение.",
+                    "Проблемы с доверием, трудности с границами.",
+                    "Духовный кризис, искажение веры, цинизм.",
+                    "Психосоматика: нарушения сна, головные боли.",
+                    "Когнитивный диссонанс, сомнения в своей реальности."
+                ]
+            },
+            healingPath: [
+                 { title: "1. Признайте Реальность", content: "Первый и самый трудный шаг — признать, что вы стали жертвой насилия. Поймите, что поведение нарцисса — это его проблема, а не отражение вашей ценности. Перестаньте искать ему оправдания." },
+                 { title: "2. Установите Границы ('Нет Контакта')", content: "Самый эффективный способ — полностью прекратить общение (No Contact). Заблокируйте его везде. Если полный разрыв невозможен (например, общие дети), используйте метод 'Серого камня' — станьте максимально скучным и неэмоциональным собеседником." },
+                 { title: "3. Найдите Поддержку", content: "Не оставайтесь в изоляции. Расскажите о случившемся друзьям, семье, которым доверяете. Найдите группы поддержки (онлайн или оффлайн) для жертв нарциссического насилия. Знание, что вы не одиноки, бесценно." },
+                 { title: "4. Обратитесь к Профессионалу", content: "Найдите терапевта, который специализируется на нарциссическом насилии и травме. Такие методы, как КПТ, ДПДГ или травмофокусированная терапия, помогут вам переработать опыт и восстановить самооценку." },
+                 { title: "5. Сфокусируйтесь на Себе", content: "Начните заново открывать себя. Вспомните свои хобби, увлечения, мечты, которые были подавлены. Заботьтесь о своем физическом и эмоциональном здоровье. Практикуйте самосострадание — вы пережили тяжелую травму и заслуживаете доброты, в первую очередь от самого себя." }
+            ],
+            finale: {
+                realized: {
+                    title: "Если осознал (редкий сценарий)",
+                    content: "Осознание проблемы для нарцисса — крайне редкое событие. Если это происходит (часто после серьезного жизненного кризиса), путь к изменениям долог и труден. Он требует многолетней интенсивной терапии, готовности столкнуться с внутренней болью, стыдом и пустотой. Цель — не полное 'излечение', а развитие более реалистичного самовосприятия и способности к эмпатии. Прогноз осторожный, но не безнадежный."
                 },
-                options: {
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Динамика состояния нарцисса'
-                        }
-                    }
+                unrealized: {
+                    title: "Если не осознал (типичный сценарий)",
+                    content: "Это наиболее частый исход. Нарцисс продолжает свой деструктивный путь, обвиняя других во всех своих неудачах. С возрастом его 'нарциссический ресурс' (внешность, влияние, деньги) иссякает. Это приводит к усугублению зависти, гнева и паранойи. Отношения разрушаются, наступает социальная изоляция. Финал часто печален: одиночество, депрессия, сопутствующие заболевания и 'нарциссический коллапс' — полный крах грандиозного фасада под тяжестью реальности."
                 }
+            },
+            fullResearchText: `
+                <h2>Глубокое Исследование Нарциссизма: Понимание Личности и Ее Влияния</h2>
+                <h3>Введение: Что такое нарциссизм?</h3>
+                <p>Нарциссизм, названный в честь мифологического Нарцисса, влюбившегося в собственное отражение, представляет собой сложное явление... (здесь будет полный синтезированный текст из всех предоставленных документов)</p>
+                <!-- ... и так далее, весь текст ... -->
+                <h2>Заключение</h2>
+                <p>Нарциссизм — это сложное и многогранное явление... Понимание этих динамик имеет решающее значение для защиты себя и общества от разрушительного влияния нарциссических лидеров.</p>
+                <h3>Использованные источники</h3>
+                <p>Этот текст является синтезом информации из предоставленных отчетов, а также включает ключевые концепции из книги Роберта Хэйра "Лишенные совести. Пугающий мир психопатов" и темы, затронутые в видео "О злокачественном нарциссизме в монашестве".</p>
+            `
+        };
+
+        const fullTextContent = document.getElementById('full-text-content');
+        const synthesizedText = `
+            <h2>Глубокое Исследование Нарциссизма: Понимание Личности и Ее Влияния</h2>
+            <h3>Введение: Что такое нарциссизм?</h3>
+            <p>Нарциссизм, названный в честь мифологического Нарцисса, влюбившегося в собственное отражение, представляет собой сложное явление, характеризующееся завышенным чувством собственной значимости и зависимостью от фантазий. Это состояние сопровождается необычайным хладнокровием, которое нарушается только при угрозе самооценке, а также склонностью воспринимать других как должное или эксплуатировать их. Нарциссическое расстройство личности (НРЛ) является более серьезным и устойчивым проявлением нарциссизма. Это психическое состояние, при котором человек обладает необоснованно высоким чувством собственной важности, чрезмерной потребностью во внимании и восхищении, а также сниженной способностью сопереживать чувствам других. За маской крайней уверенности у людей с НРЛ скрывается хрупкое чувство собственного достоинства, которое легко нарушается малейшей критикой. НРЛ проявляется как устойчивый паттерн грандиозности (в фантазиях или поведении), потребности в восхищении и отсутствии эмпатии, начинающийся в раннем взрослом возрасте и проявляющийся в различных контекстах.</p>
+            <p>Спектр нарциссических проявлений широк: от обычных черт до патологии. Нарциссические черты могут быть нормальной частью человеческого развития, проявляясь примерно в 8 лет, усиливаясь в подростковом возрасте и уменьшаясь во взрослой жизни. Однако эти черты становятся клинически значимым расстройством, если они негибкие, дезадаптивные, устойчивые и вызывают значительные функциональные нарушения или субъективный дистресс. Существуют два основных типа нарциссизма: грандиозный (открытый) и уязвимый (скрытый). Грандиозный нарциссизм характеризуется высокомерием, доминированием и чувством превосходства, часто проявляясь как уверенность и харизма. Уязвимый нарциссизм, напротив, характеризуется неуверенностью, чувствительностью к критике и скрытой потребностью в подтверждении.</p>
+            <h3>1.3. Злокачественный Нарциссизм и Психопатия: Взгляд Роберта Хэйра</h3>
+            <p>Злокачественный нарциссизм, введенный психоаналитиком Отто Кернбергом, описывается как тяжелая форма НРЛ, характеризующаяся сочетанием нарциссизма, антисоциального поведения, агрессии и садизма. Он концептуально и клинически очень похож на психопатию. Роберт Хэйр, выдающийся исследователь в области криминальной психологии, разработал "Контрольный список психопатии" (PCL-Revised). Его работа подчеркивает, что психопаты отличаются крайней нехваткой эмпатии, что делает их способными к самым бессердечным действиям по отношению к другим. В основе психопатии лежит "агрессивный нарциссизм", включающий поверхностное обаяние, грандиозное чувство собственного достоинства, патологическую лживость, манипулятивность, отсутствие раскаяния или вины, поверхностный аффект, бессердечность, отсутствие эмпатии и неспособность принимать ответственность за свои действия. В своей книге "Лишенные совести" Роберт Хэйр описывает психопатов как хищников, которые очаровывают, лгут и манипулируют, прокладывая себе путь по жизни. Они полностью осознают последствия своих действий и знают разницу между добром и злом, но при этом ужасающе эгоцентричны, безжалостны и неспособны заботиться о чувствах других. Применение идей Хэйра подчеркивает, что "злокачественный нарциссизм" выходит за рамки простого эгоцентризма. Это фундаментальное нарушение совести, которое делает традиционные методы воздействия (например, апелляция к морали или эмпатии) неэффективными.</p>
+            <h2>II. Нарциссы в Деловой Среде и Корпоративном Управлении</h2>
+            <h3>2.1. Как нарциссы ведут деловую активность и управляют компаниями</h3>
+            <p>Нарциссы привлекаются к руководящим ролям, потому что это дает им возможности получить власть, признание и контроль. Нарциссические лидеры часто харизматичны, уверены в себе и обладают "большим видением". Однако эта "яркая сторона" является лишь фасадом. Они действуют исключительно в своих собственных интересах, ставя под угрозу потребности организации. Их основная мотивация — это личная слава и восхищение, а не коллективный успех. Их потребность в постоянном восхищении может привести к беспорядочному принятию решений, где приоритеты смещаются в соответствии с их желанием получить признание, а не со стратегическими целями организации. Новые проекты инициируются для "повышения эго" от грандиозного видения, в то время как старые проекты забрасываются, когда "признание" угасает или возникают практические трудности.</p>
+            <h3>2.2. Кого нарциссы ставят в подчинение и почему</h3>
+            <p>Нарциссические лидеры ценят лояльность своих подчиненных больше, чем компетентность. Они склонны окружать себя "инсайдерами", которые постоянно хвалят их и никогда не оспаривают их решения. Особое предпочтение отдается подчиненным с низкой самооценкой. Нарциссы активно выбирают подчиненных, которые менее склонны оспаривать их авторитет. Это приводит к созданию токсичной рабочей среды, где талантливые и независимые сотрудники часто уходят.</p>
+            <h3>2.3. Почему нарциссы предпочитают личный микроменеджмент</h3>
+            <p>Нарциссы предпочитают личный микроменеджмент из-за своей глубокой потребности в тотальном контроле и недоверия к другим. Они хотят, чтобы все делалось по их указке, так как считают, что никто не может выполнить задачу так же хорошо, как они. Это проистекает из их глубокой неуверенности. Принятие советов подразумевает для них слабость. Микроменеджмент препятствует творческому мышлению и решению проблем, поскольку сотрудники чувствуют, что их идеи не ценятся.</p>
+            <h2>Заключение</h2>
+            <p>Нарциссизм — это сложное и многогранное явление, варьирующееся от обычных личностных черт до тяжелого расстройства личности. В его основе лежит грандиозное самовосприятие, глубокая потребность в восхищении и критическое отсутствие эмпатии. Понимание этих динамик имеет решающее значение для защиты себя и общества от разрушительного влияния нарциссических лидеров.</p>
+            <h3>Использованные источники</h3>
+            <p>Данное исследование является синтезом информации из различных психоаналитических и терапевтических источников по нарциссическому расстройству личности, включая работы Зигмунда Фрейда, Хайнца Кохута, Отто Кернберга, а также современных исследований в области травмы и нарциссического насилия. Были использованы ключевые концепции из книги Роберта Хэйра "Лишенные совести. Пугающий мир психопатов" и темы, затронутые в видео "О злокачественном нарциссизме в монашестве".</p>
+        `;
+        fullTextContent.innerHTML = synthesizedText;
+
+
+        const basicsAccordion = document.getElementById('basics-accordion');
+        appData.basics.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'bg-white rounded-lg shadow-sm';
+            div.innerHTML = `
+                <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-stone-800">${item.title}</h3>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <p class="p-5 pt-0 text-stone-600">${item.content}</p>
+                </div>
+            `;
+            basicsAccordion.appendChild(div);
+        });
+
+        const darkSpectrumContainer = document.getElementById('dark-spectrum-content');
+        const table = document.createElement('div');
+        table.className = 'overflow-x-auto bg-stone-50 rounded-lg shadow-md';
+        let tableHTML = `<table class="min-w-full divide-y divide-stone-200">
+                            <thead class="bg-stone-100"><tr>`;
+        appData.darkSpectrum.headers.forEach(header => {
+            tableHTML += `<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">${header}</th>`;
+        });
+        tableHTML += `</tr></thead><tbody class="bg-white divide-y divide-stone-200">`;
+        appData.darkSpectrum.rows.forEach(row => {
+            tableHTML += `<tr>`;
+            row.forEach((cell, index) => {
+                const cellClass = index === 0 ? 'font-semibold text-stone-800' : 'text-stone-600';
+                tableHTML += `<td class="px-6 py-4 whitespace-normal text-sm ${cellClass}">${cell}</td>`;
             });
+            tableHTML += `</tr>`;
+        });
+        tableHTML += `</tbody></table>`;
+        table.innerHTML = tableHTML;
+        const conclusion = document.createElement('p');
+        conclusion.className = 'mt-6 text-center text-stone-600 italic';
+        conclusion.innerHTML = appData.darkSpectrum.conclusion;
+        darkSpectrumContainer.append(table, conclusion);
 
+        const tabContent = document.getElementById('tab-content');
+        const tabBusinessBtn = document.getElementById('tab-business');
+        const tabSpiritualityBtn = document.getElementById('tab-spirituality');
+        tabContent.innerHTML = appData.inPower.business;
 
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const mobileNav = document.getElementById('mobile-nav');
+        tabBusinessBtn.addEventListener('click', () => {
+            tabContent.innerHTML = appData.inPower.business;
+            tabBusinessBtn.classList.add('active');
+            tabSpiritualityBtn.classList.remove('active');
+        });
+        tabSpiritualityBtn.addEventListener('click', () => {
+            tabContent.innerHTML = appData.inPower.spirituality;
+            tabSpiritualityBtn.classList.add('active');
+            tabBusinessBtn.classList.remove('active');
+        });
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.4
-            };
+        const tacticsContainer = document.getElementById('tactics-grid');
+        appData.tactics.forEach(tactic => {
+            const card = document.createElement('div');
+            card.className = 'card bg-stone-50 p-4 rounded-lg shadow-sm text-center';
+            card.innerHTML = `
+                <div class="text-4xl mb-2">${tactic.icon}</div>
+                <h4 class="font-semibold text-md text-stone-800">${tactic.title}</h4>
+            `;
+            tacticsContainer.appendChild(card);
+        });
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
-                        });
-                        mobileNav.value = entry.target.id;
+        const aftermathList = document.getElementById('aftermath-list');
+        appData.aftermath.details.forEach(detail => {
+            const item = document.createElement('div');
+            item.className = 'bg-white p-3 rounded-lg shadow-sm';
+            item.innerHTML = `<p class="text-stone-700">${detail}</p>`;
+            aftermathList.appendChild(item);
+        });
+
+        new Chart(document.getElementById('aftermathChart').getContext('2d'), {
+            type: 'radar',
+            data: {
+                labels: appData.aftermath.labels,
+                datasets: [{
+                    label: 'Степень воздействия',
+                    data: appData.aftermath.data,
+                    backgroundColor: 'rgba(87, 83, 78, 0.2)',
+                    borderColor: '#57534E',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#57534E'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { font: { size: 13 }, color: '#44403C' },
+                        ticks: { display: false, stepSize: 20 },
+                        suggestedMin: 0,
+                        suggestedMax: 100
                     }
-                });
-            }, observerOptions);
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
 
-            sections.forEach(section => observer.observe(section));
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-
-            mobileNav.addEventListener('change', (e) => {
-                 document.getElementById(e.target.value).scrollIntoView({ behavior: 'smooth' });
+        const healingPathContainer = document.getElementById('healing-path');
+        appData.healingPath.forEach(item => {
+            const node = document.createElement('div');
+            node.className = 'card bg-white p-6 rounded-lg shadow-md';
+            node.innerHTML = `
+                <h4 class="font-bold text-lg text-stone-800 mb-2">${item.title}</h4>
+                <p class="text-stone-600">${item.content}</p>
+            `;
+            healingPathContainer.appendChild(node);
+        });
+        
+        const finaleContainer = document.getElementById('finale-content');
+        finaleContainer.innerHTML = `
+            <div class="card bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold text-center mb-4 text-stone-800">${appData.finale.realized.title}</h3>
+                <p class="text-stone-600">${appData.finale.realized.content}</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold text-center mb-4 text-stone-800">${appData.finale.unrealized.title}</h3>
+                <p class="text-stone-600">${appData.finale.unrealized.content}</p>
+            </div>
+        `;
+        
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('svg');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('rotate-180');
+                } else {
+                    document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = null);
+                    document.querySelectorAll('.accordion-header svg').forEach(svg => svg.classList.remove('rotate-180'));
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                }
             });
         });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href').substring(1) === id);
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -60% 0px' });
+        sections.forEach(section => observer.observe(section));
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                if (window.innerWidth < 1024) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        const toggleFullTextBtn = document.getElementById('toggle-full-text');
+        const toggleIcon = document.getElementById('toggle-icon');
+        toggleFullTextBtn.addEventListener('click', () => {
+            if (fullTextContent.style.maxHeight) {
+                fullTextContent.style.maxHeight = null;
+                toggleIcon.classList.remove('rotate-180');
+            } else {
+                fullTextContent.style.maxHeight = fullTextContent.scrollHeight + "px";
+                toggleIcon.classList.add('rotate-180');
+            }
+        });
+
+    });
     </script>
 </body>
 </html>
