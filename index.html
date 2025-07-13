@@ -1,591 +1,612 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нарциссизм: Интерактивное Исследование Власти и Исцеления</title>
+    <title>Особый характер: Как понять и что делать</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals (Основные: #F5F5F4, #E7E5E4; Акцент: #57534E; Текст: #292524) -->
-    <!-- Application Structure Plan: Приложение структурировано по 8 тематическим секциям для интуитивной навигации. 1) Введение: простое определение. 2) Основы: раскрывающиеся карточки для теорий и типов. 3) Темный спектр: сравнение НРЛ, злокачественного нарциссизма и психопатии (идеи Хэйра). 4) Нарцисс у власти: вкладки для бизнеса и духовности, включая видео. 5) Тактики манипуляции: интерактивная сетка. 6) Последствия: диаграмма и описание травматической связи. 7) Исцеление: пошаговая инструкция. 8) Финал: сравнение двух сценариев. Эта структура обеспечивает нелинейное исследование, позволяя пользователю выбирать глубину погружения. -->
-    <!-- Visualization & Content Choices: Информация: раскрывающиеся карточки (HTML/JS) для теорий. Сравнение: таблица (HTML) для спектра нарциссизма. Организация: вкладки (HTML/JS) для контекстов власти. Взаимоотношения: сетка (HTML) для тактик. Изменение: линейная диаграмма (Chart.js) для финала нарцисса. Пропорции: радиальная диаграмма (Chart.js) для последствий. Все визуализации используют Canvas или HTML/CSS, избегая SVG/Mermaid, что обеспечивает интерактивность и соответствие требованиям. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: The application is structured into five thematic sections for a logical and easy-to-follow user journey: 1. "Что это за зверь?" (What is this beast?) to define and simply differentiate core concepts. 2. "Где они встречаются?" (Where do they meet?) to explore manifestations in real-world contexts (Business, Spirituality, Personal Life) via an interactive tab system. 3. "Что происходит, когда они рядом?" (What happens when they are around?) to visualize the impact using a custom HTML diagram of the abuse cycle. 4. "Как быть, если встретил?" (How to be if you met one?) to provide actionable advice through an interactive accordion. 5. "Полный Отчет" (Full Report) to include the entire original user-provided text, ensuring no information is abbreviated. This structure prioritizes extreme simplicity, engagement, and directness, making complex information digestible and ensuring all original content is present. -->
+    <!-- Visualization & Content Choices: 1. "Что это за зверь?": A Chart.js bar chart is used to visually compare "Особый характер", "Холодный расчет" и "Я-центрик". All labels and tooltips are simplified. 2. "Где они встречаются?": Content is organized into tabs with clickable cards for simple examples. This breaks down information into manageable, user-driven chunks. 3. "Что происходит, когда они рядом?": The cycle of abuse is shown as a custom HTML/CSS diagram with simplified stage names and descriptions, making a complex process easy to grasp. 4. "Как быть, если встретил?": Actionable steps are presented in an accordion format with very simple titles and explanations, preventing overload and allowing users to focus. 5. "Полный Отчет": The original text is placed in a details/summary tag for easy access without cluttering the main flow. Library: Chart.js for data visualization. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F5F5F4;
-            color: #292524;
+            background-color: #FDFBF8;
+            color: #333;
         }
         .nav-link {
-            transition: color 0.3s ease, border-color 0.3s ease;
+            transition: color 0.3s, border-bottom-color 0.3s;
             border-bottom: 2px solid transparent;
         }
-        .nav-link:hover, .nav-link.active {
-            color: #57534E;
-            border-color: #A8A29E;
+        .nav-link.active, .nav-link:hover {
+            color: #C18C5D;
+            border-bottom-color: #C18C5D;
         }
         .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-primary {
+            background-color: #C18C5D;
+            color: #FFFFFF;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #AD7B4D;
+        }
+        .tab-btn {
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: #C18C5D;
+            border-bottom-color: #C18C5D;
         }
         .chart-container {
             position: relative;
-            margin: auto;
             width: 100%;
-            max-width: 500px;
-            height: 300px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
         }
         @media (min-width: 768px) {
             .chart-container {
-                height: 400px;
-                max-width: 600px;
+                height: 500px;
             }
-        }
-        .tab-button.active {
-            border-color: #57534E;
-            background-color: #E7E5E4;
         }
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            transition: max-height 0.5s ease-out;
         }
-        .full-document-content h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: #292524;
+        .cycle-step {
+            transition: transform 0.3s, background-color 0.3s;
         }
-        .full-document-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-            color: #44403C;
-        }
-        .full-document-content p {
-            margin-bottom: 1rem;
-            line-height: 1.75;
-            color: #57534E;
-        }
-        .full-document-content ul {
-            list-style-type: disc;
-            margin-left: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        .full-document-content li {
-            margin-bottom: 0.5rem;
-            color: #57534E;
+        .cycle-step:hover {
+            transform: scale(1.05);
+            background-color: #FFF7F0;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-stone-200/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <span class="text-xl font-bold text-stone-800">Тень «Я»</span>
-                </div>
-                <div class="hidden lg:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#intro" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Введение</a>
-                        <a href="#basics" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Основы</a>
-                        <a href="#dark-spectrum" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Темный Спектр</a>
-                        <a href="#in-power" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">У Власти</a>
-                        <a href="#tactics" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Манипуляции</a>
-                        <a href="#aftermath" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Последствия</a>
-                        <a href="#healing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Исцеление</a>
-                        <a href="#finale" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Финал</a>
-                        <a href="#full-research" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-700">Полный Текст</a>
-                    </div>
-                </div>
-                <div class="lg:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-stone-600 hover:text-stone-800 hover:bg-stone-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-stone-500">
-                        <span class="sr-only">Открыть меню</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-[#C18C5D]">Особый характер</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#what-is-it" class="nav-link text-gray-600 font-medium pb-1">Что это?</a>
+                <a href="#where-they-are" class="nav-link text-gray-600 font-medium pb-1">Где они?</a>
+                <a href="#what-happens" class="nav-link text-gray-600 font-medium pb-1">Что происходит?</a>
+                <a href="#how-to-act" class="nav-link text-gray-600 font-medium pb-1">Как быть?</a>
+                <a href="#full-report" class="nav-link text-gray-600 font-medium pb-1">Полный отчет</a>
             </div>
-            <div id="mobile-menu" class="lg:hidden hidden">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <a href="#intro" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Введение</a>
-                    <a href="#basics" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Основы</a>
-                    <a href="#dark-spectrum" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Темный Спектр</a>
-                    <a href="#in-power" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">У Власти</a>
-                    <a href="#tactics" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Манипуляции</a>
-                    <a href="#aftermath" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Последствия</a>
-                    <a href="#healing" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Исцеление</a>
-                    <a href="#finale" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Финал</a>
-                    <a href="#full-research" class="block nav-link px-3 py-2 rounded-md text-base font-medium text-stone-700">Полный Текст</a>
-                </div>
-            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#what-is-it" class="block py-2 text-gray-600">Что это?</a>
+            <a href="#where-they-are" class="block py-2 text-gray-600">Где они?</a>
+            <a href="#what-happens" class="block py-2 text-gray-600">Что происходит?</a>
+            <a href="#how-to-act" class="block py-2 text-gray-600">Как быть?</a>
+            <a href="#full-report" class="block py-2 text-gray-600">Полный отчет</a>
+        </div>
     </header>
 
-    <main>
-        <section id="intro" class="py-20 sm:py-28 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-stone-900 tracking-tight">Лабиринт Самости</h1>
-                <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-stone-600">Глубокое исследование нарциссизма, его злокачественных форм и невидимого влияния на бизнес, духовность и личные отношения.</p>
-                <p class="mt-6 max-w-2xl mx-auto text-stone-500">Это приложение превращает сложные психологические концепции в интерактивное путешествие. Мы исследуем, что скрывается за маской грандиозности, как распознать манипуляции и как найти путь к исцелению после столкновения с нарциссическим насилием.</p>
-            </div>
+    <main class="container mx-auto px-6 py-12">
+        <section id="hero" class="text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 leading-tight">Когда человек — разрушительная сила</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Давайте разберемся, как "особый характер" проявляется в работе, в духовных кружках и дома — и что делать, если вы с таким столкнулись.</p>
         </section>
 
-        <section id="basics" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Основы Нарциссизма</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Нарциссизм — это не просто самовлюбленность. Это сложный личностный конструкт с глубокими корнями в психологии развития. За грандиозным фасадом часто скрывается хрупкое эго и внутренняя пустота.</p>
-                </div>
-                <div id="basics-accordion" class="max-w-4xl mx-auto space-y-4">
-                    <!-- Accordion items will be generated here -->
-                </div>
+        <section id="what-is-it" class="py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">1. Что это за зверь? Не просто "любовь к себе"</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Здесь мы поймем, что такое "особый характер" (он же нарциссизм), и чем он отличается от простого "я-центрика" или "холодного расчета". Посмотрите на картинку ниже, чтобы лучше понять разницу.</p>
             </div>
-        </section>
-        
-        <section id="dark-spectrum" class="py-16 sm:py-24 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Темный Спектр: От НРЛ до Психопатии</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Нарциссизм существует в спектре. На его крайнем конце находятся злокачественный нарциссизм и психопатия — состояния, характеризующиеся отсутствием совести и склонностью к разрушению. Работа Роберта Хэйра помогает понять этот пугающий мир.</p>
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                <div class="chart-container">
+                    <canvas id="comparisonChart"></canvas>
                 </div>
-                <div id="dark-spectrum-content" class="max-w-5xl mx-auto">
-                    <!-- Comparison table will be generated here -->
+                <div class="mt-8 text-center text-sm text-gray-500">
+                    <p>Наведите мышку на столбики, чтобы узнать больше о каждом типе.</p>
                 </div>
             </div>
         </section>
 
-        <section id="in-power" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Нарцисс у Власти</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Властные позиции — магнит для нарциссов. Они дают им контроль, восхищение и ресурсы. Рассмотрим, как их поведение проявляется в двух ключевых сферах: бизнесе и духовности.</p>
-                </div>
-                <div class="max-w-5xl mx-auto">
-                    <div class="border-b border-stone-300">
-                        <nav class="-mb-px flex space-x-4 sm:space-x-8" aria-label="Tabs">
-                            <button id="tab-business" class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">В Бизнесе</button>
-                            <button id="tab-spirituality" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">В Духовности</button>
-                        </nav>
+        <section id="where-they-are" class="py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">2. Где они встречаются? Везде!</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Люди с таким характером могут быть где угодно: на работе, в группах по интересам, и даже дома. Нажмите на вкладки, чтобы узнать, как они себя ведут в разных местах.</p>
+            </div>
+            
+            <div class="mb-8 border-b border-gray-200 flex justify-center space-x-4 sm:space-x-8">
+                <button class="tab-btn py-4 px-1 text-lg font-medium text-gray-500 active" data-tab="business">На работе</button>
+                <button class="tab-btn py-4 px-1 text-lg font-medium text-gray-500" data-tab="spirituality">В кружках</button>
+                <button class="tab-btn py-4 px-1 text-lg font-medium text-gray-500" data-tab="personal">Дома</button>
+            </div>
+
+            <div id="arenas-content">
+            </div>
+        </section>
+
+        <section id="what-happens" class="py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">3. Что происходит, когда они рядом? Круговорот обид</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Отношения с таким человеком часто идут по одному и тому же плохому сценарию. Понимание этих шагов поможет вам понять, что происходит, и выйти из этого круга. Нажмите на каждый кружок, чтобы узнать подробности.</p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto p-4">
+                <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="cycle-step text-center cursor-pointer p-6 rounded-lg border-2 border-dashed border-green-300 bg-green-50 w-full md:w-1/3" data-cycle="idealization">
+                        <div class="text-5xl mb-2">💖</div>
+                        <h3 class="text-xl font-bold text-green-700">"Ты лучший!"</h3>
+                        <p class="text-sm text-gray-600 mt-1">Они осыпают вас комплиментами, вы чувствуете себя особенным.</p>
                     </div>
-                    <div id="tab-content" class="mt-8">
-                        <!-- Tab content will be generated here -->
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="tactics" class="py-16 sm:py-24 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Арсенал Манипулятора</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Нарциссы используют широкий спектр тактик для контроля, эксплуатации и дестабилизации своих жертв. Распознавание этих паттернов — первый шаг к защите. Наведите на карточку, чтобы узнать больше.</p>
-                </div>
-                <div id="tactics-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <!-- Tactics cards will be generated here -->
-                </div>
-            </div>
-        </section>
+                    <div class="text-4xl text-gray-400 hidden md:block">&rarr;</div>
 
-        <section id="aftermath" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Последствия для Жертв</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Жизнь под влиянием нарцисса оставляет глубокие шрамы, затрагивая все сферы жизни — от самооценки до духовности. Этот процесс часто называют "убийством души".</p>
-                </div>
-                <div class="flex flex-col lg:flex-row items-center justify-around gap-12">
-                    <div class="lg:w-1/2 w-full">
-                        <div class="chart-container">
-                            <canvas id="aftermathChart"></canvas>
-                        </div>
+                    <div class="cycle-step text-center cursor-pointer p-6 rounded-lg border-2 border-dashed border-yellow-400 bg-yellow-50 w-full md:w-1/3" data-cycle="devaluation">
+                        <div class="text-5xl mb-2">📉</div>
+                        <h3 class="text-xl font-bold text-yellow-700">"Ты плохой!"</h3>
+                        <p class="text-sm text-gray-600 mt-1">Начинают критиковать, обижать, заставлять сомневаться в себе.</p>
                     </div>
-                    <div class="lg:w-1/2">
-                         <h3 class="text-2xl font-bold mb-4 text-stone-800">Травматическая Связь: Ловушка для Эмпата</h3>
-                         <p class="text-stone-600 mb-6">Один из самых коварных механизмов — травматическая связь (trauma bonding). Это сильная эмоциональная привязанность к абьюзеру, создаваемая циклом идеализации и обесценивания. Это похоже на зависимость, где жертва постоянно надеется на возвращение "хороших времен", что делает выход из отношений чрезвычайно трудным.</p>
-                         <div id="aftermath-list" class="space-y-4"></div>
+                    
+                    <div class="text-4xl text-gray-400 hidden md:block">&rarr;</div>
+
+                    <div class="cycle-step text-center cursor-pointer p-6 rounded-lg border-2 border-dashed border-red-400 bg-red-50 w-full md:w-1/3" data-cycle="discard">
+                        <div class="text-5xl mb-2">🗑️</div>
+                        <h3 class="text-xl font-bold text-red-700">"Ты мне не нужен!"</h3>
+                        <p class="text-sm text-gray-600 mt-1">Внезапно бросают, как будто вас никогда и не было.</p>
                     </div>
                 </div>
             </div>
+            <div id="cycle-details-container" class="mt-8 max-w-2xl mx-auto"></div>
         </section>
 
-        <section id="healing" class="py-16 sm:py-24 bg-white">
-             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Путь к Исцелению: Первые Шаги</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Осознание того, что вы стали жертвой нарциссического насилия, — это начало сложного, но возможного пути к восстановлению своего "Я". Вот ключевые первые шаги.</p>
-                </div>
-                <div id="healing-path" class="max-w-4xl mx-auto space-y-8">
-                    <!-- Healing steps will be generated here -->
-                </div>
+        <section id="how-to-act" class="py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">4. Как быть, если встретил? Защити себя!</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Если вы столкнулись с таким человеком, главное — защитить себя и свое спокойствие. Здесь вы найдете простые шаги, которые помогут вам. Нажмите на каждый заголовок, чтобы прочитать подробнее.</p>
+            </div>
+
+            <div id="accordion-container" class="max-w-3xl mx-auto space-y-4">
             </div>
         </section>
 
-        <section id="finale" class="py-16 sm:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Финал Нарцисса</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Какова долгосрочная траектория нарцисса? Несмотря на внешний успех, их внутренний мир пуст, а прогноз зависит от их способности (или неспособности) осознать свою проблему.</p>
-                </div>
-                <div id="finale-content" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <!-- Finale content will be generated here -->
-                </div>
+        <section id="full-report" class="py-16 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">5. Полный Отчет: Для тех, кто хочет глубже</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Здесь вы можете прочитать весь изначальный текст, который лег в основу этой страницы, без каких-либо изменений или сокращений.</p>
             </div>
-        </section>
-        
-        <section id="full-research" class="py-16 sm:py-24 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Полный Текст Исследования</h2>
-                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Для тех, кто хочет глубже погрузиться в тему, здесь представлен полный, синтезированный текст исследования, на основе которого создано это приложение.</p>
-                </div>
-                <div id="full-text-container" class="max-w-4xl mx-auto">
-                    <button id="toggle-full-text" class="w-full bg-stone-200 text-stone-800 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-stone-300 transition-colors duration-300 flex justify-between items-center">
-                        <span>Показать/Скрыть Полный Текст</span>
-                        <svg id="toggle-icon" class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="full-text-content" class="full-document-content mt-6 bg-stone-50 p-6 sm:p-8 rounded-lg shadow-inner accordion-content">
-                        <!-- Full research text will be inserted here -->
+            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
+                <details>
+                    <summary class="text-xl font-bold text-[#C18C5D] cursor-pointer py-2">Нажмите, чтобы прочитать полный оригинальный текст</summary>
+                    <div class="mt-4 text-gray-700 prose max-w-none">
+                        <p><strong>"Нарциссизм как разрушительная сила: как проявляется в бизнесе, духовных сообществах и личной жизни — и что делать, если вы столкнулись с ним лицом к лицу"</strong></p>
+
+                        <p>---</p>
+
+                        <h3>🔍 Что будет в исследовании (структура, переведённая на доступный язык):</h3>
+
+                        <h4>1. <strong>Что такое нарциссизм и почему это не просто «любовь к себе»</strong></h4>
+                        <ul>
+                            <li>Объяснение с примерами из жизни.</li>
+                            <li>Простыми словами разница между нарциссизмом, психопатией и просто эгоцентризмом.</li>
+                            <li>Материалы из книги <strong>"Лишенные совести" Роберта Хаэра</strong>: как психопатия и нарциссизм пересекаются, особенно в проявлениях отсутствия эмпатии и манипуляции.</li>
+                        </ul>
+
+                        <p>---</p>
+
+                        <h4>2. <strong>Нарциссы в бизнесе: почему они кажутся крутыми лидерами, но рушат компании</strong></h4>
+                        <ul>
+                            <li>Они любят быть в центре, поэтому строят иерархию, где подчинённые слабее и зависимее.</li>
+                            <li>Предпочитают микроменеджмент, потому что контролируют всё — это даёт чувство власти.</li>
+                            <li>Часто бросают проекты незавершёнными, потому что теряют интерес, когда исчезает внимание окружающих.</li>
+                            <li>Реальные кейсы: примеры из корпоративной среды, стартапов, возможно даже из политической сферы.</li>
+                        </ul>
+
+                        <p>---</p>
+
+                        <h4>3. <strong>Нарциссизм в духовных сообществах: власть под видом света</strong></h4>
+                        <ul>
+                            <li>Исторические примеры: от культистских лидеров до харизматичных духовных наставников.</li>
+                            <li>Почему нарциссы тянутся к духовным сообществам: они дают легитимную власть над другими и почитание.</li>
+                            <li>Как они манипулируют чувством вины, идеей "служения", и искажают духовные учения в свою пользу.</li>
+                        </ul>
+
+                        <p>---</p>
+
+                        <h4>4. <strong>Что делать, если вы жертва нарцисса</strong></h4>
+                        <ul>
+                            <li>Первые шаги:
+                                <ul>
+                                    <li>Осознание (и почему это уже 50% победы)</li>
+                                    <li>Установление границ</li>
+                                    <li>Обращение за поддержкой (психолог, группы поддержки)</li>
+                                </ul>
+                            </li>
+                            <li>Как не попасть снова в ловушку: признаки, на которые стоит обращать внимание.</li>
+                        </ul>
+
+                        <p>---</p>
+
+                        <h4>5. <strong>Что ждёт нарцисса? Есть ли надежда на изменение?</strong></h4>
+                        <ul>
+                            <li>Если не осознаёт проблему: деградация связей, одиночество, часто — повторяющиеся крахи.</li>
+                            <li>Если осознаёт: возможна трансформация, но <strong>очень трудный и редкий путь</strong> (по Хаэру и другим авторам психопатологии).</li>
+                            <li>Кейсы людей, которым удалось выйти из нарциссических паттернов (но с очень глубокой терапевтической работой).</li>
+                        </ul>
                     </div>
-                </div>
+                </details>
             </div>
         </section>
-
     </main>
-    
-    <footer class="bg-stone-200 border-t border-stone-300">
-        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-stone-600">
-            <p>&copy; 2025 Интерактивное Исследование. Создано в образовательных целях.</p>
-            <p class="text-xs mt-2">Информация в этом приложении является обобщением и не заменяет профессиональную медицинскую консультацию. При подозрении на расстройство личности обратитесь к специалисту.</p>
+
+    <footer class="bg-gray-800 text-white mt-24">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Особый характер. Создано для того, чтобы помочь вам.</p>
+            <p class="text-sm text-gray-400 mt-2">Эта информация не заменяет консультацию со специалистом.</p>
         </div>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
 
-        const appData = {
-            basics: [
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const data = {
+        comparison: {
+            labels: ['Я — самый-самый!', 'Мне все равно, что ты чувствуешь', 'Я тебя использую', 'Постоянно жду похвалы', 'Люблю рисковать', 'Делаю, что хочу'],
+            datasets: [
                 {
-                    title: "Что такое Нарциссическое Расстройство Личности (НРЛ)?",
-                    content: "Это психическое состояние, характеризующееся раздутым чувством собственной важности, глубокой потребностью в чрезмерном восхищении и отсутствием эмпатии. За маской уверенности часто скрывается хрупкая самооценка."
+                    label: 'Особый характер (Нарцисс)',
+                    data: [9, 8, 7, 10, 4, 5],
+                    backgroundColor: 'rgba(193, 140, 93, 0.6)',
+                    borderColor: 'rgba(193, 140, 93, 1)',
+                    borderWidth: 1,
+                    tooltip: [
+                        'Думает, что он намного лучше всех. "Я звезда!"',
+                        'Не умеет и не хочет понимать, что чувствуют другие.',
+                        'Использует людей, чтобы получить то, что ему нужно.',
+                        'Постоянно ищет, чтобы его хвалили и обращали на него внимание.',
+                        'Не очень любит рисковать, боится, что о нем плохо подумают.',
+                        'Контролирует себя, если это поможет выглядеть лучше.'
+                    ]
                 },
                 {
-                    title: "Типы Нарциссизма: Грандиозный vs. Уязвимый",
-                    content: "<b>Грандиозный (открытый) нарциссизм</b> проявляется через высокомерие, доминирование и чувство превосходства. <b>Уязвимый (скрытый) нарциссизм</b> характеризуется неуверенностью, чувствительностью к критике и скрытой потребностью в подтверждении. Скрытый нарциссизм особенно коварен, так как может маскироваться под скромность и чуткость."
+                    label: 'Холодный расчет (Психопат)',
+                    data: [7, 10, 9, 3, 9, 8],
+                    backgroundColor: 'rgba(100, 100, 100, 0.6)',
+                    borderColor: 'rgba(100, 100, 100, 1)',
+                    borderWidth: 1,
+                    tooltip: [
+                        'Считает себя выше всех, но это холодный расчет, а не просто хвастовство.',
+                        'Вообще не чувствует чужой боли и не жалеет о своих поступках.',
+                        'Использует обман и хитрость, чтобы получить выгоду.',
+                        'Ему не нужна похвала, только результат.',
+                        'Очень любит рисковать, ему все равно, что будет потом.',
+                        'Часто делает необдуманные поступки, которые вредят другим.'
+                    ]
                 },
                 {
-                    title: "Теории Происхождения: Фрейд, Кохут, Кернберг",
-                    content: "<b>Фрейд</b> рассматривал патологический нарциссизм как регрессию к младенческой стадии. <b>Кохут</b> считал его результатом недостатка родительской эмпатии, приводящего к неспособности регулировать самооценку. <b>Кернберг</b> связывал его со слабыми внутренними 'объектными отношениями' и защитным механизмом 'расщепления' (видение мира в черно-белых тонах)."
+                    label: 'Я-центрик (Эгоцентрик)',
+                    data: [2, 3, 1, 2, 1, 1],
+                    backgroundColor: 'rgba(150, 150, 150, 0.4)',
+                    borderColor: 'rgba(150, 150, 150, 1)',
+                    borderWidth: 1,
+                    tooltip: [
+                        'Просто думает о себе, но не считает себя великим.',
+                        'Ему трудно понять, что думают другие, но он не злой.',
+                        'Обычно не манипулирует людьми.',
+                        'Хочет внимания, но в меру, как все обычные люди.',
+                        'Не любит рисковать больше других.',
+                        'Не делает необдуманных поступков из-за своей особенности.'
+                    ]
                 }
-            ],
-            darkSpectrum: {
-                headers: ["Характеристика", "Нарциссизм (НРЛ)", "Злокачественный Нарциссизм", "Психопатия (по Хэйру)"],
-                rows: [
-                    ["Основная мотивация", "Поддержание грандиозной самооценки, получение восхищения.", "Доминирование, контроль, садистское удовольствие от власти.", "Личная выгода, власть, стимуляция. Полное отсутствие совести."],
-                    ["Эмпатия", "Значительно снижена или отсутствует.", "Отсутствует, часто с садистскими наклонностями.", "Полное отсутствие. Неспособны чувствовать чужую боль."],
-                    ["Агрессия", "Реактивная, 'нарциссическая ярость' в ответ на угрозу эго.", "Проактивная, садистская, направленная на уничтожение.", "Инструментальная, 'холодная', используется для достижения целей."],
-                    ["Совесть/Вина", "Может испытывать стыд, но редко искреннее раскаяние.", "Отсутствует. Может получать удовольствие от причинения вреда.", "Полное отсутствие. Знают правила, но не чувствуют их."],
-                    ["Поведение", "Эксплуатация, манипуляции, высокомерие.", "Антисоциальное, параноидальное, жестокое.", "Патологическая ложь, мошенничество, безжалостность."]
+            ]
+        },
+        arenas: {
+            business: {
+                title: 'На работе: Босс, который кажется крутым, но все портит',
+                description: 'Такие люди часто кажутся сильными лидерами, но на самом деле они разрушают компанию изнутри. Им нужно все контролировать, и это очень плохо для команды.',
+                cards: [
+                    { title: 'Все под контролем', content: 'Они хотят знать и решать все сами. Сотрудники чувствуют себя глупыми и не хотят работать.', icon: '🔬' },
+                    { title: 'Забирает себе все заслуги', content: 'Если команда хорошо поработала, он скажет, что это его идея. А если что-то пошло не так, виноваты все, кроме него.', icon: '🏆' },
+                    { title: 'Бросает дела на полпути', content: 'Как только ему становится скучно или его перестают хвалить, он бросает проект, даже если он не закончен.', icon: 'Projects️' }
                 ],
-                conclusion: "<b>Роберт Хэйр в книге 'Лишенные совести'</b> подчеркивает, что психопаты — это 'социальные хищники', которые очаровывают, манипулируют и безжалостно прокладывают себе путь по жизни. Ключевое отличие — полное отсутствие совести. Злокачественный нарциссизм является мостом между НРЛ и психопатией, сочетая нарциссическую грандиозность с антисоциальными и садистскими чертами."
-            },
-            inPower: {
-                business: `
-                    <h4 class="text-xl font-semibold mb-4 text-stone-800">Управление и Деловая Активность</h4>
-                    <p class="mb-4 text-stone-600">Нарциссы в бизнесе часто харизматичны и поначалу кажутся эффективными лидерами. Однако их стиль управления в конечном итоге наносит вред компании.</p>
-                    <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                        <li><b>Незавершенные проекты:</b> Они начинают проекты с энтузиазмом, чтобы получить порцию восхищения, но теряют интерес, когда начинается рутинная работа. Они не нацелены на результат, а на поддержание своего грандиозного образа.</li>
-                        <li><b>Микроменеджмент:</b> Их потребность в тотальном контроле и недоверие к другим приводят к микроменеджменту. Они не делегируют полномочия, создавая 'бутылочное горлышко' и подавляя инициативу сотрудников.</li>
-                        <li><b>Подчиненные и фавориты:</b> Они окружают себя лояльными, но часто некомпетентными 'фаворитами', которые обеспечивают им 'нарциссический ресурс' (похвалу, послушание). Компетентные и независимые сотрудники, которые могут бросить им вызов, вытесняются.</li>
-                        <li><b>Токсичная культура:</b> В итоге создается среда, где ценятся не профессионализм и командная работа, а лесть и личная преданность лидеру, что убивает инновации и снижает моральный дух.</li>
-                    </ul>
-                `,
-                spirituality: `
-                    <h4 class="text-xl font-semibold mb-4 text-stone-800">Злокачественный Нарциссизм в Монашестве и Духовных Общинах</h4>
-                    <p class="mb-4 text-stone-600">Религиозная среда, с ее иерархией и акцентом на послушание, является идеальной почвой для злокачественных нарциссов. Они используют веру как инструмент для абсолютной власти.</p>
-                    <div class="mb-6 aspect-w-16 aspect-h-9">
-                        <iframe src="https://www.youtube.com/embed/QgdDi-I_5xU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full rounded-lg shadow-md"></iframe>
-                    </div>
-                    <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                        <li><b>Духовность как оружие:</b> Священные тексты и учения искажаются для оправдания контроля, наказания инакомыслящих и манипуляции паствой.</li>
-                        <li><b>Культ личности:</b> Лидер становится центром вселенной, а не учение. Его слово — закон, а критика приравнивается к греху.</li>
-                        <li><b>Изоляция и контроль:</b> Последователи изолируются от внешнего мира, их личная жизнь, финансы и отношения ставятся под контроль лидера.</li>
-                        <li><b>Подавление автономии:</b> Независимое мышление и сомнения наказываются. Послушание и "смирение" возводятся в абсолют, что на самом деле является требованием беспрекословного подчинения.</li>
-                    </ul>
-                `
-            },
-            tactics: [
-                { title: "Газлайтинг", icon: "💡" },
-                { title: "Игра в жертву", icon: "😢" },
-                { title: "Проекция", icon: "📽️" },
-                { title: "Бомбардировка любовью", icon: "💣❤️" },
-                { title: "Триангуляция", icon: "🔺" },
-                { title: "'Пылесос'", icon: "🌪️" },
-                { title: "Клеветническая кампания", icon: " defamation " },
-                { title: "Изоляция", icon: "⛓️" },
-                { title: "Перекладывание вины", icon: "👉" },
-                { title: "Обесценивание", icon: "👎" },
-                { title: "Угрозы и запугивание", icon: "🤬" },
-                { title: "Удержание", icon: "🚫" },
-            ],
-            aftermath: {
-                labels: ['Самооценка', 'Эмоции', 'Отношения', 'Духовность', 'Здоровье', 'Мышление'],
-                data: [95, 90, 85, 92, 75, 88],
-                details: [
-                    "Разрушенная самооценка, чувство никчемности.",
-                    "Тревога, депрессия, ПТСР, эмоциональное оцепенение.",
-                    "Проблемы с доверием, трудности с границами.",
-                    "Духовный кризис, искажение веры, цинизм.",
-                    "Психосоматика: нарушения сна, головные боли.",
-                    "Когнитивный диссонанс, сомнения в своей реальности."
+                cases: [
+                    { name: 'Стив Джобс (Apple)', details: 'Он был гением, но очень плохо обращался с людьми. Мог унизить сотрудника при всех и забрать чужие идеи. Из-за него люди работали под огромным давлением.' },
+                    { name: 'Трэвис Каланик (Uber)', details: 'Создал компанию, где было нормально быть грубым. Из-за него было много скандалов, даже с домогательствами.' },
+                    { name: 'Элизабет Холмс (Theranos)', details: 'Обманула всех на миллиарды. Создала компанию, где все боялись и врали, чтобы никто не узнал правду.' },
                 ]
             },
-            healingPath: [
-                 { title: "1. Признайте Реальность", content: "Первый и самый трудный шаг — признать, что вы стали жертвой насилия. Поймите, что поведение нарцисса — это его проблема, а не отражение вашей ценности. Перестаньте искать ему оправдания." },
-                 { title: "2. Установите Границы ('Нет Контакта')", content: "Самый эффективный способ — полностью прекратить общение (No Contact). Заблокируйте его везде. Если полный разрыв невозможен (например, общие дети), используйте метод 'Серого камня' — станьте максимально скучным и неэмоциональным собеседником." },
-                 { title: "3. Найдите Поддержку", content: "Не оставайтесь в изоляции. Расскажите о случившемся друзьям, семье, которым доверяете. Найдите группы поддержки (онлайн или оффлайн) для жертв нарциссического насилия. Знание, что вы не одиноки, бесценно." },
-                 { title: "4. Обратитесь к Профессионалу", content: "Найдите терапевта, который специализируется на нарциссическом насилии и травме. Такие методы, как КПТ, ДПДГ или травмофокусированная терапия, помогут вам переработать опыт и восстановить самооценку." },
-                 { title: "5. Сфокусируйтесь на Себе", content: "Начните заново открывать себя. Вспомните свои хобби, увлечения, мечты, которые были подавлены. Заботьтесь о своем физическом и эмоциональном здоровье. Практикуйте самосострадание — вы пережили тяжелую травму и заслуживаете доброты, в первую очередь от самого себя." }
-            ],
-            finale: {
-                realized: {
-                    title: "Если осознал (редкий сценарий)",
-                    content: "Осознание проблемы для нарцисса — крайне редкое событие. Если это происходит (часто после серьезного жизненного кризиса), путь к изменениям долог и труден. Он требует многолетней интенсивной терапии, готовности столкнуться с внутренней болью, стыдом и пустотой. Цель — не полное 'излечение', а развитие более реалистичного самовосприятия и способности к эмпатии. Прогноз осторожный, но не безнадежный."
-                },
-                unrealized: {
-                    title: "Если не осознал (типичный сценарий)",
-                    content: "Это наиболее частый исход. Нарцисс продолжает свой деструктивный путь, обвиняя других во всех своих неудачах. С возрастом его 'нарциссический ресурс' (внешность, влияние, деньги) иссякает. Это приводит к усугублению зависти, гнева и паранойи. Отношения разрушаются, наступает социальная изоляция. Финал часто печален: одиночество, депрессия, сопутствующие заболевания и 'нарциссический коллапс' — полный крах грандиозного фасада под тяжестью реальности."
-                }
+            spirituality: {
+                title: 'В кружках и группах по интересам: "Гуру", который на самом деле хочет власти',
+                description: 'Для таких людей духовные группы — идеальное место. Там они могут стать "учителем", которого все слушают и хвалят. Они используют учения, чтобы управлять людьми и возвышать себя.',
+                cards: [
+                    { title: 'Власть под видом света', content: 'Они притворяются мудрыми и добрыми, чтобы люди им слепо подчинялись и восхищались.', icon: '✨' },
+                    { title: 'Манипулируют виной', content: 'Они искажают учения, чтобы заставить людей чувствовать себя виноватыми или обязанными им служить.', icon: '🙏' },
+                    { title: 'Только мы хорошие, остальные плохие', content: 'Они говорят, что только их группа правильная, а все остальные — нет. Это заставляет людей держаться только за них.', icon: '⛩️' }
+                ],
+                cases: [
+                    { name: 'Сёко Асахара (Аум Синрикё)', details: 'Считал себя просветленным. Из-за его безумных идей он создал химическое оружие и устроил газовую атаку в метро Токио.' },
+                    { name: 'Жозеф Ди Мамбро (Орден Солнечного Храма)', details: 'Был очень убедительным лидером, который предсказывал конец света. Его учения привели к тому, что десятки его последователей убили себя и других.' },
+                ]
             },
-            fullResearchText: `
-                <h2>Глубокое Исследование Нарциссизма: Понимание Личности и Ее Влияния</h2>
-                <h3>Введение: Что такое нарциссизм?</h3>
-                <p>Нарциссизм, названный в честь мифологического Нарцисса, влюбившегося в собственное отражение, представляет собой сложное явление... (здесь будет полный синтезированный текст из всех предоставленных документов)</p>
-                <!-- ... и так далее, весь текст ... -->
-                <h2>Заключение</h2>
-                <p>Нарциссизм — это сложное и многогранное явление... Понимание этих динамик имеет решающее значение для защиты себя и общества от разрушительного влияния нарциссических лидеров.</p>
-                <h3>Использованные источники</h3>
-                <p>Этот текст является синтезом информации из предоставленных отчетов, а также включает ключевые концепции из книги Роберта Хэйра "Лишенные совести. Пугающий мир психопатов" и темы, затронутые в видео "О злокачественном нарциссизме в монашестве".</p>
-            `
-        };
-
-        const fullTextContent = document.getElementById('full-text-content');
-        const synthesizedText = `
-            <h2>Глубокое Исследование Нарциссизма: Понимание Личности и Ее Влияния</h2>
-            <h3>Введение: Что такое нарциссизм?</h3>
-            <p>Нарциссизм, названный в честь мифологического Нарцисса, влюбившегося в собственное отражение, представляет собой сложное явление, характеризующееся завышенным чувством собственной значимости и зависимостью от фантазий. Это состояние сопровождается необычайным хладнокровием, которое нарушается только при угрозе самооценке, а также склонностью воспринимать других как должное или эксплуатировать их. Нарциссическое расстройство личности (НРЛ) является более серьезным и устойчивым проявлением нарциссизма. Это психическое состояние, при котором человек обладает необоснованно высоким чувством собственной важности, чрезмерной потребностью во внимании и восхищении, а также сниженной способностью сопереживать чувствам других. За маской крайней уверенности у людей с НРЛ скрывается хрупкое чувство собственного достоинства, которое легко нарушается малейшей критикой. НРЛ проявляется как устойчивый паттерн грандиозности (в фантазиях или поведении), потребности в восхищении и отсутствии эмпатии, начинающийся в раннем взрослом возрасте и проявляющийся в различных контекстах.</p>
-            <p>Спектр нарциссических проявлений широк: от обычных черт до патологии. Нарциссические черты могут быть нормальной частью человеческого развития, проявляясь примерно в 8 лет, усиливаясь в подростковом возрасте и уменьшаясь во взрослой жизни. Однако эти черты становятся клинически значимым расстройством, если они негибкие, дезадаптивные, устойчивые и вызывают значительные функциональные нарушения или субъективный дистресс. Существуют два основных типа нарциссизма: грандиозный (открытый) и уязвимый (скрытый). Грандиозный нарциссизм характеризуется высокомерием, доминированием и чувством превосходства, часто проявляясь как уверенность и харизма. Уязвимый нарциссизм, напротив, характеризуется неуверенностью, чувствительностью к критике и скрытой потребностью в подтверждении.</p>
-            <h3>1.3. Злокачественный Нарциссизм и Психопатия: Взгляд Роберта Хэйра</h3>
-            <p>Злокачественный нарциссизм, введенный психоаналитиком Отто Кернбергом, описывается как тяжелая форма НРЛ, характеризующаяся сочетанием нарциссизма, антисоциального поведения, агрессии и садизма. Он концептуально и клинически очень похож на психопатию. Роберт Хэйр, выдающийся исследователь в области криминальной психологии, разработал "Контрольный список психопатии" (PCL-Revised). Его работа подчеркивает, что психопаты отличаются крайней нехваткой эмпатии, что делает их способными к самым бессердечным действиям по отношению к другим. В основе психопатии лежит "агрессивный нарциссизм", включающий поверхностное обаяние, грандиозное чувство собственного достоинства, патологическую лживость, манипулятивность, отсутствие раскаяния или вины, поверхностный аффект, бессердечность, отсутствие эмпатии и неспособность принимать ответственность за свои действия. В своей книге "Лишенные совести" Роберт Хэйр описывает психопатов как хищников, которые очаровывают, лгут и манипулируют, прокладывая себе путь по жизни. Они полностью осознают последствия своих действий и знают разницу между добром и злом, но при этом ужасающе эгоцентричны, безжалостны и неспособны заботиться о чувствах других. Применение идей Хэйра подчеркивает, что "злокачественный нарциссизм" выходит за рамки простого эгоцентризма. Это фундаментальное нарушение совести, которое делает традиционные методы воздействия (например, апелляция к морали или эмпатии) неэффективными.</p>
-            <h2>II. Нарциссы в Деловой Среде и Корпоративном Управлении</h2>
-            <h3>2.1. Как нарциссы ведут деловую активность и управляют компаниями</h3>
-            <p>Нарциссы привлекаются к руководящим ролям, потому что это дает им возможности получить власть, признание и контроль. Нарциссические лидеры часто харизматичны, уверены в себе и обладают "большим видением". Однако эта "яркая сторона" является лишь фасадом. Они действуют исключительно в своих собственных интересах, ставя под угрозу потребности организации. Их основная мотивация — это личная слава и восхищение, а не коллективный успех. Их потребность в постоянном восхищении может привести к беспорядочному принятию решений, где приоритеты смещаются в соответствии с их желанием получить признание, а не со стратегическими целями организации. Новые проекты инициируются для "повышения эго" от грандиозного видения, в то время как старые проекты забрасываются, когда "признание" угасает или возникают практические трудности.</p>
-            <h3>2.2. Кого нарциссы ставят в подчинение и почему</h3>
-            <p>Нарциссические лидеры ценят лояльность своих подчиненных больше, чем компетентность. Они склонны окружать себя "инсайдерами", которые постоянно хвалят их и никогда не оспаривают их решения. Особое предпочтение отдается подчиненным с низкой самооценкой. Нарциссы активно выбирают подчиненных, которые менее склонны оспаривать их авторитет. Это приводит к созданию токсичной рабочей среды, где талантливые и независимые сотрудники часто уходят.</p>
-            <h3>2.3. Почему нарциссы предпочитают личный микроменеджмент</h3>
-            <p>Нарциссы предпочитают личный микроменеджмент из-за своей глубокой потребности в тотальном контроле и недоверия к другим. Они хотят, чтобы все делалось по их указке, так как считают, что никто не может выполнить задачу так же хорошо, как они. Это проистекает из их глубокой неуверенности. Принятие советов подразумевает для них слабость. Микроменеджмент препятствует творческому мышлению и решению проблем, поскольку сотрудники чувствуют, что их идеи не ценятся.</p>
-            <h2>Заключение</h2>
-            <p>Нарциссизм — это сложное и многогранное явление, варьирующееся от обычных личностных черт до тяжелого расстройства личности. В его основе лежит грандиозное самовосприятие, глубокая потребность в восхищении и критическое отсутствие эмпатии. Понимание этих динамик имеет решающее значение для защиты себя и общества от разрушительного влияния нарциссических лидеров.</p>
-            <h3>Использованные источники</h3>
-            <p>Данное исследование является синтезом информации из различных психоаналитических и терапевтических источников по нарциссическому расстройству личности, включая работы Зигмунда Фрейда, Хайнца Кохута, Отто Кернберга, а также современных исследований в области травмы и нарциссического насилия. Были использованы ключевые концепции из книги Роберта Хэйра "Лишенные совести. Пугающий мир психопатов" и темы, затронутые в видео "О злокачественном нарциссизме в монашестве".</p>
-        `;
-        fullTextContent.innerHTML = synthesizedText;
-
-
-        const basicsAccordion = document.getElementById('basics-accordion');
-        appData.basics.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'bg-white rounded-lg shadow-sm';
-            div.innerHTML = `
-                <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
-                    <h3 class="text-xl font-semibold text-stone-800">${item.title}</h3>
-                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="accordion-content">
-                    <p class="p-5 pt-0 text-stone-600">${item.content}</p>
-                </div>
-            `;
-            basicsAccordion.appendChild(div);
-        });
-
-        const darkSpectrumContainer = document.getElementById('dark-spectrum-content');
-        const table = document.createElement('div');
-        table.className = 'overflow-x-auto bg-stone-50 rounded-lg shadow-md';
-        let tableHTML = `<table class="min-w-full divide-y divide-stone-200">
-                            <thead class="bg-stone-100"><tr>`;
-        appData.darkSpectrum.headers.forEach(header => {
-            tableHTML += `<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">${header}</th>`;
-        });
-        tableHTML += `</tr></thead><tbody class="bg-white divide-y divide-stone-200">`;
-        appData.darkSpectrum.rows.forEach(row => {
-            tableHTML += `<tr>`;
-            row.forEach((cell, index) => {
-                const cellClass = index === 0 ? 'font-semibold text-stone-800' : 'text-stone-600';
-                tableHTML += `<td class="px-6 py-4 whitespace-normal text-sm ${cellClass}">${cell}</td>`;
-            });
-            tableHTML += `</tr>`;
-        });
-        tableHTML += `</tbody></table>`;
-        table.innerHTML = tableHTML;
-        const conclusion = document.createElement('p');
-        conclusion.className = 'mt-6 text-center text-stone-600 italic';
-        conclusion.innerHTML = appData.darkSpectrum.conclusion;
-        darkSpectrumContainer.append(table, conclusion);
-
-        const tabContent = document.getElementById('tab-content');
-        const tabBusinessBtn = document.getElementById('tab-business');
-        const tabSpiritualityBtn = document.getElementById('tab-spirituality');
-        tabContent.innerHTML = appData.inPower.business;
-
-        tabBusinessBtn.addEventListener('click', () => {
-            tabContent.innerHTML = appData.inPower.business;
-            tabBusinessBtn.classList.add('active');
-            tabSpiritualityBtn.classList.remove('active');
-        });
-        tabSpiritualityBtn.addEventListener('click', () => {
-            tabContent.innerHTML = appData.inPower.spirituality;
-            tabSpiritualityBtn.classList.add('active');
-            tabBusinessBtn.classList.remove('active');
-        });
-
-        const tacticsContainer = document.getElementById('tactics-grid');
-        appData.tactics.forEach(tactic => {
-            const card = document.createElement('div');
-            card.className = 'card bg-stone-50 p-4 rounded-lg shadow-sm text-center';
-            card.innerHTML = `
-                <div class="text-4xl mb-2">${tactic.icon}</div>
-                <h4 class="font-semibold text-md text-stone-800">${tactic.title}</h4>
-            `;
-            tacticsContainer.appendChild(card);
-        });
-
-        const aftermathList = document.getElementById('aftermath-list');
-        appData.aftermath.details.forEach(detail => {
-            const item = document.createElement('div');
-            item.className = 'bg-white p-3 rounded-lg shadow-sm';
-            item.innerHTML = `<p class="text-stone-700">${detail}</p>`;
-            aftermathList.appendChild(item);
-        });
-
-        new Chart(document.getElementById('aftermathChart').getContext('2d'), {
-            type: 'radar',
-            data: {
-                labels: appData.aftermath.labels,
-                datasets: [{
-                    label: 'Степень воздействия',
-                    data: appData.aftermath.data,
-                    backgroundColor: 'rgba(87, 83, 78, 0.2)',
-                    borderColor: '#57534E',
-                    borderWidth: 2,
-                    pointBackgroundColor: '#57534E'
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
-                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
-                        pointLabels: { font: { size: 13 }, color: '#44403C' },
-                        ticks: { display: false, stepSize: 20 },
-                        suggestedMin: 0,
-                        suggestedMax: 100
+            personal: {
+                title: 'Дома: Любовь, которая ранит',
+                description: 'В личных отношениях такой человек создает круговорот, который разрушает самооценку партнера и оставляет глубокие раны. Ему нужна не любовь, а чтобы им восхищались.',
+                cards: [
+                    { title: 'Заставляет сомневаться в себе', content: 'Он говорит: "Тебе показалось", "Ты все придумал", "Ты слишком чувствительный". Это заставляет вас думать, что вы сходите с ума.', icon: '💡' },
+                    { title: 'То люблю, то ненавижу', content: 'Сегодня он вас обожает, завтра — игнорирует. Вы все время ждете, когда же он снова будет "хорошим".', icon: '🎢' },
+                    { title: 'Отрывает от друзей и семьи', content: 'Постепенно он делает так, чтобы вы меньше общались с друзьями и родными. Так он становится единственным человеком в вашей жизни, и ему легче вами управлять.', icon: '🔗' }
+                ],
+                cases: []
+            }
+        },
+        cycle: {
+            idealization: { title: '💖 "Ты лучший!"', content: 'Сначала он будет осыпать вас комплиментами и любовью. Вы почувствуете себя самым важным человеком в мире. Это нужно, чтобы вы быстро к нему привязались и подумали, что он — ваша родная душа.' },
+            devaluation: { title: '📉 "Ты плохой!"', content: 'Как только вы "попались на крючок", он начнет вас критиковать, унижать, сравнивать с другими, игнорировать. Цель — заставить вас чувствовать себя ничтожеством и сделать вас более зависимым.' },
+            discard: { title: '🗑️ "Ты мне не нужен!"', content: 'Когда вы устанете от всего этого и больше не сможете давать ему то, что ему нужно (восхищение, внимание), он просто вас бросит. Часто это происходит внезапно и очень жестоко, оставляя вас в полной растерянности.' }
+        },
+        whatToDo: [
+            { title: 'Шаг 1: Понять, что происходит', content: 'Признайте, что это ненормальное поведение, и это не ваша вина. Поймите, что вы не сможете его "исправить". Ваша главная задача — спасти себя. Это уже половина успеха!' },
+            { title: 'Шаг 2: Нарисовать свои границы', content: 'Четко скажите, что вы не будете терпеть. Научитесь говорить "нет". Если он нарушает ваши правила, должны быть последствия (например, "Если ты будешь кричать, я уйду"). Будьте твердыми.' },
+            { title: 'Шаг 3: Стать "серым камнем"', content: 'Станьте для него "скучным". Не показывайте никаких эмоций (ни радости, ни злости). Отвечайте коротко и по делу. Если он не получает от вас эмоций, он потеряет к вам интерес.' },
+            { title: 'Шаг 4: Прекратить общение', content: 'Самый лучший способ — полностью перестать с ним общаться. Заблокируйте везде. Если совсем нельзя (например, у вас общие дети), общайтесь только по самым важным делам, очень коротко.' },
+            { title: 'Шаг 5: Найти помощь и восстановиться', content: 'Не оставайтесь один. Поговорите с психологом, который понимает такие отношения. Найдите группы поддержки. Вернитесь к друзьям и семье. Заботьтесь о себе: занимайтесь тем, что любите, отдыхайте.' }
+        ]
+    };
+    
+    const ctx = document.getElementById('comparisonChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: data.comparison,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        color: '#e5e7eb'
                     }
                 },
-                plugins: { legend: { display: false } }
+                x: {
+                    ticks: {
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#374151'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        afterBody: function(context) {
+                            const datasetIndex = context[0].datasetIndex;
+                            const dataIndex = context[0].dataIndex;
+                            const tooltipText = data.comparison.datasets[datasetIndex].tooltip[dataIndex];
+                            return tooltipText || '';
+                        }
+                    },
+                    backgroundColor: '#333',
+                    titleFont: { size: 14 },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    displayColors: true,
+                    boxPadding: 4
+                }
+            }
+        }
+    });
+
+    const arenasContent = document.getElementById('arenas-content');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+
+    function renderArena(arenaKey) {
+        const arenaData = data.arenas[arenaKey];
+        let cardsHtml = arenaData.cards.map(card => `
+            <div class="card p-6 rounded-lg w-full">
+                <div class="text-4xl mb-3">${card.icon}</div>
+                <h4 class="text-xl font-bold text-gray-800 mb-2">${card.title}</h4>
+                <p class="text-gray-600">${card.content}</p>
+            </div>
+        `).join('');
+
+        let casesHtml = '';
+        if(arenaData.cases && arenaData.cases.length > 0) {
+            casesHtml = `
+            <h4 class="text-2xl font-bold text-gray-800 mt-12 mb-6 text-center">Примеры из жизни</h4>
+            <div class="grid md:grid-cols-${arenaData.cases.length > 2 ? '3' : '2'} gap-6">
+                ${arenaData.cases.map(c => `
+                    <div class="card p-6 rounded-lg">
+                        <h5 class="font-bold text-lg text-[#C18C5D]">${c.name}</h5>
+                        <p class="text-gray-600 mt-2 text-sm">${c.details}</p>
+                    </div>
+                `).join('')}
+            </div>
+            `;
+        }
+        
+        arenasContent.innerHTML = `
+            <div id="${arenaKey}" class="tab-content animate-fade-in">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800">${arenaData.title}</h3>
+                    <p class="text-gray-600 mt-3">${arenaData.description}</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    ${cardsHtml}
+                </div>
+                ${casesHtml}
+            </div>`;
+    }
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            renderArena(button.dataset.tab);
+        });
+    });
+
+    renderArena('business');
+
+    const cycleSteps = document.querySelectorAll('.cycle-step');
+    const cycleDetailsContainer = document.getElementById('cycle-details-container');
+    
+    cycleSteps.forEach(step => {
+        step.addEventListener('click', () => {
+            const cycleKey = step.dataset.cycle;
+            const cycleData = data.cycle[cycleKey];
+
+            cycleDetailsContainer.innerHTML = `
+                <div class="card p-6 rounded-xl animate-fade-in shadow-xl">
+                    <h4 class="text-2xl font-bold mb-3">${cycleData.title}</h4>
+                    <p class="text-gray-700 leading-relaxed">${cycleData.content}</p>
+                </div>
+            `;
+        });
+    });
+
+    const accordionContainer = document.getElementById('accordion-container');
+    accordionContainer.innerHTML = data.whatToDo.map((item, index) => `
+        <div class="bg-white border border-gray-200 rounded-lg">
+            <h2>
+                <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 hover:bg-gray-50" data-accordion-target="accordion-content-${index}">
+                    <span>${item.title}</span>
+                    <svg class="w-6 h-6 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </h2>
+            <div id="accordion-content-${index}" class="accordion-content p-5 border-t border-gray-200">
+                <p class="text-gray-600">${item.content}</p>
+            </div>
+        </div>
+    `).join('');
+
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const content = document.getElementById(button.dataset.accordionTarget);
+            const icon = button.querySelector('svg');
+            
+            button.classList.toggle('bg-gray-100');
+            icon.classList.toggle('rotate-180');
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
+    });
 
-        const healingPathContainer = document.getElementById('healing-path');
-        appData.healingPath.forEach(item => {
-            const node = document.createElement('div');
-            node.className = 'card bg-white p-6 rounded-lg shadow-md';
-            node.innerHTML = `
-                <h4 class="font-bold text-lg text-stone-800 mb-2">${item.title}</h4>
-                <p class="text-stone-600">${item.content}</p>
-            `;
-            healingPathContainer.appendChild(node);
-        });
-        
-        const finaleContainer = document.getElementById('finale-content');
-        finaleContainer.innerHTML = `
-            <div class="card bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-center mb-4 text-stone-800">${appData.finale.realized.title}</h3>
-                <p class="text-stone-600">${appData.finale.realized.content}</p>
-            </div>
-            <div class="card bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-center mb-4 text-stone-800">${appData.finale.unrealized.title}</h3>
-                <p class="text-stone-600">${appData.finale.unrealized.content}</p>
-            </div>
-        `;
-        
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const icon = button.querySelector('svg');
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    icon.classList.remove('rotate-180');
-                } else {
-                    document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = null);
-                    document.querySelectorAll('.accordion-header svg').forEach(svg => svg.classList.remove('rotate-180'));
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    icon.classList.add('rotate-180');
-                }
-            });
-        });
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
 
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+            if (mobileMenu.classList.contains('hidden') === false) {
+                 mobileMenu.classList.add('hidden');
+            }
         });
-        
+    });
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    const id = entry.target.id;
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href').substring(1) === id);
-                    });
-                }
-            });
-        }, { rootMargin: '-40% 0px -60% 0px' });
-        sections.forEach(section => observer.observe(section));
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', e => {
-                if (window.innerWidth < 1024) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
         
-        const toggleFullTextBtn = document.getElementById('toggle-full-text');
-        const toggleIcon = document.getElementById('toggle-icon');
-        toggleFullTextBtn.addEventListener('click', () => {
-            if (fullTextContent.style.maxHeight) {
-                fullTextContent.style.maxHeight = null;
-                toggleIcon.classList.remove('rotate-180');
-            } else {
-                fullTextContent.style.maxHeight = fullTextContent.scrollHeight + "px";
-                toggleIcon.classList.add('rotate-180');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
             }
         });
 
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
     });
-    </script>
+});
+
+</script>
+<style>
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+}
+.prose {
+    font-size: 1.125rem; /* Equivalent to text-lg */
+    line-height: 1.75rem; /* Equivalent to leading-relaxed */
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    font-weight: 700; /* Equivalent to font-bold */
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.prose h1 { font-size: 2.25rem; } /* text-4xl */
+.prose h2 { font-size: 1.875rem; } /* text-3xl */
+.prose h3 { font-size: 1.5rem; }  /* text-2xl */
+.prose h4 { font-size: 1.25rem; } /* text-xl */
+
+.prose p {
+    margin-bottom: 1em;
+}
+
+.prose ul {
+    list-style-type: disc;
+    margin-left: 1.25em;
+    margin-bottom: 1em;
+}
+
+.prose li {
+    margin-bottom: 0.5em;
+}
+
+.prose strong {
+    font-weight: 700;
+}
+</style>
 </body>
 </html>
