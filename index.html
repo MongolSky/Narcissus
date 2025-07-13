@@ -3,610 +3,794 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Особый характер: Как понять и что делать</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Neutrals -->
-    <!-- Application Structure Plan: The application is structured into five thematic sections for a logical and easy-to-follow user journey: 1. "Что это за зверь?" (What is this beast?) to define and simply differentiate core concepts. 2. "Где они встречаются?" (Where do they meet?) to explore manifestations in real-world contexts (Business, Spirituality, Personal Life) via an interactive tab system. 3. "Что происходит, когда они рядом?" (What happens when they are around?) to visualize the impact using a custom HTML diagram of the abuse cycle. 4. "Как быть, если встретил?" (How to be if you met one?) to provide actionable advice through an interactive accordion. 5. "Полный Отчет" (Full Report) to include the entire original user-provided text, ensuring no information is abbreviated. This structure prioritizes extreme simplicity, engagement, and directness, making complex information digestible and ensuring all original content is present. -->
-    <!-- Visualization & Content Choices: 1. "Что это за зверь?": A Chart.js bar chart is used to visually compare "Особый характер", "Холодный расчет" и "Я-центрик". All labels and tooltips are simplified. 2. "Где они встречаются?": Content is organized into tabs with clickable cards for simple examples. This breaks down information into manageable, user-driven chunks. 3. "Что происходит, когда они рядом?": The cycle of abuse is shown as a custom HTML/CSS diagram with simplified stage names and descriptions, making a complex process easy to grasp. 4. "Как быть, если встретил?": Actionable steps are presented in an accordion format with very simple titles and explanations, preventing overload and allowing users to focus. 5. "Полный Отчет": The original text is placed in a details/summary tag for easy access without cluttering the main flow. Library: Chart.js for data visualization. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>Зеркало, отражающее пустоту</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8;
-            color: #333;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
-            border-bottom: 2px solid transparent;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .nav-link.active, .nav-link:hover {
-            color: #C18C5D;
-            border-bottom-color: #C18C5D;
-        }
-        .card {
-            background-color: #FFFFFF;
-            border: 1px solid #EAEAEA;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .btn-primary {
-            background-color: #C18C5D;
-            color: #FFFFFF;
-            transition: background-color 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: #AD7B4D;
-        }
-        .tab-btn {
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-        .tab-btn.active {
-            color: #C18C5D;
-            border-bottom-color: #C18C5D;
-        }
-        .chart-container {
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: radial-gradient(circle at center, rgba(139, 69, 19, 0.1) 0%, transparent 70%);
             position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 400px;
-            max-height: 50vh;
+            overflow: hidden;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 500px;
+
+        .mirror-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d4af37, #f4e4bc, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #b0b0b0;
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 10px;
+            padding: 20px 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #b0b0b0;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item:hover {
+            color: #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, #d4af37, transparent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .content {
+            padding: 40px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            padding: 40px;
+            background: rgba(25, 25, 25, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section:hover::before {
+            opacity: 1;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #d4af37;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection-title {
+            font-size: 1.8em;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+            border-left: 4px solid #d4af37;
+            padding-left: 20px;
+        }
+
+        .subsection-subtitle {
+            font-size: 1.3em;
+            color: #c0c0c0;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.2) 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #d4af37;
+            border-left: 3px solid #d4af37;
+            padding-left: 20px;
+            margin: 30px 0;
+            position: relative;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 3em;
+            color: rgba(212, 175, 55, 0.3);
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            margin: 30px 0;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 25px 25px 25px 70px;
+            margin-bottom: 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: #d4af37;
+            color: #000;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #d4af37;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .list-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .list-item::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 1.2em;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4e4bc);
+            transition: width 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .letter {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            position: relative;
+            font-style: italic;
+        }
+
+        .letter::before {
+            content: '✉';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #1a1a1a;
+            color: #d4af37;
+            font-size: 2em;
+            padding: 5px 10px;
+        }
+
+        .letter-title {
+            font-size: 1.5em;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #b0b0b0;
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.3);
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
             }
         }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
-        .cycle-step {
-            transition: transform 0.3s, background-color 0.3s;
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .cycle-step:hover {
-            transform: scale(1.05);
-            background-color: #FFF7F0;
+
+        @media (max-width: 768px) {
+            .navigation {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 20px;
+                margin-bottom: 40px;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
-
-    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-[#C18C5D]">Особый характер</a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#what-is-it" class="nav-link text-gray-600 font-medium pb-1">Что это?</a>
-                <a href="#where-they-are" class="nav-link text-gray-600 font-medium pb-1">Где они?</a>
-                <a href="#what-happens" class="nav-link text-gray-600 font-medium pb-1">Что происходит?</a>
-                <a href="#how-to-act" class="nav-link text-gray-600 font-medium pb-1">Как быть?</a>
-                <a href="#full-report" class="nav-link text-gray-600 font-medium pb-1">Полный отчет</a>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#what-is-it" class="block py-2 text-gray-600">Что это?</a>
-            <a href="#where-they-are" class="block py-2 text-gray-600">Где они?</a>
-            <a href="#what-happens" class="block py-2 text-gray-600">Что происходит?</a>
-            <a href="#how-to-act" class="block py-2 text-gray-600">Как быть?</a>
-            <a href="#full-report" class="block py-2 text-gray-600">Полный отчет</a>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="floating-particles" id="particles"></div>
+    
+    <header>
+        <div class="mirror-effect"></div>
+        <div class="container">
+            <h1>Зеркало, отражающее пустоту</h1>
+            <div class="subtitle">анатомия нарциссической власти</div>
+            <p style="font-style: italic; color: #a0a0a0;">О том, как устроена машина, превращающая живых людей в топливо для мёртвой души</p>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
-        <section id="hero" class="text-center mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4 leading-tight">Когда человек — разрушительная сила</h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Давайте разберемся, как "особый характер" проявляется в работе, в духовных кружках и дома — и что делать, если вы с таким столкнулись.</p>
-        </section>
+    <nav class="navigation">
+        <a href="#theater" class="nav-item">Театр одного актёра</a>
+        <a href="#architecture" class="nav-item">Архитектура исчезновения</a>
+        <a href="#micromanagement" class="nav-item">Микроменеджмент</a>
+        <a href="#projects" class="nav-item">Недоделанность</a>
+        <a href="#technology" class="nav-item">Технологии вместо людей</a>
+        <a href="#victims" class="nav-item">Выбор жертв</a>
+        <a href="#business" class="nav-item">Бизнес как нарциссизм</a>
+        <a href="#collapse" class="nav-item">Неизбежный крах</a>
+        <a href="#mirror" class="nav-item">Разбитое зеркало</a>
+        <a href="#letter" class="nav-item">Письмо</a>
+        <a href="#epilogue" class="nav-item">Эпилог</a>
+    </nav>
 
-        <section id="what-is-it" class="py-16 scroll-mt-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">1. Что это за зверь? Не просто "любовь к себе"</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Здесь мы поймем, что такое "особый характер" (он же нарциссизм), и чем он отличается от простого "я-центрика" или "холодного расчета". Посмотрите на картинку ниже, чтобы лучше понять разницу.</p>
-            </div>
-            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                <div class="chart-container">
-                    <canvas id="comparisonChart"></canvas>
+    <div class="container">
+        <div class="content">
+            <section id="theater" class="section fade-in">
+                <h2 class="section-title">Театр одного актёра</h2>
+                <p>Представь сцену без зрителей. Актёр выходит и начинает монолог — страстный, завораживающий, полный смысла. Но зал пуст. Его слова отражаются от стен и возвращаются эхом. Постепенно голос становится всё более отчаянным, жестикуляция — более резкой. Он кричит, шепчет, умоляет... но никто не слышит.</p>
+                
+                <p>А теперь представь: в зал заходит человек. Один. Садится в первый ряд. Актёр видит его — и оживает. Наконец-то есть кто-то, кто может видеть его величие!</p>
+                
+                <p>Но есть проблема: актёр не умеет играть <em>для</em> зрителя. Он умеет играть только <em>через</em> зрителя. Зритель должен стать не свидетелем спектакля, а его частью. Не человеком в зале, а зеркалом на сцене.</p>
+                
+                <div class="quote">
+                    Это — суть нарциссической личности. Он не может существовать без отражения. И превращает каждого встречного в зеркало.
                 </div>
-                <div class="mt-8 text-center text-sm text-gray-500">
-                    <p>Наведите мышку на столбики, чтобы узнать больше о каждом типе.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="where-they-are" class="py-16 scroll-mt-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">2. Где они встречаются? Везде!</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Люди с таким характером могут быть где угодно: на работе, в группах по интересам, и даже дома. Нажмите на вкладки, чтобы узнать, как они себя ведут в разных местах.</p>
-            </div>
-            
-            <div class="mb-8 border-b border-gray-200 flex justify-center space-x-4 sm:space-x-8">
-                <button class="tab-btn py-4 px-1 text-lg font-medium text-gray-500 active" data-tab="business">На работе</button>
-                <button class="tab-btn py-4 px-1 text-lg font-medium text-gray-500" data-tab="spirituality">В кружках</button>
-                <button class="tab-btn py-4 px-1 text-lg font-medium text-gray-500" data-tab="personal">Дома</button>
-            </div>
-
-            <div id="arenas-content">
-            </div>
-        </section>
-
-        <section id="what-happens" class="py-16 scroll-mt-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">3. Что происходит, когда они рядом? Круговорот обид</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Отношения с таким человеком часто идут по одному и тому же плохому сценарию. Понимание этих шагов поможет вам понять, что происходит, и выйти из этого круга. Нажмите на каждый кружок, чтобы узнать подробности.</p>
-            </div>
-
-            <div class="relative max-w-4xl mx-auto p-4">
-                <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-8">
-                    <div class="cycle-step text-center cursor-pointer p-6 rounded-lg border-2 border-dashed border-green-300 bg-green-50 w-full md:w-1/3" data-cycle="idealization">
-                        <div class="text-5xl mb-2">💖</div>
-                        <h3 class="text-xl font-bold text-green-700">"Ты лучший!"</h3>
-                        <p class="text-sm text-gray-600 mt-1">Они осыпают вас комплиментами, вы чувствуете себя особенным.</p>
-                    </div>
-
-                    <div class="text-4xl text-gray-400 hidden md:block">&rarr;</div>
-
-                    <div class="cycle-step text-center cursor-pointer p-6 rounded-lg border-2 border-dashed border-yellow-400 bg-yellow-50 w-full md:w-1/3" data-cycle="devaluation">
-                        <div class="text-5xl mb-2">📉</div>
-                        <h3 class="text-xl font-bold text-yellow-700">"Ты плохой!"</h3>
-                        <p class="text-sm text-gray-600 mt-1">Начинают критиковать, обижать, заставлять сомневаться в себе.</p>
+            <section id="architecture" class="section fade-in">
+                <h2 class="section-title">Архитектура исчезновения</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Как нарцисс делает тебя невидимым</h3>
+                    <p>Он не бьёт. Не кричит. Не угрожает. Он делает нечто более страшное — он <span class="highlight">заставляет тебя исчезнуть, оставаясь при этом физически рядом</span>.</p>
+                    
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-title">Шаг первый: соблазн значимостью</div>
+                            <p>Он видит твою жажду — быть нужным, понятым, важным. И предлагает себя как её утоление. «Только ты меня понимаешь». «Без тебя я не справлюсь». «Ты — моя муза, моя опора, моё всё».</p>
+                            <p>Ты чувствуешь, как расправляются крылья. Наконец-то твоя жизнь обретает смысл. Ты — не случайный прохожий, а избранный. Не функция, а призвание.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-title">Шаг второй: переворот реальности</div>
+                            <p>Постепенно, незаметно, как туман, который сгущается к утру, твоя реальность начинает искажаться. Твоё настроение зависит от его настроения. Твои планы — от его планов. Твоя самооценка — от его оценки.</p>
+                            <p>И вот парадокс: чем более «важным» ты становишься для него, тем менее важным становишься для себя.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-title">Шаг третий: растворение границ</div>
+                            <p>Где заканчиваешься ты и начинается он? Непонятно. Твои эмоции — это реакция на его эмоции. Твои мысли — это переработка его мыслей. Твоя жизнь — это обслуживание его жизни.</p>
+                            <p>Ты больше не человек. Ты — функция. Отражение. Эхо.</p>
+                        </div>
                     </div>
                     
-                    <div class="text-4xl text-gray-400 hidden md:block">&rarr;</div>
-
-                    <div class="cycle-step text-center cursor-pointer p-6 rounded-lg border-2 border-dashed border-red-400 bg-red-50 w-full md:w-1/3" data-cycle="discard">
-                        <div class="text-5xl mb-2">🗑️</div>
-                        <h3 class="text-xl font-bold text-red-700">"Ты мне не нужен!"</h3>
-                        <p class="text-sm text-gray-600 mt-1">Внезапно бросают, как будто вас никогда и не было.</p>
+                    <div class="quote">
+                        И самое ужасное: ты этого не замечаешь. Потому что процесс настолько постепенный, что кажется естественным. Как будто ты сам выбрал раствориться в нём. Как будто это и есть любовь.
                     </div>
                 </div>
-            </div>
-            <div id="cycle-details-container" class="mt-8 max-w-2xl mx-auto"></div>
-        </section>
+            </section>
 
-        <section id="how-to-act" class="py-16 scroll-mt-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">4. Как быть, если встретил? Защити себя!</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Если вы столкнулись с таким человеком, главное — защитить себя и свое спокойствие. Здесь вы найдете простые шаги, которые помогут вам. Нажмите на каждый заголовок, чтобы прочитать подробнее.</p>
-            </div>
-
-            <div id="accordion-container" class="max-w-3xl mx-auto space-y-4">
-            </div>
-        </section>
-
-        <section id="full-report" class="py-16 scroll-mt-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">5. Полный Отчет: Для тех, кто хочет глубже</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Здесь вы можете прочитать весь изначальный текст, который лег в основу этой страницы, без каких-либо изменений или сокращений.</p>
-            </div>
-            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
-                <details>
-                    <summary class="text-xl font-bold text-[#C18C5D] cursor-pointer py-2">Нажмите, чтобы прочитать полный оригинальный текст</summary>
-                    <div class="mt-4 text-gray-700 prose max-w-none">
-                        <p><strong>"Нарциссизм как разрушительная сила: как проявляется в бизнесе, духовных сообществах и личной жизни — и что делать, если вы столкнулись с ним лицом к лицу"</strong></p>
-
-                        <p>---</p>
-
-                        <h3>🔍 Что будет в исследовании (структура, переведённая на доступный язык):</h3>
-
-                        <h4>1. <strong>Что такое нарциссизм и почему это не просто «любовь к себе»</strong></h4>
-                        <ul>
-                            <li>Объяснение с примерами из жизни.</li>
-                            <li>Простыми словами разница между нарциссизмом, психопатией и просто эгоцентризмом.</li>
-                            <li>Материалы из книги <strong>"Лишенные совести" Роберта Хаэра</strong>: как психопатия и нарциссизм пересекаются, особенно в проявлениях отсутствия эмпатии и манипуляции.</li>
-                        </ul>
-
-                        <p>---</p>
-
-                        <h4>2. <strong>Нарциссы в бизнесе: почему они кажутся крутыми лидерами, но рушат компании</strong></h4>
-                        <ul>
-                            <li>Они любят быть в центре, поэтому строят иерархию, где подчинённые слабее и зависимее.</li>
-                            <li>Предпочитают микроменеджмент, потому что контролируют всё — это даёт чувство власти.</li>
-                            <li>Часто бросают проекты незавершёнными, потому что теряют интерес, когда исчезает внимание окружающих.</li>
-                            <li>Реальные кейсы: примеры из корпоративной среды, стартапов, возможно даже из политической сферы.</li>
-                        </ul>
-
-                        <p>---</p>
-
-                        <h4>3. <strong>Нарциссизм в духовных сообществах: власть под видом света</strong></h4>
-                        <ul>
-                            <li>Исторические примеры: от культистских лидеров до харизматичных духовных наставников.</li>
-                            <li>Почему нарциссы тянутся к духовным сообществам: они дают легитимную власть над другими и почитание.</li>
-                            <li>Как они манипулируют чувством вины, идеей "служения", и искажают духовные учения в свою пользу.</li>
-                        </ul>
-
-                        <p>---</p>
-
-                        <h4>4. <strong>Что делать, если вы жертва нарцисса</strong></h4>
-                        <ul>
-                            <li>Первые шаги:
-                                <ul>
-                                    <li>Осознание (и почему это уже 50% победы)</li>
-                                    <li>Установление границ</li>
-                                    <li>Обращение за поддержкой (психолог, группы поддержки)</li>
-                                </ul>
-                            </li>
-                            <li>Как не попасть снова в ловушку: признаки, на которые стоит обращать внимание.</li>
-                        </ul>
-
-                        <p>---</p>
-
-                        <h4>5. <strong>Что ждёт нарцисса? Есть ли надежда на изменение?</strong></h4>
-                        <ul>
-                            <li>Если не осознаёт проблему: деградация связей, одиночество, часто — повторяющиеся крахи.</li>
-                            <li>Если осознаёт: возможна трансформация, но <strong>очень трудный и редкий путь</strong> (по Хаэру и другим авторам психопатологии).</li>
-                            <li>Кейсы людей, которым удалось выйти из нарциссических паттернов (но с очень глубокой терапевтической работой).</li>
-                        </ul>
+            <section id="micromanagement" class="section fade-in">
+                <h2 class="section-title">Микроменеджмент как форма каннибализма</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Он поедает твою субъектность</h3>
+                    <p>Нарцисс контролирует не для того, чтобы что-то улучшить. Он контролирует, чтобы <span class="highlight">убедиться, что ты всё ещё существуешь только для него</span>.</p>
+                    
+                    <p>Каждая инструкция — это напоминание о том, кто здесь главный. Каждое исправление — это подтверждение твоей зависимости. Каждая «забота» о деталях — это способ убедиться, что без него ты не справишься.</p>
+                    
+                    <p><strong>Представь:</strong> ты готовишь ужин. Он заходит на кухню и начинает корректировать — как ты держишь нож, сколько соли добавляешь, в каком порядке нарезаешь овощи. Не потому что это важно. А потому что <span class="highlight">важно, чтобы ты чувствовал себя неумелым</span>.</p>
+                    
+                    <p>Или: ты пишешь отчёт. Он правит каждое предложение. Не потому что оно неправильное. А потому что <span class="highlight">важно, чтобы в каждом слове был он</span>.</p>
+                    
+                    <div class="quote">
+                        Это не управление. Это пожирание чужой автономии.
                     </div>
-                </details>
-            </div>
-        </section>
-    </main>
+                </div>
+            </section>
 
-    <footer class="bg-gray-800 text-white mt-24">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Особый характер. Создано для того, чтобы помочь вам.</p>
-            <p class="text-sm text-gray-400 mt-2">Эта информация не заменяет консультацию со специалистом.</p>
+            <section id="projects" class="section fade-in">
+                <h2 class="section-title">Почему он бросает проекты</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Психология недоделанности</h3>
+                    <h4 class="subsection-subtitle">Он боится завершения больше, чем провала</h4>
+                    
+                    <p>Каждый проект для нарцисса — это обещание величия. В начале есть видение, есть энтузиазм, есть аудитория, готовая восхищаться. Но чем ближе к концу, тем страшнее становится.</p>
+                    
+                    <p><strong>Потому что завершение — это всегда оценка.</strong> А вдруг результат окажется не таким блестящим? Вдруг люди увидят, что за красивыми словами — пустота? Вдруг выяснится, что он не гений, а просто человек с хорошими идеями и плохим исполнением?</p>
+                    
+                    <p>Гораздо безопаснее уйти раньше. Оставить проект в статусе «великолепной, но недооценённой идеи». Сказать: «Я мог бы изменить мир, но окружающие не готовы к моему видению».</p>
+                    
+                    <div class="quote">
+                        Недоделанность — это способ сохранить иллюзию грандиозности. Нельзя провалиться в том, что не закончил. Нельзя получить плохую оценку за то, что не сдал.
+                    </div>
+                </div>
+            </section>
+
+            <section id="technology" class="section fade-in">
+                <h2 class="section-title">Технологии вместо людей</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Любовь к мёртвому</h3>
+                    <h4 class="subsection-subtitle">Почему нарцисс инвестирует в железо, а не в души</h4>
+                    
+                    <p>Новая технология — это идеальный партнёр для нарцисса. Она:</p>
+                    <div class="list-item">Не спорит</div>
+                    <div class="list-item">Не требует внимания к себе</div>
+                    <div class="list-item">Не ставит границы</div>
+                    <div class="list-item">Не может уйти</div>
+                    <div class="list-item">Усиливает его возможности, не претендуя на признание</div>
+                    
+                    <p><strong>Люди — сложные.</strong> Они хотят, чтобы их видели. Они растут и начинают требовать автономии. Они могут сказать «нет». Они могут оказаться талантливее. Они могут уйти.</p>
+                    
+                    <p><strong>Технология — простая.</strong> Она служит молча. Она впечатляет других. Она подчёркивает его статус. Она не угрожает его эго.</p>
+                    
+                    <p>Поэтому нарцисс может потратить миллионы на новую систему управления проектами, но не заметить, что половина команды выгорела. Он может гордиться самым современным оборудованием, но не понимать, почему люди увольняются.</p>
+                    
+                    <div class="quote">
+                        Он инвестирует в то, что расширяет его, а не в то, что может его заменить.
+                    </div>
+                </div>
+            </section>
+
+            <section id="victims" class="section fade-in">
+                <h2 class="section-title">Кого он выбирает в спутники</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Портрет идеальной жертвы</h3>
+                    <h4 class="subsection-subtitle">Алхимия созависимости</h4>
+                    
+                    <p>Нарцисс — хищник особого типа. Он охотится не на слабых, а на <span class="highlight">сильных с пробитыми границами</span>. Не на глупых, а на <span class="highlight">умных с низкой самооценкой</span>. Не на равнодушных, а на <span class="highlight">любящих с нереализованной потребностью в значимости</span>.</p>
+                    
+                    <p><strong>Его идеальная жертва:</strong></p>
+                    <div class="list-item">Достаточно талантлива, чтобы быть полезной</div>
+                    <div class="list-item">Достаточно неуверена, чтобы искать подтверждения</div>
+                    <div class="list-item">Достаточно эмпатична, чтобы оправдывать его поведение</div>
+                    <div class="list-item">Достаточно лояльна, чтобы не уйти при первых тревожных звонках</div>
+                    
+                    <p><strong>Это не случайность.</strong> Нарцисс чувствует «правильных» людей интуитивно. Он видит того, кто готов пожертвовать собой ради чужого счастья. Кто привык думать, что его потребности — эгоизм, а чужие — святая обязанность.</p>
+                    
+                    <p>И он предлагает сделку: «Ты даёшь мне себя, а я даю тебе смысл». Но смысл оказывается тюрьмой, а жертва — не благородством, а исчезновением.</p>
+                </div>
+            </section>
+
+            <section id="business" class="section fade-in">
+                <h2 class="section-title">Бизнес как продолжение нарциссизма</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Он не строит — он правит</h3>
+                    
+                    <p>Нарцисс не создаёт компанию. Он создаёт <span class="highlight">империю со своим портретом на каждой монете</span>. Не команду, а <span class="highlight">свиту</span>. Не систему, а <span class="highlight">театр одного актёра</span>.</p>
+                    
+                    <p><strong>Все потоки ведут к нему:</strong></p>
+                    <div class="list-item">Все решения принимает он</div>
+                    <div class="list-item">Все идеи рождаются от него</div>
+                    <div class="list-item">Все проблемы решает он</div>
+                    <div class="list-item">Все успехи принадлежат ему</div>
+                    
+                    <p><strong>Но есть парадокс:</strong> чем больше он контролирует, тем менее управляемой становится система. Потому что люди не машины. Они не могут работать в режиме постоянного напряжения. Они не могут творить в атмосфере страха. Они не могут расти в условиях подавления.</p>
+                    
+                    <p>Поэтому компании нарциссов часто выглядят успешными снаружи, но разваливаются изнутри. Блестящий фасад, а за ним — текучка кадров, выгорание, скрытые конфликты, саботаж.</p>
+                    
+                    <div class="quote">
+                        Он хочет быть незаменимым — и достигает этого, делая систему нежизнеспособной без себя.
+                    </div>
+                </div>
+            </section>
+
+            <section id="collapse" class="section fade-in">
+                <h2 class="section-title">Неизбежный крах</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Что ждёт нарцисса</h3>
+                    <h4 class="subsection-subtitle">Время — враг иллюзий</h4>
+                    
+                    <p>Нарциссическая личность живёт в вечном «сейчас» восхищения. Но время не стоит на месте. И постепенно:</p>
+                    
+                    <p><strong>Люди устают от спектакля.</strong> Сначала уходят самые здоровые — те, кто способен видеть манипуляции. Потом — самые талантливые, которые находят лучшие возможности. В конце остаются только самые зависимые — и самые сломанные.</p>
+                    
+                    <p><strong>Результатов становится меньше.</strong> Много энергии тратится на поддержание образа, мало — на реальное дело. Проекты не завершаются. Обещания не выполняются. Репутация тускнеет.</p>
+                    
+                    <p><strong>Возраст приходит.</strong> Харизма увядает. Здоровье подводит. Внимание переключается на более молодых, более ярких, более перспективных.</p>
+                    
+                    <p><strong>Одиночество сгущается.</strong> Те, кто был рядом, исчезают. Не из жестокости — из усталости. Не из предательства — из необходимости выжить.</p>
+                    
+                    <p>И тогда нарцисс впервые за много лет остаётся наедине с собой. С тем, кого он так долго прятал за масками. С тем, кого он так боялся увидеть.</p>
+                    
+                    <div class="quote">
+                        С пустотой, которую всю жизнь заполнял чужими душами.
+                    </div>
+                </div>
+            </section>
+
+            <section id="mirror" class="section fade-in">
+                <h2 class="section-title">Зеркало, которое разбивается</h2>
+                <div class="subsection">
+                    <h3 class="subsection-title">Что происходит, когда отражение исчезает</h3>
+                    
+                    <p>Самый страшный момент для нарцисса — когда зеркала перестают отражать. Когда люди отворачиваются. Когда восхищение сменяется равнодушием. Когда чужие глаза больше не горят при виде его.</p>
+                    
+                    <p><strong>Тогда он впервые видит себя.</strong> Не в отражении, а напрямую. И обнаруживает то, чего так боялся: <span class="highlight">внутри почти никого нет</span>.</p>
+                    
+                    <p>Есть привычки произвести впечатление. Есть рефлексы контроля. Есть память о былом величии. Но нет... себя. Того, кто может жить, не являясь центром чужой вселенной.</p>
+                    
+                    <p><strong>Некоторые ломаются.</strong> Впадают в депрессию, начинают пить, теряют связь с реальностью. Превращаются в озлобленных стариков, которые всех обвиняют в своих проблемах.</p>
+                    
+                    <p><strong>Некоторые удваивают усилия.</strong> Ищут новые аудитории, новые зеркала, новые способы вернуть внимание. Становятся всё более отчаянными, всё более агрессивными.</p>
+                    
+                    <p><strong>И только единицы находят мужество встретиться с пустотой.</strong> Признать, что вся жизнь была игрой. Что за великолепными декорациями — только страх маленького ребёнка, который когда-то понял: «Меня не любят таким, какой я есть. Значит, я должен стать кем-то другим».</p>
+                </div>
+            </section>
+
+            <section id="letter" class="section fade-in">
+                <div class="letter">
+                    <h2 class="letter-title">Письмо тому, кто освобождается</h2>
+                    <p><em>Дорогой выздоравливающий,</em></p>
+                    
+                    <p>Ты только что понял, что годы твоей жизни прошли в обслуживании чужого эго. Что твоя любовь питала не человека, а чёрную дыру. Что твоя преданность была не добродетелью, а болезнью.</p>
+                    
+                    <p>Сейчас тебе кажется, что ты — дурак. Что любой нормальный человек увидел бы это раньше. Что ты потерял лучшие годы на иллюзию.</p>
+                    
+                    <p><strong>Но это не так.</strong></p>
+                    
+                    <p>Ты попал в ловушку не потому, что слаб. А потому, что <span class="highlight">способен любить</span>. Не потому, что глуп. А потому, что <span class="highlight">готов верить в лучшее в людях</span>. Не потому, что никчёмен. А потому, что <span class="highlight">жаждешь смысла</span>.</p>
+                    
+                    <p>Нарцисс охотится именно на таких. На живых. На чувствующих. На тех, кто может дать то, чего у него нет — способность к настоящей близости.</p>
+                    
+                    <div class="quote">
+                        Твоя боль — это не приговор. Это пробуждение.
+                    </div>
+                    
+                    <p>Сейчас ты учишься заново:</p>
+                    <div class="list-item">Что твои потребности важны</div>
+                    <div class="list-item">Что твои границы священны</div>
+                    <div class="list-item">Что твоя жизнь принадлежит тебе</div>
+                    <div class="list-item">Что любовь — это не жертва, а взаимность</div>
+                    
+                    <p><strong>Помни:</strong> тот, кто однажды сумел разглядеть манипуляцию, больше не попадётся в ту же ловушку. Тот, кто прошёл через нарциссическое рабство, знает цену настоящей свободы.</p>
+                    
+                    <p>Ты не потерял годы. Ты получил прививку от фальши. Ты научился различать любовь и её подделку.</p>
+                    
+                    <div class="quote">
+                        Теперь иди. Не к нему — к себе. Не назад — вперёд. Не в отражение — в реальность.
+                    </div>
+                    
+                    <p>Мир ждёт тебя. Настоящего.</p>
+                    
+                    <div class="letter-signature">
+                        <em>С верой в твою силу,</em><br>
+                        <em>Тот, кто прошёл этот путь</em>
+                    </div>
+                </div>
+            </section>
+
+            <section id="epilogue" class="section fade-in">
+                <h2 class="section-title">Эпилог: когда зеркало становится окном</h2>
+                
+                <p>В конце концов, встреча с нарциссом — это не проклятие. Это <span class="highlight">урок различения</span>. Урок того, как отличить золото от позолоты. Свет от блеска. Силу от её театрального изображения.</p>
+                
+                <p><strong>Нарцисс показывает нам, что происходит с душой, которая отказалась от самой себя ради внешнего блеска.</strong> Он — предупреждение о том, куда ведёт путь постоянного самоотрицания.</p>
+                
+                <p>И в этом — горькая ирония: <span class="highlight">тот, кто больше всего жаждет быть увиденным, меньше всего способен видеть других</span>. Тот, кто отчаяннее всего ищет любви, меньше всего способен её дать.</p>
+                
+                <p><strong>Но есть и надежда.</strong> Каждый из нас несёт в себе зёрна нарциссизма. И встреча с его крайним проявлением может стать зеркалом, в котором мы увидим собственные тени. Собственную жажду внимания. Собственное стремление контролировать. Собственный страх быть отвергнутыми.</p>
+                
+                <p><strong>И тогда зеркало становится окном.</strong> Не в чужую душу, а в свою. Не в отражение, а в реальность. Не в иллюзию величия, а в простую, человеческую истину:</p>
+                
+                <div class="quote" style="text-align: center; font-size: 1.3em; margin: 40px 0;">
+                    Мы достойны любви не за то, что мы делаем, а за то, что мы есть.
+                </div>
+                
+                <p style="text-align: center; font-size: 1.2em; color: #d4af37; margin-top: 40px;"><em>И этого достаточно.</em></p>
+            </section>
         </div>
-    </footer>
+    </div>
 
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    const data = {
-        comparison: {
-            labels: ['Я — самый-самый!', 'Мне все равно, что ты чувствуешь', 'Я тебя использую', 'Постоянно жду похвалы', 'Люблю рисковать', 'Делаю, что хочу'],
-            datasets: [
-                {
-                    label: 'Особый характер (Нарцисс)',
-                    data: [9, 8, 7, 10, 4, 5],
-                    backgroundColor: 'rgba(193, 140, 93, 0.6)',
-                    borderColor: 'rgba(193, 140, 93, 1)',
-                    borderWidth: 1,
-                    tooltip: [
-                        'Думает, что он намного лучше всех. "Я звезда!"',
-                        'Не умеет и не хочет понимать, что чувствуют другие.',
-                        'Использует людей, чтобы получить то, что ему нужно.',
-                        'Постоянно ищет, чтобы его хвалили и обращали на него внимание.',
-                        'Не очень любит рисковать, боится, что о нем плохо подумают.',
-                        'Контролирует себя, если это поможет выглядеть лучше.'
-                    ]
-                },
-                {
-                    label: 'Холодный расчет (Психопат)',
-                    data: [7, 10, 9, 3, 9, 8],
-                    backgroundColor: 'rgba(100, 100, 100, 0.6)',
-                    borderColor: 'rgba(100, 100, 100, 1)',
-                    borderWidth: 1,
-                    tooltip: [
-                        'Считает себя выше всех, но это холодный расчет, а не просто хвастовство.',
-                        'Вообще не чувствует чужой боли и не жалеет о своих поступках.',
-                        'Использует обман и хитрость, чтобы получить выгоду.',
-                        'Ему не нужна похвала, только результат.',
-                        'Очень любит рисковать, ему все равно, что будет потом.',
-                        'Часто делает необдуманные поступки, которые вредят другим.'
-                    ]
-                },
-                {
-                    label: 'Я-центрик (Эгоцентрик)',
-                    data: [2, 3, 1, 2, 1, 1],
-                    backgroundColor: 'rgba(150, 150, 150, 0.4)',
-                    borderColor: 'rgba(150, 150, 150, 1)',
-                    borderWidth: 1,
-                    tooltip: [
-                        'Просто думает о себе, но не считает себя великим.',
-                        'Ему трудно понять, что думают другие, но он не злой.',
-                        'Обычно не манипулирует людьми.',
-                        'Хочет внимания, но в меру, как все обычные люди.',
-                        'Не любит рисковать больше других.',
-                        'Не делает необдуманных поступков из-за своей особенности.'
-                    ]
-                }
-            ]
-        },
-        arenas: {
-            business: {
-                title: 'На работе: Босс, который кажется крутым, но все портит',
-                description: 'Такие люди часто кажутся сильными лидерами, но на самом деле они разрушают компанию изнутри. Им нужно все контролировать, и это очень плохо для команды.',
-                cards: [
-                    { title: 'Все под контролем', content: 'Они хотят знать и решать все сами. Сотрудники чувствуют себя глупыми и не хотят работать.', icon: '🔬' },
-                    { title: 'Забирает себе все заслуги', content: 'Если команда хорошо поработала, он скажет, что это его идея. А если что-то пошло не так, виноваты все, кроме него.', icon: '🏆' },
-                    { title: 'Бросает дела на полпути', content: 'Как только ему становится скучно или его перестают хвалить, он бросает проект, даже если он не закончен.', icon: 'Projects️' }
-                ],
-                cases: [
-                    { name: 'Стив Джобс (Apple)', details: 'Он был гением, но очень плохо обращался с людьми. Мог унизить сотрудника при всех и забрать чужие идеи. Из-за него люди работали под огромным давлением.' },
-                    { name: 'Трэвис Каланик (Uber)', details: 'Создал компанию, где было нормально быть грубым. Из-за него было много скандалов, даже с домогательствами.' },
-                    { name: 'Элизабет Холмс (Theranos)', details: 'Обманула всех на миллиарды. Создала компанию, где все боялись и врали, чтобы никто не узнал правду.' },
-                ]
-            },
-            spirituality: {
-                title: 'В кружках и группах по интересам: "Гуру", который на самом деле хочет власти',
-                description: 'Для таких людей духовные группы — идеальное место. Там они могут стать "учителем", которого все слушают и хвалят. Они используют учения, чтобы управлять людьми и возвышать себя.',
-                cards: [
-                    { title: 'Власть под видом света', content: 'Они притворяются мудрыми и добрыми, чтобы люди им слепо подчинялись и восхищались.', icon: '✨' },
-                    { title: 'Манипулируют виной', content: 'Они искажают учения, чтобы заставить людей чувствовать себя виноватыми или обязанными им служить.', icon: '🙏' },
-                    { title: 'Только мы хорошие, остальные плохие', content: 'Они говорят, что только их группа правильная, а все остальные — нет. Это заставляет людей держаться только за них.', icon: '⛩️' }
-                ],
-                cases: [
-                    { name: 'Сёко Асахара (Аум Синрикё)', details: 'Считал себя просветленным. Из-за его безумных идей он создал химическое оружие и устроил газовую атаку в метро Токио.' },
-                    { name: 'Жозеф Ди Мамбро (Орден Солнечного Храма)', details: 'Был очень убедительным лидером, который предсказывал конец света. Его учения привели к тому, что десятки его последователей убили себя и других.' },
-                ]
-            },
-            personal: {
-                title: 'Дома: Любовь, которая ранит',
-                description: 'В личных отношениях такой человек создает круговорот, который разрушает самооценку партнера и оставляет глубокие раны. Ему нужна не любовь, а чтобы им восхищались.',
-                cards: [
-                    { title: 'Заставляет сомневаться в себе', content: 'Он говорит: "Тебе показалось", "Ты все придумал", "Ты слишком чувствительный". Это заставляет вас думать, что вы сходите с ума.', icon: '💡' },
-                    { title: 'То люблю, то ненавижу', content: 'Сегодня он вас обожает, завтра — игнорирует. Вы все время ждете, когда же он снова будет "хорошим".', icon: '🎢' },
-                    { title: 'Отрывает от друзей и семьи', content: 'Постепенно он делает так, чтобы вы меньше общались с друзьями и родными. Так он становится единственным человеком в вашей жизни, и ему легче вами управлять.', icon: '🔗' }
-                ],
-                cases: []
-            }
-        },
-        cycle: {
-            idealization: { title: '💖 "Ты лучший!"', content: 'Сначала он будет осыпать вас комплиментами и любовью. Вы почувствуете себя самым важным человеком в мире. Это нужно, чтобы вы быстро к нему привязались и подумали, что он — ваша родная душа.' },
-            devaluation: { title: '📉 "Ты плохой!"', content: 'Как только вы "попались на крючок", он начнет вас критиковать, унижать, сравнивать с другими, игнорировать. Цель — заставить вас чувствовать себя ничтожеством и сделать вас более зависимым.' },
-            discard: { title: '🗑️ "Ты мне не нужен!"', content: 'Когда вы устанете от всего этого и больше не сможете давать ему то, что ему нужно (восхищение, внимание), он просто вас бросит. Часто это происходит внезапно и очень жестоко, оставляя вас в полной растерянности.' }
-        },
-        whatToDo: [
-            { title: 'Шаг 1: Понять, что происходит', content: 'Признайте, что это ненормальное поведение, и это не ваша вина. Поймите, что вы не сможете его "исправить". Ваша главная задача — спасти себя. Это уже половина успеха!' },
-            { title: 'Шаг 2: Нарисовать свои границы', content: 'Четко скажите, что вы не будете терпеть. Научитесь говорить "нет". Если он нарушает ваши правила, должны быть последствия (например, "Если ты будешь кричать, я уйду"). Будьте твердыми.' },
-            { title: 'Шаг 3: Стать "серым камнем"', content: 'Станьте для него "скучным". Не показывайте никаких эмоций (ни радости, ни злости). Отвечайте коротко и по делу. Если он не получает от вас эмоций, он потеряет к вам интерес.' },
-            { title: 'Шаг 4: Прекратить общение', content: 'Самый лучший способ — полностью перестать с ним общаться. Заблокируйте везде. Если совсем нельзя (например, у вас общие дети), общайтесь только по самым важным делам, очень коротко.' },
-            { title: 'Шаг 5: Найти помощь и восстановиться', content: 'Не оставайтесь один. Поговорите с психологом, который понимает такие отношения. Найдите группы поддержки. Вернитесь к друзьям и семье. Заботьтесь о себе: занимайтесь тем, что любите, отдыхайте.' }
-        ]
-    };
-    
-    const ctx = document.getElementById('comparisonChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: data.comparison,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#6b7280'
-                    },
-                    grid: {
-                        color: '#e5e7eb'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: '#6b7280'
-                    },
-                    grid: {
-                        display: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#374151'
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        afterBody: function(context) {
-                            const datasetIndex = context[0].datasetIndex;
-                            const dataIndex = context[0].dataIndex;
-                            const tooltipText = data.comparison.datasets[datasetIndex].tooltip[dataIndex];
-                            return tooltipText || '';
-                        }
-                    },
-                    backgroundColor: '#333',
-                    titleFont: { size: 14 },
-                    bodyFont: { size: 12 },
-                    padding: 10,
-                    displayColors: true,
-                    boxPadding: 4
-                }
-            }
+    <script>
+        // Progress bar functionality
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
-    });
 
-    const arenasContent = document.getElementById('arenas-content');
-    const tabButtons = document.querySelectorAll('.tab-btn');
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-    function renderArena(arenaKey) {
-        const arenaData = data.arenas[arenaKey];
-        let cardsHtml = arenaData.cards.map(card => `
-            <div class="card p-6 rounded-lg w-full">
-                <div class="text-4xl mb-3">${card.icon}</div>
-                <h4 class="text-xl font-bold text-gray-800 mb-2">${card.title}</h4>
-                <p class="text-gray-600">${card.content}</p>
-            </div>
-        `).join('');
-
-        let casesHtml = '';
-        if(arenaData.cases && arenaData.cases.length > 0) {
-            casesHtml = `
-            <h4 class="text-2xl font-bold text-gray-800 mt-12 mb-6 text-center">Примеры из жизни</h4>
-            <div class="grid md:grid-cols-${arenaData.cases.length > 2 ? '3' : '2'} gap-6">
-                ${arenaData.cases.map(c => `
-                    <div class="card p-6 rounded-lg">
-                        <h5 class="font-bold text-lg text-[#C18C5D]">${c.name}</h5>
-                        <p class="text-gray-600 mt-2 text-sm">${c.details}</p>
-                    </div>
-                `).join('')}
-            </div>
-            `;
+        // Fade in animation for sections
+        function checkFadeIn() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
         }
-        
-        arenasContent.innerHTML = `
-            <div id="${arenaKey}" class="tab-content animate-fade-in">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800">${arenaData.title}</h3>
-                    <p class="text-gray-600 mt-3">${arenaData.description}</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    ${cardsHtml}
-                </div>
-                ${casesHtml}
-            </div>`;
-    }
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            renderArena(button.dataset.tab);
-        });
-    });
-
-    renderArena('business');
-
-    const cycleSteps = document.querySelectorAll('.cycle-step');
-    const cycleDetailsContainer = document.getElementById('cycle-details-container');
-    
-    cycleSteps.forEach(step => {
-        step.addEventListener('click', () => {
-            const cycleKey = step.dataset.cycle;
-            const cycleData = data.cycle[cycleKey];
-
-            cycleDetailsContainer.innerHTML = `
-                <div class="card p-6 rounded-xl animate-fade-in shadow-xl">
-                    <h4 class="text-2xl font-bold mb-3">${cycleData.title}</h4>
-                    <p class="text-gray-700 leading-relaxed">${cycleData.content}</p>
-                </div>
-            `;
-        });
-    });
-
-    const accordionContainer = document.getElementById('accordion-container');
-    accordionContainer.innerHTML = data.whatToDo.map((item, index) => `
-        <div class="bg-white border border-gray-200 rounded-lg">
-            <h2>
-                <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 hover:bg-gray-50" data-accordion-target="accordion-content-${index}">
-                    <span>${item.title}</span>
-                    <svg class="w-6 h-6 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-            </h2>
-            <div id="accordion-content-${index}" class="accordion-content p-5 border-t border-gray-200">
-                <p class="text-gray-600">${item.content}</p>
-            </div>
-        </div>
-    `).join('');
-
-    const accordionButtons = document.querySelectorAll('.accordion-button');
-    accordionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const content = document.getElementById(button.dataset.accordionTarget);
-            const icon = button.querySelector('svg');
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
             
-            button.classList.toggle('bg-gray-100');
-            icon.classList.toggle('rotate-180');
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
 
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    });
+        // Highlight active navigation item
+        function updateActiveNavItem() {
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= 100) {
+                    currentSection = section.id;
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + currentSection) {
+                    item.classList.add('active');
+                }
+            });
+        }
 
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-            if (mobileMenu.classList.contains('hidden') === false) {
-                 mobileMenu.classList.add('hidden');
-            }
-        });
-    });
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 100) {
-                current = section.getAttribute('id');
-            }
+        // Event listeners
+        window.addEventListener('scroll', function() {
+            updateProgressBar();
+            checkFadeIn();
+            updateActiveNavItem();
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
+        window.addEventListener('load', function() {
+            createParticles();
+            checkFadeIn();
+            updateProgressBar();
         });
-    });
-});
 
-</script>
-<style>
-@keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-    animation: fade-in 0.5s ease-out forwards;
-}
-.prose {
-    font-size: 1.125rem; /* Equivalent to text-lg */
-    line-height: 1.75rem; /* Equivalent to leading-relaxed */
-}
+        // Add some interactive effects
+        document.querySelectorAll('.quote').forEach(quote => {
+            quote.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.boxShadow = '0 10px 30px rgba(212, 175, 55, 0.2)';
+            });
+            
+            quote.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
 
-.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    font-weight: 700; /* Equivalent to font-bold */
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-
-.prose h1 { font-size: 2.25rem; } /* text-4xl */
-.prose h2 { font-size: 1.875rem; } /* text-3xl */
-.prose h3 { font-size: 1.5rem; }  /* text-2xl */
-.prose h4 { font-size: 1.25rem; } /* text-xl */
-
-.prose p {
-    margin-bottom: 1em;
-}
-
-.prose ul {
-    list-style-type: disc;
-    margin-left: 1.25em;
-    margin-bottom: 1em;
-}
-
-.prose li {
-    margin-bottom: 0.5em;
-}
-
-.prose strong {
-    font-weight: 700;
-}
-</style>
+        // Add CSS for active navigation item
+        const style = document.createElement('style');
+        style.textContent = `
+            .nav-item.active {
+                color: #d4af37 !important;
+                background: rgba(212, 175, 55, 0.2) !important;
+                transform: translateX(-5px);
+            }
+            
+            .nav-item.active::before {
+                transform: scaleY(1) !important;
+            }
+            
+            .quote {
+                transition: all 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
