@@ -10,590 +10,630 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #e8e8e8;
-            line-height: 1.7;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
+            color: #e6edf3;
             overflow-x: hidden;
+            transition: background 2s ease;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .navigation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .nav-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .nav-item {
-            color: #a0a0a0;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .nav-item:hover::before {
-            left: 100%;
-        }
-
-        .nav-item:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .nav-item.active {
-            color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.1);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-        }
-
-        .content {
-            margin-top: 100px;
-            padding: 20px 0;
-        }
-
-        .section {
-            margin-bottom: 50px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ff6b6b;
-            text-align: center;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff6b6b, transparent);
-        }
-
-        .subtitle {
-            font-style: italic;
-            color: #a0a0a0;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .section p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            text-align: justify;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 107, 107, 0.1) 100%);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-            color: #fff;
-            border-left: 3px solid #ff6b6b;
-            padding-left: 10px;
-            display: inline-block;
-            margin: 5px 0;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        .quote {
-            font-style: italic;
-            color: #ffd93d;
-            font-size: 1.2rem;
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            border-left: 4px solid #ffd93d;
-            background: rgba(255, 217, 61, 0.05);
-            border-radius: 0 10px 10px 0;
-        }
-
-        .letter {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid #4ecdc4;
-            margin: 20px 0;
-        }
-
-        .letter h3 {
-            color: #4ecdc4;
-            margin-bottom: 15px;
-        }
-
-        .signature {
-            text-align: right;
-            font-style: italic;
-            color: #a0a0a0;
-            margin-top: 20px;
-        }
-
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
-            z-index: 1001;
-            transition: width 0.1s ease;
-        }
-
-        .floating-particles {
+        
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
-
-        .particle {
+        
+        .star {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
+            animation: twinkle 3s ease-in-out infinite;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
-
+        
+        .navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin: 0 15px;
+        }
+        
+        .nav-link {
+            color: #e6edf3;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #58a6ff;
+        }
+        
+        .nav-link.active {
+            background: rgba(88, 166, 255, 0.2);
+            color: #58a6ff;
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(13, 17, 23, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            padding: 8px 16px;
+            color: #e6edf3;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #58a6ff;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 80px auto 0;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .chapter {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            padding: 40px;
+            border-radius: 12px;
+            background: rgba(33, 38, 45, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .chapter.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .chapter h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #58a6ff, #f78166);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .chapter h2 {
+            font-size: 1.8em;
+            margin: 30px 0 20px;
+            color: #58a6ff;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .chapter h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #58a6ff, #f78166);
+            border-radius: 2px;
+        }
+        
+        .chapter h3 {
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+            color: #f78166;
+            font-weight: 600;
+        }
+        
+        .chapter p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.2), rgba(247, 129, 102, 0.2));
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #58a6ff;
+            transition: all 0.3s ease;
+        }
+        
+        .highlight:hover {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.3), rgba(247, 129, 102, 0.3));
+            transform: scale(1.02);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #8b949e;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #58a6ff, #f78166);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+        
         @media (max-width: 768px) {
-            .nav-items {
-                flex-direction: column;
-                gap: 10px;
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             .nav-item {
-                font-size: 12px;
-                padding: 6px 12px;
+                margin: 5px 10px;
             }
             
-            .section h1 {
-                font-size: 2rem;
+            .content {
+                padding: 20px 15px;
             }
             
-            .section h2 {
-                font-size: 1.5rem;
+            .chapter {
+                padding: 25px;
+            }
+            
+            .chapter h1 {
+                font-size: 2em;
             }
         }
+        
+        /* Динамические цвета для разных частей */
+        .part-1 { background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); }
+        .part-2 { background: linear-gradient(135deg, #0d1117 0%, #1f2937 100%); }
+        .part-3 { background: linear-gradient(135deg, #1f2937 0%, #374151 100%); }
+        .part-4 { background: linear-gradient(135deg, #374151 0%, #4b5563 100%); }
+        .part-5 { background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%); }
+        .part-6 { background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%); }
+        .part-7 { background: linear-gradient(135deg, #9ca3af 0%, #d1d5db 100%); }
+        .part-8 { background: linear-gradient(135deg, #d1d5db 0%, #f3f4f6 100%); }
+        .part-9 { background: linear-gradient(135deg, #f3f4f6 0%, #fef3c7 100%); }
     </style>
 </head>
 <body>
-    <div class="scroll-progress"></div>
-    <div class="floating-particles"></div>
+    <div class="stars"></div>
+    <div class="progress-bar"></div>
     
     <nav class="navigation">
         <div class="nav-container">
-            <div class="nav-items">
-                <a href="#title" class="nav-item">Начало</a>
-                <a href="#birth" class="nav-item">Рождение голода</a>
-                <a href="#anatomy" class="nav-item">Анатомия пустоты</a>
-                <a href="#seduction" class="nav-item">Соблазн</a>
-                <a href="#disappearance" class="nav-item">Исчезновение</a>
-                <a href="#control" class="nav-item">Контроль</a>
-                <a href="#empire" class="nav-item">Империя</a>
-                <a href="#victims" class="nav-item">Жертвы</a>
-                <a href="#incompleteness" class="nav-item">Недосказанность</a>
-                <a href="#gifts" class="nav-item">Подарки</a>
-                <a href="#crack" class="nav-item">Трещина</a>
-                <a href="#crash" class="nav-item">Крах</a>
-                <a href="#mirror" class="nav-item">Зеркало</a>
-                <a href="#awakening" class="nav-item">Пробуждение</a>
-                <a href="#path" class="nav-item">Путь</a>
-                <a href="#gift" class="nav-item">Дар</a>
-                <a href="#letter" class="nav-item">Письмо</a>
-                <a href="#epilogue" class="nav-item">Эпилог</a>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="intro">Введение</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part1">Часть I</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part1">Анатомия пустоты</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part2">Часть II</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part2">Выбор жертвы</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part3">Часть III</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part3">Любовная бомбардировка</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part4">Часть IV</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part4">Империя одного</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part5">Часть V</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part5">Трещины в фасаде</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part6">Часть VI</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part6">Пробуждение</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part7">Часть VII</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part7">Крушение империи</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part8">Часть VIII</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part8">Путь к свободе</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link" data-section="part9">Часть IX</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item" data-section="part9">Голос прошедшего</a>
+                </div>
             </div>
         </div>
     </nav>
-
-    <div class="container">
-        <div class="content">
-            <section id="title" class="section">
-                <h1>Зеркало, пожирающее отражение</h1>
-                <p class="subtitle">О том, как душа превращается в голод, а любовь — в топливо для пустоты</p>
-            </section>
-
-            <section id="birth" class="section">
-                <h2>Рождение голода</h2>
-                <p>Где-то в детстве, в момент, когда детский плач встречает молчание, рождается Он. Не ребёнок, а то, что остаётся после смерти детства. Пустота в форме человека.</p>
-                <p>Представь: маленький мальчик тянет руки к матери. Она отворачивается — не от жестокости, а от усталости. Он не понимает разницы. Он понимает только: <span class="highlight">«Таким, какой я есть, меня недостаточно»</span>.</p>
-                <p>И начинается превращение. Живой ребёнок исчезает. На его месте вырастает блестящая копия — талантливая, обаятельная, неотразимая. Но копия не может существовать сама по себе. Ей нужны глаза, которые видят её совершенство.</p>
-                <p>Копия питается отражением. И это — начало бесконечного голода.</p>
-            </section>
-
-            <section id="anatomy" class="section">
-                <h2>Анатомия пустоты</h2>
-                <p>Он — сосуд без дна. Красивый, изящный, но пустой. В него можно лить любовь, но она не останется. Можно отдавать себя, но это не утолит жажду.</p>
-                <p>Нарцисс не может держать чувства. Он может только потреблять их. Жадно и бесконечно. Когда ты восхищаешься им, он оживает. Когда критикуешь — умирает. Когда уходишь — исчезает.</p>
-                <div class="quote">Ты для него не человек. Ты — зеркало.</div>
-            </section>
-
-            <section id="seduction" class="section">
-                <h2>Соблазн избранностью</h2>
-                <p>Он приходит к тебе не с цветами, а с пониманием. Смотрит так, как будто видит твою душу. Говорит: «Только ты меня понимаешь». И в этом шёпоте — такая интимность, что ты готов поверить: да, только ты.</p>
-                <p>Он не дарит подарки. Он дарит смысл. Не внимание, а избранность. Не любовь, а ощущение, что ты — центр его вселенной.</p>
-                <div class="quote">Это самый сильный наркотик — почувствовать себя нужным.</div>
-                <p>Он читает твои раны как карту. Видит, где ты голоден, где одинок, где сломлен. И подходит именно к этому месту. Предлагает себя как лекарство.</p>
-                <p>А потом начинается медленное растворение. Твоя жизнь незаметно начинает вращаться вокруг его настроения. Твои планы подстраиваются под его желания. Твои мечты становятся эхом его видения.</p>
-            </section>
-
-            <section id="disappearance" class="section">
-                <h2>Как ты исчезаешь</h2>
-                <p>Сначала ты чувствуешь себя выбранным. Потом — важным. Потом — необходимым.</p>
-                <p>А потом — не чувствуешь себя вообще.</p>
-                <p>Это происходит так тонко, что ты не можешь понять, когда начал исчезать. Будто кто-то каждый день стирает по одной детали твоего портрета. Сначала фон, потом черты лица. В конце остается только рамка — с его изображением внутри.</p>
-                <p>Твоя боль становится его болью. Но только та, что касается его. Твоя радость — его радостью. Но только та, что связана с ним. Остальное не существует.</p>
-                <p>Парадокс: чем больше ты даёшь, тем меньше остаёшься. Чем больше любишь, тем меньше любим. Чем больше стараешься, тем меньше ценишься.</p>
-                <p><span class="highlight">Потому что он видит только то, что отражает его самого.</span></p>
-            </section>
-
-            <section id="control" class="section">
-                <h2>Контроль как поглощение</h2>
-                <p>Он контролирует не для улучшения. Он контролирует, чтобы убедиться: ты всё ещё существуешь только для него.</p>
-                <p>Каждая инструкция — напоминание, кто главный. Каждое исправление — подтверждение твоей зависимости. Каждая «забота» о деталях — способ убедиться, что без него ты не справишься.</p>
-                <p>Ты готовишь ужин. Он корректирует, как ты держишь нож. Не потому что это важно. А потому что важно, чтобы ты чувствовал себя неумелым.</p>
-                <div class="quote">Это не управление. Это пожирание чужой воли.</div>
-            </section>
-
-            <section id="empire" class="section">
-                <h2>Империя одного</h2>
-                <p>Его мир — не команда, а двор. Не коллеги, а подданные. Не партнёры, а зеркала разного размера.</p>
-                <p>Он не делегирует — он расщепляет. Берёт твою работу, пропускает через себя, возвращает как свою. Не крадёт — «улучшает». Не присваивает — «дополняет».</p>
-                <p>Ты готовишь презентацию. Он меняет цвет шрифта — и это уже его презентация. Ты находишь решение. Он добавляет запятую — и это уже его решение.</p>
-                <p><span class="highlight">Он не может позволить тебе быть автором.</span> Авторство — это власть. А власть в его мире принадлежит только ему.</p>
-                <p>Все потоки ведут к нему. Все решения принимает он. Все идеи рождаются от него. Все успехи принадлежат ему.</p>
-            </section>
-
-            <section id="victims" class="section">
-                <h2>Выбор жертв</h2>
-                <p>Нарцисс — хищник особого типа. Он охотится не на слабых, а на сильных с пробитыми границами. Не на глупых, а на умных с низкой самооценкой.</p>
-                <p>Его идеальная жертва достаточно талантлива, чтобы быть полезной. Достаточно неуверена, чтобы искать подтверждения. Достаточно эмпатична, чтобы оправдывать его поведение.</p>
-                <p><span class="highlight">Это не случайность.</span> Он чувствует «правильных» людей интуитивно. Видит того, кто готов пожертвовать собой ради чужого счастья.</p>
-                <p>И предлагает сделку: «Ты даёшь мне себя, я даю тебе смысл». Но смысл оказывается тюрьмой, а жертва — исчезновением.</p>
-            </section>
-
-            <section id="incompleteness" class="section">
-                <h2>Недосказанность как защита</h2>
-                <p>Каждый проект для него — обещание величия. В начале есть видение, энтузиазм, аудитория. Но чем ближе к концу, тем страшнее.</p>
-                <p>Завершение — это всегда оценка. А вдруг результат не такой блестящий? Вдруг за красивыми словами — пустота?</p>
-                <p><span class="highlight">Гораздо безопаснее уйти раньше.</span> Оставить проект в статусе «великолепной идеи». Сказать: «Я мог бы изменить мир, но окружающие не готовы».</p>
-                <p>Незавершённость — способ сохранить иллюзию. Нельзя провалиться в том, что не закончил.</p>
-            </section>
-
-            <section id="gifts" class="section">
-                <h2>Зачем он дарит подарки</h2>
-                <p>Он дарит не в праздники, а когда ты готов уйти. Дорогие подарки. Красивые. Точно в твоём вкусе.</p>
-                <p>Но каждый подарок — не дар, а инвестиция. Не радость, а долг. Не любовь, а покупка лояльности.</p>
-                <p>«После всего, что я для тебя сделал...» — скажет он при попытке уйти. И в этом «всего» будут подарки, поездки, внимание.</p>
-                <div class="quote">Он не дарит. Он покупает твою зависимость.</div>
-            </section>
-
-            <section id="crack" class="section">
-                <h2>Когда зеркало трескается</h2>
-                <p>Наступает момент усталости. Не от работы — от того, что не существуешь. От того, что твоя роль — быть продолжением его тела, эхом его голоса.</p>
-                <p>Ты задаёшь вопросы: «А что со мной?» «А когда мои потребности?» «А где я в этой истории?»</p>
-                <p>И видишь пугающее. Его лицо меняется. Не гневом — недоумением. Искренним, детским недоумением.</p>
-                <p><span class="highlight">«О чём ты?»</span> — спрашивает он. И в этом вопросе — пустота. Он действительно не понимает. В его мире нет места для твоих потребностей.</p>
-            </section>
-
-            <section id="crash" class="section">
-                <h2>Неизбежный крах</h2>
-                <p>Время — враг иллюзий. Постепенно люди устают от спектакля. Сначала уходят самые здоровые, потом — самые талантливые. Остаются только зависимые и сломанные.</p>
-                <p>Результатов становится меньше. Энергия тратится на поддержание образа, а не на дело. Репутация тускнеет. Возраст приходит. Харизма увядает.</p>
-                <p><span class="highlight">Одиночество сгущается.</span> Те, кто был рядом, исчезают. Не из жестокости — из усталости. Не из предательства — из необходимости выжить.</p>
-                <p>И тогда нарцисс впервые остаётся наедине с собой. С тем, кого прятал за масками. С пустотой, которую заполнял чужими душами.</p>
-            </section>
-
-            <section id="mirror" class="section">
-                <h2>Разбитое зеркало</h2>
-                <p>Самый страшный момент — когда зеркала перестают отражать. Когда восхищение сменяется равнодушием. Когда чужие глаза не горят при виде его.</p>
-                <p>Тогда он впервые видит себя напрямую. И обнаруживает то, чего боялся: внутри почти никого нет.</p>
-                <p>Есть привычки произвести впечатление. Есть рефлексы контроля. Есть память о былом величии. Но нет себя. Того, кто может жить, не являясь центром чужой вселенной.</p>
-                <p><span class="highlight">Некоторые ломаются.</span> Впадают в депрессию, пьют, теряют связь с реальностью. Некоторые удваивают усилия. Ищут новые зеркала, новые способы вернуть внимание.</p>
-                <p>И только единицы находят мужество встретиться с пустотой. Признать, что вся жизнь была игрой. Что за декорациями — только страх маленького ребёнка: «Меня не любят таким, какой я есть».</p>
-            </section>
-
-            <section id="awakening" class="section">
-                <h2>Пробуждение</h2>
-                <p>Момент, когда ты понимаешь: я исчезаю. Не умираю — исчезаю. Растворяюсь в чужой потребности быть великим.</p>
-                <p>Этот момент болезненный. Как будто долго смотрел на солнце, а потом резко отвернулся. Реальность режет глаза.</p>
-                <p><span class="highlight">«Я не существую в этой истории»</span> — понимаешь ты. «Я не человек. Я — функция. Зеркало. Отражение чужой потребности в величии».</p>
-                <p>И вдруг — ярость. Чистая, горячая, освобождающая. Не на него. На себя. За то, что позволил. За то, что поверил.</p>
-                <p>Эта ярость — первый признак жизни. Первый крик души, которая помнит, что она есть.</p>
-            </section>
-
-            <section id="path" class="section">
-                <h2>Путь к себе</h2>
-                <p>Выход из нарциссической связи — не разрыв отношений. Это возвращение к себе. К тому, кем ты был до встречи с ним.</p>
-                <p>Сначала — пустота. Ты привык определять себя через него. Твоя радость была его радостью. Твоя боль — его болью.</p>
-                <p><span class="highlight">А теперь кто ты?</span></p>
-                <p>Поначалу — никто. Чистый лист. И это пугает. Но здесь, в этой пустоте, начинается настоящая жизнь.</p>
-                <p>Ты заново учишься чувствовать свои потребности. Слышать желания. Защищать границы. Доверять интуиции.</p>
-                <p>Медленно. Больно. Как учиться ходить после долгой болезни.</p>
-            </section>
-
-            <section id="gift" class="section">
-                <h2>Дар различения</h2>
-                <p>Встреча с нарциссом — не наказание. Это посвящение. Болезненное, но необходимое.</p>
-                <p>Теперь ты навсегда различаешь настоящую любовь от подделки. Близость от слияния. Заботу от контроля. Дар от инвестиции.</p>
-                <p><span class="highlight">Ты не спутаешь интенсивность с интимностью.</span> Не примешь собственность за любовь. Не поверишь, что твоя ценность — в полезности.</p>
-                <p>Ты знаешь: любовь не требует жертвы. Не просит исчезнуть. Не питается болью.</p>
-                <p>Настоящая любовь видит тебя. Принимает тебя. Позволяет тебе быть.</p>
-            </section>
-
-            <section id="letter" class="section">
-                <div class="letter">
-                    <h2>Письмо выздоравливающему</h2>
-                    <p>Дорогой освобождающийся,</p>
-                    <p>Ты только что понял: годы жизни прошли в обслуживании чужого эго. Твоя любовь питала не человека, а чёрную дыру. Твоя преданность была не добродетелью, а болезнью.</p>
-                    <p><span class="highlight">Сейчас ты думаешь, что дурак.</span> Что любой увидел бы это раньше. Что потерял лучшие годы на иллюзию.</p>
-                    <p>Но это не так.</p>
-                    <p>Ты попал в ловушку не потому, что слаб. А потому, что способен любить. Не потому, что глуп. А потому, что готов верить в лучшее.</p>
-                    <p>Нарцисс охотится именно на таких. На живых. На чувствующих. На тех, кто может дать то, чего у него нет — способность к близости.</p>
-                    <p><span class="highlight">Твоя боль — не приговор. Это пробуждение.</span></p>
-                    <p>Теперь ты знаешь: твои потребности важны. Твои границы священны. Твоя жизнь принадлежит тебе. Любовь — это не жертва, а взаимность.</p>
-                    <p>Тот, кто разглядел манипуляцию, больше не попадётся в ту же ловушку. Тот, кто прошёл через нарциссическое рабство, знает цену настоящей свободы.</p>
-                    <p><span class="highlight">Ты не потерял годы. Ты получил прививку от фальши.</span></p>
-                    <p>Теперь иди. Не к нему — к себе. Не назад — вперёд. Не в отражение — в реальность.</p>
-                    <p>Мир ждёт тебя. Настоящего.</p>
-                    <p class="signature">С верой в твою силу,<br>Тот, кто прошёл этот путь</p>
-                </div>
-            </section>
-
-            <section id="epilogue" class="section">
-                <h2>Эпилог: когда зеркало становится окном</h2>
-                <p>Встреча с нарциссом — это урок различения. Урок того, как отличить золото от позолоты. Свет от блеска. Силу от её имитации.</p>
-                <p>Нарцисс показывает, что происходит с душой, отказавшейся от себя ради внешнего блеска. Он — предупреждение о том, куда ведёт путь постоянного самоотрицания.</p>
-                <p><span class="highlight">Горькая ирония:</span> тот, кто больше всего жаждет быть увиденным, меньше всего способен видеть других. Тот, кто отчаяннее всего ищет любви, меньше всего способен её дать.</p>
-                <p>Но есть надежда. Каждый из нас несёт зёрна нарциссизма. Встреча с его крайним проявлением может стать зеркалом для собственных теней.</p>
-                <p>И тогда зеркало становится окном. Не в чужую душу, а в свою. Не в отражение, а в реальность. Не в иллюзию величия, а в простую истину:</p>
-                <div class="quote">Мы достойны любви не за то, что делаем, а за то, что есть.</div>
-                <p>И этого достаточно.</p>
-            </section>
+    
+    <div class="content">
+        <div class="chapter" id="intro">
+            <h1>Зеркало, пожирающее отражение</h1>
+            <p class="subtitle">История о том, как душа превращается в голод, а любовь — в топливо для пустоты</p>
+        </div>
+        
+        <div class="chapter" id="part1">
+            <h2>Часть I: Анатомия пустоты</h2>
+            <p>Где-то в детстве, в момент, когда детский плач встречает молчание, рождается монстр. Не злой — пустой. Маленький мальчик тянет руки к матери, она отворачивается — не от жестокости, а от усталости. Он не понимает разницы. Он понимает только: <span class="highlight">«Таким, какой я есть, меня недостаточно»</span>.</p>
+            
+            <p>И начинается превращение. Живой ребёнок исчезает. На его месте вырастает блестящая копия — талантливая, обаятельная, неотразимая. Но копия не может существовать сама по себе. Ей нужны глаза, которые видят её совершенство.</p>
+            
+            <p><span class="highlight">Копия питается отражением.</span> И это — начало бесконечного голода.</p>
+            
+            <p>Он вырастает в сосуд без дна. Красивый, изящный, но пустой. В него можно лить любовь, но она не останется. Можно отдавать себя, но это не утолит жажду. Нарцисс не может держать чувства — он может только потреблять их. Жадно и бесконечно.</p>
+            
+            <p>Когда ты восхищаешься им, он оживает. Когда критикуешь — умирает. Когда уходишь — исчезает. Ты для него не человек. Ты — зеркало. Но даже зеркало может разбиться. И тогда приходится искать новое. Снова и снова.</p>
+        </div>
+        
+        <div class="chapter" id="part2">
+            <h2>Часть II: Выбор жертвы</h2>
+            <p>Нарцисс — хищник особого типа. Он охотится не на слабых, а на сильных с пробитыми границами. Не на глупых, а на умных с низкой самооценкой. Его идеальная жертва достаточно талантлива, чтобы быть полезной. Достаточно неуверена, чтобы искать подтверждения. Достаточно эмпатична, чтобы оправдывать его поведение.</p>
+            
+            <p><span class="highlight">Это не случайность.</span> Он чувствует «правильных» людей интуитивно. Видит того, кто готов пожертвовать собой ради чужого счастья.</p>
+            
+            <p>Ты жил обычной жизнью. Работа, быт, мелкие радости. Ничего особенного. Где-то в глубине души знал: со мной что-то не так. Не хватало блеска. Не хватало смысла. Не хватало ощущения, что жизнь — это не просто череда дней до смерти.</p>
+            
+            <p>И вдруг — он.</p>
+            
+            <h3>Соблазн избранностью</h3>
+            <p>Он приходит к тебе не с цветами, а с пониманием. Смотрит так, как будто видит твою душу. Говорит: «Только ты меня понимаешь». И в этом шёпоте — такая интимность, что ты готов поверить: да, только ты.</p>
+            
+            <p>Он не дарит подарки. Он дарит смысл. Не внимание, а избранность. Не любовь, а ощущение, что ты — центр его вселенной.</p>
+            
+            <p><span class="highlight">Это самый сильный наркотик — почувствовать себя нужным.</span></p>
+            
+            <p>Он читает твои раны как карту. Видит, где ты голоден, где одинок, где сломлен. И подходит именно к этому месту. Предлагает себя как лекарство.</p>
+            
+            <p>Твоя скромная работа бухгалтера вдруг становится «служением высшей цели». Твоя готовность помочь — «божественным даром». Твоё желание быть нужным — «призванием избранного».</p>
+            
+            <p>Он берёт пыль твоей обычности и превращает её в золото смысла. <span class="highlight">Ты не просто живёшь — ты участвуешь в священном деле.</span></p>
+        </div>
+        
+        <div class="chapter" id="part3">
+            <h2>Часть III: Любовная бомбардировка</h2>
+            <p>Он не просто соблазняет — он обрушивает лавину внимания. Двадцать сообщений в день. Звонки в час ночи: «Не мог заснуть, не поговорив с тобой». Подарки без повода. Взгляды, которые говорят: «Ты — моя вселенная».</p>
+            
+            <p><span class="highlight">Но это не любовь. Это инвестиция.</span> Он закладывает фундамент зависимости. Твоя нервная система привыкает к этому потоку. Без него ты чувствуешь себя пустым.</p>
+            
+            <p>Никто никогда не относился к тебе так. Никто не видел в тебе то, что видит он. Может, ты действительно особенный? Может, всю жизнь недооценивал себя?</p>
+            
+            <p>Позже ты понимаешь: он дарил не в праздники, а когда ты был готов уйти. Дорогие подарки. Красивые. Точно в твоём вкусе. Но каждый подарок был не даром, а инвестицией. Не радостью, а долгом. Не любовью, а покупкой лояльности.</p>
+            
+            <p>«После всего, что я для тебя сделал...» — говорил он при попытке уйти. И в этом «всего» были подарки, поездки, внимание. <span class="highlight">Он не дарил. Он покупал твою зависимость.</span></p>
+            
+            <p>Постепенно реальность становится пластичной. Он говорит: «Это не так произошло». Ты помнишь иначе, но он так убеждён, что ты начинаешь сомневаться. Он переписывает историю ваших отношений в режиме реального времени.</p>
+            
+            <p>Ты говоришь: «Вчера ты кричал на меня».
+            Он отвечает: «Я не кричал. Я беспокоился. Ты неправильно понял интонацию».</p>
+            
+            <p><span class="highlight">Твоя память становится ненадёжной. Остаётся только его версия событий.</span></p>
+        </div>
+        
+        <div class="chapter" id="part4">
+            <h2>Часть IV: Империя одного</h2>
+            <p>Его мир — не команда, а двор. Не коллеги, а подданные. Не партнёры, а зеркала разного размера. Он не делегирует — он расщепляет. Берёт твою работу, пропускает через себя, возвращает как свою.</p>
+            
+            <p>Ты готовишь презентацию. Он меняет цвет шрифта — и это уже его презентация. Ты находишь решение. Он добавляет запятую — и это уже его решение. <span class="highlight">Он не может позволить тебе быть автором.</span> Авторство — это власть. А власть в его мире принадлежит только ему.</p>
+            
+            <p>Он никогда не разговаривает напрямую. Создаёт драму между людьми, оставаясь в центре. Говорит тебе: «Марина считает, что ты слишком эмоционален». Марине: «Он сказал, что ты его не понимаешь».</p>
+            
+            <p>Вы начинаете выяснять отношения друг с другом. Он наблюдает. Утешает. Разрешает конфликты. <span class="highlight">Он — миротворец в войне, которую сам развязал.</span></p>
+            
+            <p>Сначала ты чувствуешь себя выбранным. Потом — важным. Потом — необходимым. А потом — не чувствуешь себя вообще.</p>
+            
+            <p>Это происходит так тонко, что ты не можешь понять, когда начал исчезать. Будто кто-то каждый день стирает по одной детали твоего портрета. Сначала фон, потом черты лица. В конце остается только рамка — с его изображением внутри.</p>
+            
+            <p><span class="highlight">Чем больше ты даёшь, тем меньше остаёшься.</span> Чем больше любишь, тем меньше любим. Чем больше стараешься, тем меньше ценишься. Потому что он видит только то, что отражает его самого.</p>
+        </div>
+        
+        <div class="chapter" id="part5">
+            <h2>Часть V: Трещины в фасаде</h2>
+            <p>Когда вокруг него собирается достаточно поклонников, когда его слово становится законом, появляется искушение. Если он духовный лидер, начинается опасная игра с собственными правилами.</p>
+            
+            <p>«Мне нужно больше отдыха, чтобы лучше служить». «Комфорт помогает мне яснее видеть истину». «Некоторые правила не касаются тех, кто их создал».</p>
+            
+            <p>Постепенно грань между учителем и учением стирается. Он начинает трактовать принципы так, чтобы оправдать свои желания. «Истинная святость — в преодолении запретов». «Мой путь — выше обычной морали». «Плотские наслаждения — тест на духовную зрелость».</p>
+            
+            <p><span class="highlight">Правила созданы для простых смертных. Но он — не из их числа.</span></p>
+            
+            <p>Наркотики для него — не развлечение, а лекарство. Они заглушают внутреннюю пустоту. Алкоголь растворяет границы между ним и миром. Кокаин даёт ощущение всемогущества. MDMA создаёт иллюзию близости.</p>
+            
+            <p><span class="highlight">Это не порок. Это попытка самолечения от экзистенциальной пустоты.</span></p>
+            
+            <p>Каждое новое завоевание — доказательство его неотразимости. Каждое тело — зеркало, в котором он видит себя желанным. Каждая связь — топливо для его нарциссического голода.</p>
+            
+            <p>Он не чувствует близости. Он чувствует только власть. Власть соблазнить. Власть взять. Власть оставить. <span class="highlight">Секс для него — не интимность, а трофей.</span></p>
+            
+            <p>От последователей он требует чистоты. От себя — понимания. Они должны поститься — он может позволить себе роскошь. Они должны быть верными — он исследует границы человеческого опыта.</p>
+            
+            <p><span class="highlight">«Я грешу, чтобы лучше понимать природу греха»</span> — говорит он себе. И верит в это.</p>
+            
+            <p>Каждый проект для него — обещание величия. Но чем ближе к концу, тем страшнее. Завершение — это всегда оценка. <span class="highlight">Гораздо безопаснее уйти раньше.</span> Оставить проект в статусе «великолепной идеи». Незавершённость — способ сохранить иллюзию.</p>
+        </div>
+        
+        <div class="chapter" id="part6">
+            <h2>Часть VI: Пробуждение</h2>
+            <p>Наступает момент усталости. Не от работы — от того, что не существуешь. От того, что твоя роль — быть продолжением его тела, эхом его голоса.</p>
+            
+            <p>Ты задаёшь вопросы: «А что со мной?» «А когда мои потребности?» «А где я в этой истории?»</p>
+            
+            <p>И видишь пугающее. Его лицо меняется. Не гневом — недоумением. Искренним, детским недоумением. <span class="highlight">«О чём ты?»</span> — спрашивает он. И в этом вопросе — пустота. Он действительно не понимает.</p>
+            
+            <p>Момент, когда ты понимаешь: я исчезаю. Не умираю — исчезаю. Растворяюсь в чужой потребности быть великим.</p>
+            
+            <p><span class="highlight">«Я не существую в этой истории»</span> — понимаешь ты. «Я не человек. Я — функция. Зеркало. Отражение чужой потребности в величии».</p>
+            
+            <p>И вдруг — ярость. Чистая, горячая, освобождающая. Не на него. На себя. За то, что позволил. За то, что поверил. Эта ярость — первый признак жизни. Первый крик души, которая помнит, что она есть.</p>
+            
+            <p>Каждый твой упрёк он превращает в твою проблему. Ты говоришь: «Ты меня игнорируешь». Он отвечает: «Ты слишком зависим. Это нездоровая привязанность».</p>
+            
+            <p>Ты приходишь обвинять, а уходишь извиняться. <span class="highlight">Он виртуозно превращает свои грехи в твои недостатки.</span></p>
+            
+            <p>Но теперь ты знаешь эту игру. Видишь манипуляцию. И впервые не покупаешься на неё.</p>
+        </div>
+        
+        <div class="chapter" id="part7">
+            <h2>Часть VII: Крушение империи</h2>
+            <p>Время — враг иллюзий. Постепенно люди устают от спектакля. Сначала уходят самые здоровые, потом — самые талантливые. Остаются только зависимые и сломанные.</p>
+            
+            <p>Результатов становится меньше. Энергия тратится на поддержание образа, а не на дело. Репутация тускнеет. Возраст приходит. Харизма увядает.</p>
+            
+<p><span class="highlight">Одиночество сгущается.</span> Те, кто был рядом, исчезают. Не из жестокости — из усталости. Не из предательства — из необходимости выжить.</p>
+            
+            <p>И тогда нарцисс впервые остаётся наедине с собой. С тем, кого прятал за масками. С пустотой, которую заполнял чужими душами.</p>
+            
+            <p>Самый страшный момент — когда зеркала перестают отражать. Когда восхищение сменяется равнодушием. Когда чужие глаза не горят при виде его.</p>
+            
+            <p>Тогда он впервые видит себя напрямую. И обнаруживает то, чего боялся: внутри почти никого нет. Есть привычки произвести впечатление. Есть рефлексы контроля. Есть память о былом величии. Но нет себя.</p>
+            
+            <p><span class="highlight">Некоторые ломаются.</span> Впадают в депрессию, пьют, теряют связь с реальностью. Некоторые удваивают усилия. Ищут новые зеркала, новые способы вернуть внимание.</p>
+            
+            <p>И только единицы находят мужество встретиться с пустотой. Признать, что вся жизнь была игрой. Что за декорациями — только страх маленького ребёнка: <span class="highlight">«Меня не любят таким, какой я есть»</span>.</p>
+        </div>
+        
+        <div class="chapter" id="part8">
+            <h2>Часть VIII: Путь к свободе</h2>
+            <p>Выход из нарциссической связи — не разрыв отношений. Это возвращение к себе. К тому, кем ты был до встречи с ним.</p>
+            
+            <p>Сначала — пустота. Ты привык определять себя через него. Твоя радость была его радостью. Твоя боль — его болью. <span class="highlight">А теперь кто ты?</span></p>
+            
+            <p>Поначалу — никто. Чистый лист. И это пугает. Но здесь, в этой пустоте, начинается настоящая жизнь.</p>
+            
+            <p>Ты заново учишься чувствовать свои потребности. Слышать желания. Защищать границы. Доверять интуиции. Медленно. Больно. Как учиться ходить после долгой болезни.</p>
+            
+            <p>Встреча с нарциссом — не наказание. Это посвящение. Болезненное, но необходимое. Теперь ты навсегда различаешь настоящую любовь от подделки. Близость от слияния. Заботу от контроля. Дар от инвестиции.</p>
+            
+            <p><span class="highlight">Ты не спутаешь интенсивность с интимностью.</span> Не примешь собственность за любовь. Не поверишь, что твоя ценность — в полезности.</p>
+            
+            <p>Ты знаешь: любовь не требует жертвы. Не просит исчезнуть. Не питается болью. Настоящая любовь видит тебя. Принимает тебя. Позволяет тебе быть.</p>
+        </div>
+        
+        <div class="chapter" id="part9">
+            <h2>Часть IX: Голос прошедшего</h2>
+            <p>Я помню этот момент. Когда понимаешь: годы жизни прошли в обслуживании чужого эго. Твоя любовь питала не человека, а чёрную дыру. Твоя преданность была не добродетелью, а болезнью.</p>
+            
+            <p>Ты думаешь, что дурак. Что любой увидел бы это раньше. Что потерял лучшие годы на иллюзию. Но это не так.</p>
+            
+            <p>Я попал в ту же ловушку. Не потому, что был слаб. А потому, что был способен любить. Не потому, что был глуп. А потому, что был готов верить в лучшее.</p>
+            
+            <p>Нарцисс охотится именно на таких. На живых. На чувствующих. На тех, кто может дать то, чего у него нет — способность к близости.</p>
+            
+            <p><span class="highlight">Наша боль — не приговор. Это пробуждение.</span></p>
+            
+            <p>Теперь мы знаем: наши потребности важны. Наши границы священны. Наша жизнь принадлежит нам. Любовь — это не жертва, а взаимность.</p>
+            
+            <p>Тот, кто разглядел манипуляцию, больше не попадётся в ту же ловушку. Тот, кто прошёл через нарциссическое рабство, знает цену настоящей свободы.</p>
+            
+            <p><span class="highlight">Мы не потеряли годы. Мы получили прививку от фальши.</span></p>
+            
+            <p>Нарцисс показывает, что происходит с душой, отказавшейся от себя ради внешнего блеска. Он — предупреждение о том, куда ведёт путь постоянного самоотрицания.</p>
+            
+            <p><span class="highlight">Горькая ирония:</span> тот, кто больше всего жаждет быть увиденным, меньше всего способен видеть других. Тот, кто отчаяннее всего ищет любви, меньше всего способен её дать.</p>
+            
+            <p>Но есть надежда. Каждый из нас несёт зёрна нарциссизма. Встреча с его крайним проявлением может стать зеркалом для собственных теней.</p>
+            
+            <p>И тогда зеркало становится окном. Не в чужую душу, а в свою. Не в отражение, а в реальность. Не в иллюзию величия, а в простую истину:</p>
+            
+            <p><span class="highlight">Мы достойны любви не за то, что делаем, а за то, что есть.</span></p>
+            
+            <p>И этого достаточно.</p>
         </div>
     </div>
-
+    
     <script>
-        // Создание плавающих частиц
-        function createParticles() {
-            const container = document.querySelector('.floating-particles');
-            const particleCount = 50;
+        // Создание звёзд
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const starsCount = 100;
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                container.appendChild(particle);
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
             }
         }
-
-        // Прогресс скролла
-        function updateScrollProgress() {
+        
+        // Прогресс-бар
+        function updateProgressBar() {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.querySelector('.progress-bar').style.width = progress + '%';
         }
-
-        // Плавное появление секций
-        function handleSectionVisibility() {
-            const sections = document.querySelectorAll('.section');
-            const windowHeight = window.innerHeight;
+        
+        // Анимация появления глав
+        function animateChapters() {
+            const chapters = document.querySelectorAll('.chapter');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
             
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionBottom = section.getBoundingClientRect().bottom;
-                
-                if (sectionTop < windowHeight * 0.8 && sectionBottom > 0) {
-                    section.classList.add('visible');
-                }
+            chapters.forEach(chapter => {
+                observer.observe(chapter);
             });
         }
-
-        // Активная навигация
-        function updateActiveNavigation() {
-            const sections = document.querySelectorAll('.section');
-            const navItems = document.querySelectorAll('.nav-item');
+        
+        // Навигация
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
             
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionHeight = section.offsetHeight;
-                
-                if (sectionTop <= 200 && sectionTop + sectionHeight > 200) {
-                    currentSection = section.id;
-                }
-            });
-            
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === '#' + currentSection) {
-                    item.classList.add('active');
-                }
-            });
-        }
-
-        // Плавная прокрутка к секциям
-        function setupSmoothScrolling() {
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            navItems.forEach(item => {
-                item.addEventListener('click', (e) => {
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const targetId = item.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
+                    const section = link.getAttribute('data-section');
+                    const target = document.getElementById(section);
                     
-                    if (targetSection) {
-                        const offsetTop = targetSection.offsetTop - 120;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Активация пункта меню
+                        document.querySelectorAll('.nav-link').forEach(navLink => {
+                            navLink.classList.remove('active');
                         });
+                        
+                        const mainNavLink = document.querySelector(`[data-section="${section}"].nav-link`);
+                        if (mainNavLink) {
+                            mainNavLink.classList.add('active');
+                        }
                     }
                 });
             });
         }
-
-        // Анимация подсветки важных фраз
-        function animateHighlights() {
-            const highlights = document.querySelectorAll('.highlight');
+        
+        // Изменение цвета фона в зависимости от части
+        function updateBackgroundColor() {
+            const chapters = document.querySelectorAll('.chapter');
+            let currentChapter = null;
             
-            highlights.forEach((highlight, index) => {
-                highlight.style.animationDelay = (index * 0.1) + 's';
-            });
-        }
-
-        // Эффект печатной машинки для заголовков
-        function typewriterEffect() {
-            const mainTitle = document.querySelector('h1');
-            const text = mainTitle.textContent;
-            mainTitle.textContent = '';
-            
-            let i = 0;
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    mainTitle.textContent += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(timer);
+            chapters.forEach(chapter => {
+                const rect = chapter.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    currentChapter = chapter;
                 }
-            }, 50);
+            });
+            
+            if (currentChapter) {
+                const chapterIndex = Array.from(chapters).indexOf(currentChapter);
+                document.body.className = `part-${chapterIndex + 1}`;
+            }
         }
-
+        
         // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            setupSmoothScrolling();
-            handleSectionVisibility();
-            updateActiveNavigation();
-            animateHighlights();
-            
-            // Запуск эффекта печатной машинки через небольшую задержку
-            setTimeout(typewriterEffect, 500);
+            createStars();
+            animateChapters();
+            initNavigation();
+            updateProgressBar();
+            updateBackgroundColor();
         });
-
-        // Обработчики событий прокрутки
+        
+        // Обработчики событий
         window.addEventListener('scroll', () => {
-            updateScrollProgress();
-            handleSectionVisibility();
-            updateActiveNavigation();
+            updateProgressBar();
+            updateBackgroundColor();
         });
-
-        // Адаптивное меню для мобильных устройств
-        window.addEventListener('resize', () => {
-            const navItems = document.querySelector('.nav-items');
-            if (window.innerWidth <= 768) {
-                navItems.style.maxHeight = '200px';
-                navItems.style.overflowY = 'auto';
-            } else {
-                navItems.style.maxHeight = 'none';
-                navItems.style.overflowY = 'visible';
-            }
+        
+        // Плавная прокрутка для всех якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
+</body>
+</html>
