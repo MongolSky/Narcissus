@@ -515,12 +515,22 @@
       sections.forEach(sec => observer.observe(sec));
     }
 
-    window.addEventListener('load', () => {
-      createStars();
-      createFloatingElements();
-      setActiveMenu();
-      fadeInSections();
-    });
+    function toggleMobileMenu() {
+    const dropdown = document.getElementById('mobileDropdown');
+    dropdown.classList.toggle('active');
+  }
+
+  function closeMobileMenu() {
+    const dropdown = document.getElementById('mobileDropdown');
+    dropdown.classList.remove('active');
+  }
+
+  window.addEventListener('load', () => {
+    createStars();
+    createFloatingElements();
+    setActiveMenu();
+    fadeInSections();
+  });
   </script>
 </body>
 </html>
